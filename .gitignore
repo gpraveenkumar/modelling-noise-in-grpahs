@@ -1,3 +1,4 @@
 # Do not add the data folder to the repository
 #########
 /data/
+/r/plots/
