@@ -1,3 +1,5 @@
+# Code to process the data and obtain the histrogram of the labels (using R) amongst 1-6, in order to determine an appopriate cutt off to make it binary
+
 path = "../data/"
 schoolNo = 74
 
