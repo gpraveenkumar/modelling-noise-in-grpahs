@@ -3,11 +3,12 @@
 path = "../data/"
 schoolNo = 74
 
-input = "school0" + str(schoolNo) + "-parsed.txt"
+#input = "school0" + str(schoolNo) + "-parsed.txt"
+input = "preProcessed-school0" + str(schoolNo) + ".txt"
 featureNumbers = [1,2,3]
 
 for featureNumber in featureNumbers:
-	output = str(schoolNo) + "-feature"+ str(featureNumber) +".txt"
+	output = "p" + str(schoolNo) + "-feature"+ str(featureNumber) +".txt"
 
 	f = open(path + input)
 	lines = f.readlines()
@@ -18,8 +19,9 @@ for featureNumber in featureNumbers:
 	for i in range(1,len(lines)):
 		t = lines[i].strip().split(' ')
 
+		# -4 to make the mathi right. For index 3 = -1,2 = -2,1 = -3 
 		if t[-featureNumber] != "NA":
-			l.append(t[-featureNumber])
+			l.append(t[featureNumber-4])
 
 	f = open(path + output, 'w')
 	f.write("ratings"+'\n')
