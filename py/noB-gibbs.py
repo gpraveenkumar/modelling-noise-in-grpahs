@@ -45,9 +45,9 @@ for line in f_in:
 
 	# If we're using a 1/0 representation
 	if binary:
-		label_0 = label_0 > 1
-		label_1 = label_1 > 1
-		label_2 = label_2 > 1
+		label_0 = label_0 >= 1
+		label_1 = label_1 >= 1
+		label_2 = label_2 >= 1
 
 	# assign them all their labels
 	labels_0[id] = label_0
@@ -118,6 +118,14 @@ for id, neighbors in edges1.iteritems():
 		if neighbor not in labels_0 or neighbor not in labels_1 or neighbor not in labels_2:
 			n.remove(neighbor)
 	edges[id] = n
+
+# remove those node with no neighbours
+for id, neighbors in edges1.iteritems():
+	if len(neighbors) == 0:
+		del edges[id]
+		del labels_0[id]
+		del labels_1[id]
+		del labels_2[id]
 
 del edges1
 
@@ -227,6 +235,12 @@ print 'Label 2:', cov_2 / (std2_0*std2_1)
 
 label = labels_0
 
+#class priors
+t = Counter()
+for x in label:
+	t[label[x]] += 1
+print t
+
 # making a fraction(=testsize) of labels
 noOfLabelsToMask = int(testSize*len(edges))
 #print noOfLabelsToMask
@@ -250,11 +264,17 @@ print classPrior
 estimatedProbabities = numpy.zeros([2,2])
 
 for id, neighbors in edges.iteritems():
+	if id in testLabels:
+		continue
 	# cycle through the neighbors
 	for neighbor in neighbors:
+		if neighbor in testLabels:
+			continue
 		estimatedProbabities[ label[id], label[neighbor] ] += 1
 		if not directed:
 			estimatedProbabities[ label[neighbor], label[id] ] += 1
+
+# Check if there is still attr. corr.
 
 print estimatedProbabities
 print sum(sum(estimatedProbabities))
@@ -262,14 +282,64 @@ estimatedProbabities /= sum(sum(estimatedProbabities))
 print estimatedProbabities
 
 
+def f1(nodeLabel, currentLabelEstimates, neighbors, estimatedProbabities, classPrior):
+	noOfZeroLabeledNeighbours = 0
+	#noOfNeighbours = 0
+	for i in neighbors:
+		if currentLabelEstimates[i] == 0:
+			noOfZeroLabeledNeighbours += 1
+	#print str(noOfZeroLabeledNeighbours) + "/ " + str(len(neighbors))
+	#print str(nodeLabel) + " ---- " + str(classPrior[nodeLabel]) + "----" + str(estimatedProbabities[nodeLabel,0]) + " , " + str(estimatedProbabities[nodeLabel,1])
+	prob = classPrior[nodeLabel] * math.pow( estimatedProbabities[nodeLabel,0] , noOfZeroLabeledNeighbours ) * math.pow(estimatedProbabities[nodeLabel,1] ,len(neighbors)-noOfZeroLabeledNeighbours)
+	return prob
+
+def f2(currentLabelEstimates, neighbors, estimatedProbabities, classPrior):
+	class0 = f1(0,currentLabelEstimates, neighbors, estimatedProbabities, classPrior)
+	class1 = f1(1,currentLabelEstimates, neighbors, estimatedProbabities, classPrior)
+	denominator = class0 + class1
+	#print str(class0) + " " + str(class1)
+	class0 = class0/denominator
+	class1 = class1/denominator
+
+	#print str(class0) + " " + str(class1)
+	if random.uniform(0,1) < class0:
+		return class0
+	else:
+		return class1
+
+# Assign initial labels to all test labels just using the priors
+currentLabelEstimates = label
+
+for node in testLabels:
+	neighbors = edges[node]
+	newNeighbors = set(neighbors)
+	
+	
+	for i in neighbors: 
+		if i in testLabels:
+			newNeighbors.remove(i)
+
+	neighbors = set(newNeighbors)
+	currentLabelEstimates[node] = f2(currentLabelEstimates, neighbors, estimatedProbabities, classPrior)
+
+
+"""
+		noOfNeighbours += 1
+		if currentLabelEstimates == 0:
+			noOfZeroLabeledNeighbours += 1
+"""
+
+
+
 ## Gibbs Sampling
 
 ## Step 2 of algo
-nodeTraversalOrder = labelsToMask
+nodeTraversalOrder = testLabels
 random.shuffle(nodeTraversalOrder)
 
 ## Step 3 of algo
 
 for node in nodeTraversalOrder:
-
-	neighbours = [i for i in range(n) if data[i,node]==1 ]
+	a = 1
+	#print node
+	#neighbours = [i for i in range(n) if data[i,node]==1 ]
