@@ -1,10 +1,12 @@
 import numpy
 from collections import Counter
+import random
 
 path = "../data/"
 schoolNo = 74
 labelNo = -3
 labelCutoff = 1
+testSize = 0.3
 
 #using the last label
 
@@ -65,11 +67,13 @@ n = len(startId)
 data = numpy.zeros([n,n])
 
 id_AID_mapping = {}
+AID_id_mapping = {}
 id_label_mapping = {}
 
 ctr = 0
 for i in startId:
 	id_AID_mapping[i] = ctr
+	AID_id_mapping[ctr] = i
 	ctr += 1
 
 
@@ -94,10 +98,99 @@ for i in range(1,len(lines)):
 #print id_label_mapping
 #print data
 
+
+# Delete nodes with no neighbours
+nodesToDelete = []
+for i in range(n):
+	if sum(data[i,:])==0:
+		nodesToDelete.append(i)
+
+data = numpy.delete(data,nodesToDelete,axis=0)
+data = numpy.delete(data,nodesToDelete,axis=1)
+
+n = n - len(nodesToDelete)
+#print n
+#print data.shape
+#print nodesToDelete
+
 """
 t = Counter()
 for x in id_label_mapping:
 	t[id_label_mapping[x]] += 1
 print t
 """
+
+## noB starts here
+
+# making a fraction(=testsize) of labels
+noOfLabelsToMask = int(testSize*len(id_label_mapping))
+#print noOfLabelsToMask
+labelsToMask = random.sample(xrange(n),noOfLabelsToMask)
+
+testLabels = id_label_mapping
+
+for i in labelsToMask:
+	testLabels[i] = -1;
+
+#class priors
+t = Counter()
+for x in testLabels:
+	t[testLabels[x]] += 1
+print t
+
+classPrior = [0]*2
+classPrior[0] = t[0] / (t[0] + t[1] + 0.0)
+classPrior[1] = 1 - classPrior[0]
+
+print classPrior
+
+
+estimatedTestLabelsProbabilites = numpy.zeros([n,2])
+estimatedTestLabels = {}
+currentTestLabels = testLabels
+
+for i in labelsToMask:
+	estimatedTestLabelsProbabilites[i,0] = classPrior[0]
+	estimatedTestLabelsProbabilites[i,1] = classPrior[1]
+
+	unif = random.uniform(0,1)
+	if unif < classPrior[0]:
+		estimatedTestLabels[i] = 0
+		currentTestLabels[i] = 0
+	else:
+		estimatedTestLabels[i] = 1
+		currentTestLabels[i] = 1
+
+"""
+t = Counter()
+for x in estimatedTestLabels:
+	t[estimatedTestLabels[x]] += 1
+print t
+"""
+
+
+
+## Gibbs Sampling
+
+## Step 2 of algo
+nodeTraversalOrder = labelsToMask
+random.shuffle(nodeTraversalOrder)
+
+## Step 3 of algo
+
+for node in nodeTraversalOrder:
+
+	neighbours = [i for i in range(n) if data[i,node]==1 ]
+	#print AID_id_mapping[node]
+	n0 = 0
+	for i in neighbours:
+		if currentTestLabels[i] == 0:
+			n0 += 1
+	n1= len(neighbours) - n0
+	#print(neighbours)
+	#print(str(n0)+" "+str(n1))
+
+	p0 = (n0 + 0.0 + 1)/(len(neighbours) + 2)
+	p1 = (n1 + 0.0 + 1)/(len(neighbours) + 2)
+	#print(str(p0)+" "+str(p1))
 
