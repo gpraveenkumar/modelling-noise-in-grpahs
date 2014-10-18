@@ -380,36 +380,49 @@ random.shuffle(nodeTraversalOrder)
 
 burnin = 500
 iteration = 2000
-resutingLabels = {}
+resultingLabels = {}
 for i in label:
-	resutingLabels[i] = 0
+	resultingLabels[i] = 0
 
 ## Step 3 of algo
 for i in range(iteration):
+	checkLabelDifferenceBetweenIterations = 0
 	for node in nodeTraversalOrder:
 		neighbors = edges[node]
 		currentLabelEstimates[node] = f2(currentLabelEstimates, neighbors, estimatedProbabities, classPrior)
 
 		t, classPrior, estimatedProbabities = computeParameters(currentLabelEstimates)
 
-		if i > burnin:
-			for j in currentLabelEstimates:
-				if j == 1:
-					resutingLabels[i] += 1
+	if i > burnin:
+		for j in currentLabelEstimates:
+			if currentLabelEstimates[j] == 1:
+				resultingLabels[j] += 1
+
+			temp = (resultingLabels[j] + 0.0)/(i - burnin) 
+			temp = int(temp >= 0.5)
+			if temp != label[j]:
+				checkLabelDifferenceBetweenIterations += 1
+				#print str(temp) + " " + str(label[j])
+	
+	print "LabelDifferenceBetweenIterations : " + str(checkLabelDifferenceBetweenIterations)	
 
 	print "----------------------------------\n" + "Iteration no : " +str(i)
 	print t
 	print classPrior
 	print estimatedProbabities
 
+for i in resultingLabels:
+	resultingLabels[i] = (resultingLabels[i] + 0.0)/(iteration - burnin) 
+	resultingLabels[i] = int(resultingLabels[i]  > 0.5)
 
-for i in resutingLabels:
-	resutingLabels[i] = (resutingLabels[i] + 0.0)/(iteration - burnin) 
-	resutingLabels[i] = int(resutingLabels[i])
-
+ctr = 0
+for i in label:
+	if label[i] != resultingLabels[i]:
+		ctr += 1
+print ctr
 accuracy = numpy.zeros([2,2])
 
 for i in label:
-	accuracy[ label[i], currentLabelEstimates[i] ] += 1
+	accuracy[ label[i], resultingLabels[i] ] += 1
 
 print accuracy
