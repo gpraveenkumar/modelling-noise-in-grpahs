@@ -4,6 +4,8 @@ from collections import Counter
 import random
 import numpy
 
+
+
 #f_in = open('../data/school034-parsed.txt')
 f_in = open('../data/school074-parsed.txt')
 
@@ -231,64 +233,89 @@ std2_1 = math.sqrt(std2_1)
 print 'Label 2:', cov_2 / (std2_0*std2_1)
 
 
-## noB starts here
+
+
 
 label = labels_0
 
+#Map AID to integers
+AID_nodeId_map = {}
+originalGraph = {}
+originalLabels = {}
+nodeIdCounter = 0
+
+# Map AID to nodeId and also transfrom labels to nodeId
+for i in label:
+	AID_nodeId_map[i] = nodeIdCounter
+	originalLabels[nodeIdCounter] = label[i]
+	originalGraph[ AID_nodeId_map[i] ] = Set([])
+	nodeIdCounter += 1
+
+# Transform graph based on AID to nodeID
+for i in edges:
+	neighbors = edges[i]
+	for neighbor in neighbors:
+		originalGraph[ AID_nodeId_map[i] ].add( AID_nodeId_map[neighbor] )
+
+
+
+## noB starts here
+
 #class priors
 t = Counter()
-for x in label:
-	t[label[x]] += 1
+for x in originalLabels:
+	t[originalLabels[x]] += 1
 print t
 
 # making a fraction(=testsize) of labels
-noOfLabelsToMask = int(testSize*len(edges))
+noOfLabelsToMask = int(testSize*len(originalLabels))
 #print noOfLabelsToMask
-testLabels = random.sample(label,noOfLabelsToMask)
+testLabels = random.sample(originalLabels,noOfLabelsToMask)
 
 print len(testLabels)
+originalTrainLabels = [i for i in originalLabels if i not in testLabels]
 
+#print len(label)
+#print len(testLabels)
+#print len(trainLabels)
 
-
-#class priors
-t = Counter()
-for x in label:
-	if x in testLabels:
-		continue
-	t[label[x]] += 1
-print t
-
-classPrior = [0]*2
-classPrior[0] = t[0] / (t[0] + t[1] + 0.0)
-classPrior[1] = 1 - classPrior[0]
-
-print classPrior
-
-# conditional probabilites
-estimatedProbabities = numpy.zeros([2,2])
-
-for id, neighbors in edges.iteritems():
-	if id in testLabels:
-		continue
-	# cycle through the neighbors
-	for neighbor in neighbors:
-		if neighbor in testLabels:
+def computeInitialParameters(G,label,testLabels):
+	#class priors
+	t = Counter()
+	for x in label:
+		if x in testLabels:
 			continue
-		estimatedProbabities[ label[id], label[neighbor] ] += 1
-		if not directed:
-			estimatedProbabities[ label[neighbor], label[id] ] += 1
+		t[label[x]] += 1
+	print t
 
+	classPrior = [0]*2
+	classPrior[0] = t[0] / (t[0] + t[1] + 0.0)
+	classPrior[1] = 1 - classPrior[0]
+	print classPrior
 
+	# conditional probabilites
+	estimatedProbabities = numpy.zeros([2,2])
 
+	for id, neighbors in G.iteritems():
+		if id in testLabels:
+			continue
+		# cycle through the neighbors
+		for neighbor in neighbors:
+			if neighbor in testLabels:
+				continue
+			estimatedProbabities[ label[id], label[neighbor] ] += 1
+			if not directed:
+				estimatedProbabities[ label[neighbor], label[id] ] += 1
 
-# Check if there is still attr. corr.
+	# Check if there is still attr. corr.
 
-print estimatedProbabities
-print sum(sum(estimatedProbabities))
-estimatedProbabities /= sum(sum(estimatedProbabities))
-print estimatedProbabities
+	print estimatedProbabities
+	print sum(sum(estimatedProbabities))
+	estimatedProbabities /= sum(sum(estimatedProbabities))
+	print estimatedProbabities
+	return (classPrior,estimatedProbabities)
 
-def computeParameters(label):
+def computeParameters(G,label):
 	#class priors
 	t = Counter()
 	for x in label:
@@ -305,10 +332,8 @@ def computeParameters(label):
 	estimatedProbabities = numpy.zeros([2,2])
 
 	#global edges
-	for id, neighbors in edges.iteritems():
-
+	for id, neighbors in G.iteritems():
 		# cycle through the neighbors
-
 		for neighbor in neighbors:
 			estimatedProbabities[ label[id], label[neighbor] ] += 1
 			if not directed:
@@ -344,85 +369,94 @@ def f2(currentLabelEstimates, neighbors, estimatedProbabities, classPrior):
 	else:
 		return 1
 
-# Assign initial labels to all test labels just using the priors
-currentLabelEstimates = dict(label)
+def initializeUnknownLabelsForGibbsSampling(G,label,testLabels):
+	# Assign initial labels to all test labels just using the priors
+	currentLabelEstimates = dict(label)
+	classPrior, estimatedProbabities = computeInitialParameters(G,label,testLabels)
 
+	for node in testLabels:
+		neighbors = G[node]
 
-for node in testLabels:
-	neighbors = edges[node]
-	newNeighbors = set(neighbors)
-	
-	for i in neighbors: 
-		if i in testLabels:
-			newNeighbors.remove(i)
+		#removing all the edges to labels in the test set for computing initial estimates. Original Graph is unaffected.
+		newNeighbors = set(neighbors)
+		for i in neighbors: 
+			if i in testLabels:
+				newNeighbors.remove(i)
+		neighbors = set(newNeighbors)
 
-	neighbors = set(newNeighbors)
-	currentLabelEstimates[node] = f2(currentLabelEstimates, neighbors, estimatedProbabities, classPrior)
+		currentLabelEstimates[node] = f2(currentLabelEstimates, neighbors, estimatedProbabities, classPrior)
 
-"""
-print "Initial Estimation .... "
+	t, classPrior, estimatedProbabities = computeParameters(G,currentLabelEstimates)
+	print classPrior
+	print estimatedProbabities
+	return (classPrior,estimatedProbabities,currentLabelEstimates)
 
-for node in range(0,len(testLabels)/2):
-	currentLabelEstimates[node] = 0
-for node in range(len(testLabels)/2,len(testLabels)):
-	currentLabelEstimates[node] = 0
-"""
-
-t, classPrior, estimatedProbabities = computeParameters(currentLabelEstimates)
-print classPrior
-print estimatedProbabities
 
 ## Gibbs Sampling
 
-## Step 2 of algo
-nodeTraversalOrder = testLabels
-random.shuffle(nodeTraversalOrder)
+def gibbsSampling(edges,label,testLabels):
+		
+	## Step 2 of algo
+	classPrior,estimatedProbabities,currentLabelEstimates = initializeUnknownLabelsForGibbsSampling(edges,label,testLabels)
 
-burnin = 500
-iteration = 2000
-resultingLabels = {}
-for i in label:
-	resultingLabels[i] = 0
+	nodeTraversalOrder = testLabels
+	random.shuffle(nodeTraversalOrder)
 
-## Step 3 of algo
-for i in range(iteration):
-	checkLabelDifferenceBetweenIterations = 0
-	for node in nodeTraversalOrder:
-		neighbors = edges[node]
-		currentLabelEstimates[node] = f2(currentLabelEstimates, neighbors, estimatedProbabities, classPrior)
+	burnin = 2
+	iteration = 10
 
-		t, classPrior, estimatedProbabities = computeParameters(currentLabelEstimates)
+	resultingLabels = {}
+	for i in label:
+		resultingLabels[i] = 0
 
-	if i > burnin:
-		for j in currentLabelEstimates:
-			if currentLabelEstimates[j] == 1:
-				resultingLabels[j] += 1
 
-			temp = (resultingLabels[j] + 0.0)/(i - burnin) 
-			temp = int(temp >= 0.5)
-			if temp != label[j]:
-				checkLabelDifferenceBetweenIterations += 1
-				#print str(temp) + " " + str(label[j])
-	
-	print "LabelDifferenceBetweenIterations : " + str(checkLabelDifferenceBetweenIterations)	
+	## Step 3 of algo
+	for i in range(iteration):
+		checkLabelDifferenceBetweenIterations = 0
+		for node in nodeTraversalOrder:
+			neighbors = edges[node]
+			currentLabelEstimates[node] = f2(currentLabelEstimates, neighbors, estimatedProbabities, classPrior)
 
-	print "----------------------------------\n" + "Iteration no : " +str(i)
-	print t
-	print classPrior
-	print estimatedProbabities
+			t, classPrior, estimatedProbabities = computeParameters(edges,currentLabelEstimates)
 
-for i in resultingLabels:
-	resultingLabels[i] = (resultingLabels[i] + 0.0)/(iteration - burnin) 
-	resultingLabels[i] = int(resultingLabels[i]  > 0.5)
+		if i > burnin:
+			for j in currentLabelEstimates:
+				if currentLabelEstimates[j] == 1:
+					resultingLabels[j] += 1
 
-ctr = 0
-for i in label:
-	if label[i] != resultingLabels[i]:
-		ctr += 1
-print ctr
-accuracy = numpy.zeros([2,2])
+				temp = (resultingLabels[j] + 0.0)/(i - burnin) 
+				temp = int(temp >= 0.5)
+				if temp != label[j]:
+					checkLabelDifferenceBetweenIterations += 1
+		
+		print "LabelDifferenceBetweenIterations : " + str(checkLabelDifferenceBetweenIterations)	
+		print "----------------------------------\n" + "Iteration no : " +str(i)
+		print t
+		print classPrior
+		print estimatedProbabities
 
-for i in label:
-	accuracy[ label[i], resultingLabels[i] ] += 1
+	for i in resultingLabels:
+		resultingLabels[i] = (resultingLabels[i] + 0.0)/(iteration - burnin) 
+		resultingLabels[i] = int(resultingLabels[i]  > 0.5)
 
-print accuracy
+	ctr = 0
+	for i in label:
+		if label[i] != resultingLabels[i]:
+			ctr += 1
+	print ctr
+	accuracy = numpy.zeros([2,2])
+
+	for i in label:
+		accuracy[ label[i], resultingLabels[i] ] += 1
+
+	print accuracy
+
+#gibbsSampling(edges,labels)
+
+
+
+
+
+percentageOfLabelFlips = 5
+
+gibbsSampling(originalGraph,originalLabels,testLabels)
