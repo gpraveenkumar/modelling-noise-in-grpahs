@@ -2,10 +2,10 @@ import sys, math
 from sets import Set
 from collections import Counter
 
-f_in = open('../data/school034-parsed.txt')
+f_in = open('../data/school074-parsed.txt')
 # f_in = open('../Data/AddHealth074/school074-parsed.txt')
 
-binary = False
+binary = True
 directed = False
 
 # graph
