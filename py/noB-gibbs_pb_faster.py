@@ -5,10 +5,6 @@ import random
 import numpy
 
 
-
-#f_in = open('../data/school034-parsed.txt')
-f_in = open('../data/school074-parsed.txt')
-
 binary = True
 directed = False
 
@@ -16,150 +12,54 @@ testSize = 0.3
 
 # graph
 edges = {}
-labels_0 = {}
-labels_1 = {}
-labels_2 = {}
+label = {}
 
-# no need for first line...
+
+f_in = open('../data/polblogs-nodes.txt')
+
+# no need for first line...Skipping the header
 junk_ = f_in.readline()
 
-# read them all
 for line in f_in:
 	fields = line.strip().split()
-	id = fields[0]
-	neighbors = fields[1:11] # 10 neighbors
-	label_0 = fields[11] # the three possible labels
-	label_1 = fields[12]
-	label_2 = fields[13]
-
-	# check ID
-	if id == 'NA':
-		continue
-
-	# check for a label
-	if label_0 == 'NA' or label_1 == 'NA' or label_1 == '99'or label_2 == 'NA':
-		continue
-
-	# toint / store in sets
-	label_0 = int(label_0)
-	label_1 = int(label_1)
-	label_2 = int(label_2)
-
-	# If we're using a 1/0 representation
-	binaryCutoff = 1
-	if binary:
-		label_0 = int(label_0 >= binaryCutoff)
-		label_1 = int(label_1 >= binaryCutoff)
-		label_2 = int(label_2 >= binaryCutoff)
-
-	# assign them all their labels
-	labels_0[id] = label_0
-	labels_1[id] = label_1
-	labels_2[id] = label_2
-
-
-	# insert new edges if not done yet
-	if id not in edges:
-		edges[id] = Set([])
-
-	# for each neighbor
-	for neighbor in neighbors:
-		if neighbor != 'NA':
-			if neighbor not in edges:
-				edges[neighbor] = Set([])
-
-			edges[id].add(neighbor)
-			if not directed:
-				edges[neighbor].add(id)
+	label[int(float(fields[0]))] = int(float(fields[1]))
+	edges[int(float(fields[0]))] = set([])
 
 f_in.close()
 
-l = []
+f_in = open('../data/polblogs-edges.txt')
 
-for id, neighbors in edges.iteritems():
-	if id not in labels_0 or id not in labels_1 or id not in labels_2:
-		continue
-	#print "l"
-	t = []
-	t.append(id)
-	for neighbor in neighbors:
-		t.append(neighbor)
-	t.append(str(labels_0[id]))
-	t.append(str(labels_1[id]))
-	t.append(str(labels_2[id]))
-	l.append(t)
+# no need for first line...Skipping the header
+junk_ = f_in.readline()
 
-"""
-f = open('joel.txt','w')
-f.write('\n'.join( ' '.join(i) for i in l))
-f.close()
-"""
+for line in f_in:
+	fields = line.strip().split()
+	edges[ int(float(fields[0])) ].add( int(float(fields[1])) )
+	edges[ int(float(fields[1])) ].add( int(float(fields[0])) )
 
-#print labels
-"""
-t = Counter()
-for x in labels_0:
-	t[labels_0[x]] += 1
-print t
-"""
+f_in.close()
 
-# pairings for computing correlations
-pairs_0 = []
-pairs_1 = []
-pairs_2 = []
-
-edges1 = dict(edges)
-#print "length of edges : " + str(len(edges))
-
-for id, neighbors in edges1.iteritems():
-	# praveen removed all of these
-	if id not in labels_0 or id not in labels_1 or id not in labels_2:
-		if id in edges:
-			del edges[id]
-			continue
-	
-	n = set(neighbors)
-	for neighbor in neighbors:
-		if neighbor not in labels_0 or neighbor not in labels_1 or neighbor not in labels_2:
-			n.remove(neighbor)
-	edges[id] = n
 
 # remove those node with no neighbours
+edges1 = dict(edges)
 for id, neighbors in edges1.iteritems():
 	if len(neighbors) == 0:
 		del edges[id]
-		del labels_0[id]
-		del labels_1[id]
-		del labels_2[id]
+		del label[id]
 
 del edges1
 
 #print "length of edges : " + str(len(edges))
 
 # Compute the pairings
+# pairings for computing correlations
+pairs = []
 for id, neighbors in edges.iteritems():
 	# cycle through the neighbors
 	for neighbor in neighbors:
 
-		pairs_0.append([labels_0[id], labels_0[neighbor]])
-		pairs_1.append([labels_1[id], labels_1[neighbor]])
-		pairs_2.append([labels_2[id], labels_2[neighbor]])
+		pairs.append([label[id], label[neighbor]])
 
-		"""
-		if not directed:
-			pairs_0.append([labels_0[neighbor], labels_0[id]])
-			pairs_1.append([labels_1[neighbor], labels_1[id]])
-			pairs_2.append([labels_2[neighbor], labels_2[id]])
-		"""
-
-
-#print pairs_0
-#print "length : " + str(len(pairs_0))
-
-f = open("../data/attributeCorrelationCheck.txt", 'w')
-f.write("A B"+'\n')
-f.write('\n'.join( ' '.join([str(int(j)) for j in i]) for i in pairs_0))
-f.close()
 
 
 # Function the computes correlation. 
@@ -190,9 +90,9 @@ def computeCorrelation(pairs):
 	return cov_0 / (std0_0*std0_1)
 
 
-print 'Label 0:', computeCorrelation(pairs_0) 
-print 'Label 1:', computeCorrelation(pairs_1) 
-print 'Label 2:', computeCorrelation(pairs_2) 
+print 'Label 0:', computeCorrelation(pairs) 
+#print 'Label 1:', computeCorrelation(pairs_1) 
+#print 'Label 2:', computeCorrelation(pairs_2) 
 
 
 
@@ -241,7 +141,7 @@ def computeEstimatedProbabilites(G,label):
 	return estimatedProbabities
 
 
-label = labels_0
+#label = labels_0
 
 #Map AID to integers
 AID_nodeId_map = {}
@@ -312,14 +212,17 @@ def computeInitialParameters(G,label,testLabels):
 
 	# conditional probabilites
 	estimatedCounts = numpy.zeros([2,2])
-
+	train_train = 0
+	train_test = 0
 	for id, neighbors in G.iteritems():
 		if id in testLabels:
 			continue
 		# cycle through the neighbors
 		for neighbor in neighbors:
 			if neighbor in testLabels:
+				train_test += 1
 				continue
+			train_train += 1
 			estimatedCounts[ label[id], label[neighbor] ] += 1
 			#if not directed:
 			#	estimatedCounts[ label[neighbor], label[id] ] += 1
@@ -327,6 +230,8 @@ def computeInitialParameters(G,label,testLabels):
 	# Check if there is still attr. corr.
 
 	print "\nInitial Parameter Estimates before estimating UNKNOWN labels:"
+	print train_train
+	print train_test
 	print t
 	print estimatedCounts
 	print sum(sum(estimatedCounts))
@@ -420,22 +325,25 @@ def initializeUnknownLabelsForGibbsSampling(G,label,testLabels):
 	# Assign initial labels to all test labels just using the priors
 	currentLabelEstimates = dict(label)
 	classPrior, estimatedProbabities, baseClassPriorCounts, baseEstimatedCounts = computeInitialParameters(G,label,testLabels)
-
+	originalNeighbourCount = 0
+	deletedNeighbourCount = 0
 	for node in testLabels:
 		neighbors = G[node]
-
+		originalNeighbourCount += len(neighbors)
 		#removing all the edges to labels in the test set for computing initial estimates. Original Graph is unaffected.
 		newNeighbors = set(neighbors)
 		for i in neighbors: 
 			if i in testLabels:
 				newNeighbors.remove(i)
 		neighbors = set(newNeighbors)
-
+		deletedNeighbourCount += len(neighbors)
 		currentLabelEstimates[node] = f2(currentLabelEstimates, neighbors, estimatedProbabities, classPrior)
 
 	t, classPrior, estimatedProbabities, estimatedCounts = computeParameters(G,currentLabelEstimates,testLabels,baseClassPriorCounts, baseEstimatedCounts)
 
 	print "Initial Parameter Estimates after estimating UNKNOWN labels:"
+	print originalNeighbourCount
+	print deletedNeighbourCount
 	print t
 	print "Current Attr. Cor.:", computeCorrelation(computePairs(G,currentLabelEstimates))
 	print classPrior
@@ -458,7 +366,7 @@ def gibbsSampling(edges,label,testLabels):
 	random.shuffle(nodeTraversalOrder)
 
 	burnin = 2
-	iteration = 10
+	iteration = 20
 
 	resultingLabels = {}
 	for i in label:
