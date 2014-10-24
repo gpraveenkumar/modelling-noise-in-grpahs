@@ -1,3 +1,7 @@
+# Note - The probabilities of the positive and the negative class are
+# incorrect and they should be fixed. 
+
+
 import sys, math
 from sets import Set
 from collections import Counter
@@ -15,7 +19,8 @@ edges = {}
 label = {}
 
 
-f_in = open('../data/polblogs-nodes.txt')
+#f_in = open('../data/polblogs-nodes.txt')
+f_in = open('../data/school074-nodes.txt')
 
 # no need for first line...Skipping the header
 junk_ = f_in.readline()
@@ -27,7 +32,8 @@ for line in f_in:
 
 f_in.close()
 
-f_in = open('../data/polblogs-edges.txt')
+#f_in = open('../data/polblogs-edges.txt')
+f_in = open('../data/school074-edges.txt')
 
 # no need for first line...Skipping the header
 junk_ = f_in.readline()
@@ -49,7 +55,7 @@ for id, neighbors in edges1.iteritems():
 
 del edges1
 
-#print "length of edges : " + str(len(edges))
+#print "length of edges : " + s:qtr(len(edges))
 
 # Compute the pairings
 # pairings for computing correlations
