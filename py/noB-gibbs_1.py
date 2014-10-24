@@ -128,7 +128,6 @@ def computeLabelCounts(label,testLabels=None):
 
 
 
-
 def computeEstimatedCounts(G,label):
 	estimatedProbabities = numpy.zeros([2,2])
 
@@ -179,6 +178,7 @@ print "No. of test labels:",len(testLabels)
 originalTrainLabels = [i for i in originalLabels if i not in testLabels]
 
 x = computeEstimatedCounts(originalGraph, originalLabels)
+print "Label-Label Count across Edges:\n"
 print x
 print sum(sum(x))
 
@@ -219,72 +219,15 @@ def computeInitialParameters(G,label,testLabels):
 
 	# Check if there is still attr. corr.
 
-	print "\nInitial Parameter Estimates before estimating UNKNOWN labels:"
-	print t
-	print estimatedCounts
-	print sum(sum(estimatedCounts))
+	#print "\nInitial Parameter Estimates before estimating UNKNOWN labels:"
+	#print t
+	#print estimatedCounts
+	#print sum(sum(estimatedCounts))
 	#estimatedProbabities = estimatedCounts / sum(sum(estimatedCounts))
 	estimatedProbabities[:,0] = estimatedCounts[:,0] / sum(estimatedCounts[:,0])
 	estimatedProbabities[:,1] = estimatedCounts[:,1] / sum(estimatedCounts[:,1])
-	print estimatedProbabities,"\n"
+	#print estimatedProbabities,"\n"
 	return (classPrior,estimatedProbabities,classPriorCounts,estimatedCounts)
-
-
-"""
-def computeParameters(G,label):
-	#class priors
-	t = Counter()
-	for x in label:
-		t[label[x]] += 1
-	
-	#print '\n','\n',t,'\n','\n'
-
-	classPrior = [0]*2
-	classPrior[0] = t[0] / (t[0] + t[1] + 0.0)
-	classPrior[1] = 1 - classPrior[0]
-
-	#print t
-	#print classPrior
-
-	# conditional probabilites
-	estimatedCounts = numpy.zeros([2,2])
-
-	#global edges
-	for id, neighbors in G.iteritems():
-		# cycle through the neighbors
-		for neighbor in neighbors:
-			estimatedCounts[ label[id], label[neighbor] ] += 1
-			#if not directed:
-			#	estimatedCounts[ label[neighbor], label[id] ] += 1
-
-	estimatedProbabities = estimatedCounts / sum(sum(estimatedCounts))
-
-	return (t,classPrior,estimatedProbabities,estimatedCounts)
-
-
-
-def computeParametersOneNode(G,label,node,newNodeLabel,oldNodeLabel,classPriorCounts,estimatedCounts):
-
-	classPriorCounts[oldNodeLabel] -= 1
-	classPriorCounts[newNodeLabel] += 1
-
-	classPrior = [0]*2
-	classPrior[0] = classPriorCounts[0] / (classPriorCounts[0] + classPriorCounts[1] + 0.0)
-	classPrior[1] = 1 - classPrior[0]
-
-	neighbors = G[node]
-	#Remove edges for old lable
-	for neighbor in neighbors:
-		estimatedCounts[ oldNodeLabel, label[neighbor] ] -= 1
-		estimatedCounts[ label[neighbor], oldNodeLabel ] -= 1
-
-		estimatedCounts[ newNodeLabel, label[neighbor] ] += 1
-		estimatedCounts[ label[neighbor], newNodeLabel ] += 1
-
-	estimatedProbabities = estimatedCounts / sum(sum(estimatedCounts))
-	
-	return (classPriorCounts,classPrior,estimatedProbabities,estimatedCounts)		
-"""
 
 
 
@@ -338,13 +281,13 @@ def initializeUnknownLabelsForGibbsSampling(G,label,testLabels):
 		currentLabelEstimates[node] = f2(currentLabelEstimates, neighbors, estimatedProbabities, classPrior)
 
 
-	print "Initial Parameter Estimates after estimating UNKNOWN labels:"
-	print classPriorCounts
+	print "Initial Parameter Estimates:"
+	print "Training Labels:",classPriorCounts
 	print "Current Attr. Cor.:", computeCorrelation(computePairs(G,currentLabelEstimates))
-	print classPrior
-	print estimatedCounts
+	print "Class Prior Probabilites:",classPrior
+	print "Label-Label Count across Edges:\n",estimatedCounts
 	print sum(sum(estimatedCounts))
-	print estimatedProbabities,"\n"
+	print "Probability Estimates:\n",estimatedProbabities,"\n"
 
 	return (classPrior,estimatedProbabities,currentLabelEstimates,classPriorCounts,estimatedCounts)
 
@@ -361,7 +304,7 @@ def gibbsSampling(edges,label,testLabels):
 	random.shuffle(nodeTraversalOrder)
 
 	burnin = 2
-	iteration = 4
+	iteration = 10
 
 	resultingLabels = {}
 	for i in label:
@@ -371,6 +314,8 @@ def gibbsSampling(edges,label,testLabels):
 	previousLabelDifferenceBetweenIterations = 0
 
 	## Step 3 of algo
+	print "\nStart of Gibbs....\n"
+
 	for i in range(iteration):
 		
 		LabelDifferenceBetweenIterations = 0
@@ -380,13 +325,6 @@ def gibbsSampling(edges,label,testLabels):
 			neighbors = edges[node]
 			previousEstimate = currentLabelEstimates[node]
 			currentLabelEstimates[node] = f2(currentLabelEstimates, neighbors, estimatedProbabities, classPrior)
-			
-			# Recompute probabilites only if the previousEstimate of label value is different from its current Value.
-			#if previousEstimate != currentLabelEstimates[node]:
-			#	classPriorCounts, classPrior, estimatedProbabities, estimatedCounts = computeParametersOneNode(edges,currentLabelEstimates,node,currentLabelEstimates[node],previousEstimate,classPriorCounts,estimatedCounts)
-			#print "After Attr. Cor.:", computeCorrelation(computePairs(edges,currentLabelEstimates))
-			#print classPrior
-			#print estimatedProbabities
 		
 		if i > burnin:
 			for j in currentLabelEstimates:
@@ -417,27 +355,27 @@ def gibbsSampling(edges,label,testLabels):
 		"""
 
 		if i:#not i%10:
-			print "\n--------------------------------------------------\n" + "Iteration no : " +str(i)
-			print "LabelDifferenceBetweenIterations : " + str(LabelDifferenceBetweenIterations)	
-			print "Current Attr. Cor.:", computeCorrelation(computePairs(edges,currentLabelEstimates))
-			print classPriorCounts
-			print classPrior
-			print estimatedCounts
+			#print "\n--------------------------------------------------\n" + "Iteration no : " +str(i)
+			print "Iteration no : " +str(i) + " -> LabelDifferenceBetweenIterations : " + str(LabelDifferenceBetweenIterations)	
+			#print "Current Attr. Cor.:", computeCorrelation(computePairs(edges,currentLabelEstimates))
+			#print classPriorCounts
+			#print classPrior
+			#print estimatedCounts
 			#print sum(sum(estimatedCounts))
-			print estimatedProbabities
-	#print resultingLabels
+			#print estimatedProbabities
+	
 
 	for i in resultingLabels:
 		resultingLabels[i] = (resultingLabels[i] + 0.0)/(iteration - burnin) 
 		resultingLabels[i] = int(resultingLabels[i]  >= 0.5)
-	#print resultingLabels
+	
 	ctr = 0
 	for i in label:
 		if label[i] != resultingLabels[i]:
 			ctr += 1
 
 
-	print "\nFinal Results\nNo. of Labels Mismatched:",ctr
+	print "\nFinal Results:\nNo. of Labels Mismatched:",ctr
 
 	accuracy = numpy.zeros([2,2])
 	for i in testLabels:
@@ -445,17 +383,15 @@ def gibbsSampling(edges,label,testLabels):
 
 	accp = (accuracy[0,0]+accuracy[1,1])/sum(sum(accuracy))
 
-	print "Accuracy:",accuracy
+	print "Accuracy:\n",accuracy
 	print "% = ",accp
-	print "No. of Test Example:",computeLabelCounts(label,testLabels)
-	print "Final Labels:",computeLabelCounts(resultingLabels,testLabels)
+	print "Ground Truth:",computeLabelCounts(label,testLabels)
+	print "Predicted Labels:",computeLabelCounts(resultingLabels,testLabels)
 
 	return accp
 
-print "\nStart of Gibbs...."
-#gibbsSampling(originalGraph,originalLabels,testLabels)
 
-
+# Function to Flip the data
 def func1(a,b):
 	# Make a new graph with noise
 	newGraph = dict(originalGraph)
@@ -500,6 +436,7 @@ def func1(a,b):
 	return acc
 
 
+# Function to Drop Labels
 def func2(a,b):
 	# Make a new graph with noise
 	newGraph = dict(originalGraph)
@@ -566,56 +503,3 @@ for nop in noOfFlips:
 #print "Average of 10 runs:", avg
 
 
-g1 = {}
-"""
-g1[0] = set([1,2,3])
-g1[1] = set([2,3,4])
-g1[2] = set([3,4,0])
-g1[3] = set([4,1,0])
-g1[4] = set([5,0,1])
-g1[5] = set([6,7])
-g1[6] = set([7,8])
-g1[7] = set([8,9])
-g1[8] = set([9,6])
-g1[9] = set([5,0])
-"""
-
-g1[0] = set([1,9])
-g1[1] = set([0,2])
-g1[2] = set([1,3])
-g1[3] = set([2,4])
-g1[4] = set([3,5])
-g1[5] = set([4,6])
-g1[6] = set([5,7])
-g1[7] = set([6,8])
-g1[8] = set([7,9])
-g1[9] = set([8,0])
-
-
-ol = {}
-ol[0] = 0 
-ol[1] = 0 
-ol[2] = 0 
-ol[3] = 0 
-ol[4] = 0 
-ol[5] = 1
-ol[6] = 1
-ol[7] = 1
-ol[8] = 1
-ol[9] = 1
-
-tl = [0,1]
-#gibbsSampling(g1,ol,tl)
-
-g1 = {}
-g1[0] = set([1,2,3])
-g1[1] = set([2,3,0])
-g1[2] = set([3,1,0])
-g1[3] = set([2,1,0])
-ol = {}
-ol[0] = 0 
-ol[1] = 1 
-ol[2] = 0 
-ol[3] = 1 
-tl = [0]
-#gibbsSampling(g1,ol,tl)
