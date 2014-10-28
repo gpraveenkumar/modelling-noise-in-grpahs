@@ -3,7 +3,9 @@ from sets import Set
 from collections import Counter
 import random
 import numpy
+import os
 
+os.remove('p_noB_gibbs.pyc')
 from p_noB_gibbs import *
 #import p_noB_gibbs
 
@@ -62,71 +64,6 @@ for id, neighbors in edges.iteritems():
 	for neighbor in neighbors:
 		pairs.append([label[id], label[neighbor]])
 
-
-
-# Function the computes correlation. 
-# Take in a list of pairs each of which a list of [startnode,endnode]
-# Returns correlation
-def computeCorrelation(pairs):
-	mean0_0 = 0.0
-	mean0_1 = 0.0
-	std0_0 = 0.0
-	std0_1 = 0.0
-	cov_0 = 0.0
-
-	for pair in pairs:
-		mean0_0 += pair[0]
-		mean0_1 += pair[1]
-
-	mean0_0 /= len(pairs)
-	mean0_1 /= len(pairs)
-
-	for pair in pairs:
-		cov_0 += (pair[0] - mean0_0)*(pair[1] - mean0_1)
-		std0_0 += (pair[0] - mean0_0)**2
-		std0_1 += (pair[1] - mean0_1)**2
-
-	std0_0 = math.sqrt(std0_0)
-	std0_1 = math.sqrt(std0_1)
-	return cov_0 / (std0_0*std0_1)
-
-
-print 'Label 0:', computeCorrelation(pairs) 
-
-
-
-# A function to Compute the pairings to calculate correlation.
-# Input - Graph
-# Output - list of pairs each of which a list of [startnode,endnode]
-def computePairs(edges,label):
-
-	pairs = []
-	
-	for id, neighbors in edges.iteritems():
-		# cycle through the neighbors
-		for neighbor in neighbors:
-			pairs.append([label[id], label[neighbor]])
-
-			if not directed:
-				pairs.append([label[neighbor], label[id]])
-
-	return pairs	
-	
-
-
-# A function to Compute the number of labels in each class
-# Input - list of labels
-# Output - count of labels in each
-def computeLabelCounts(label,testLabels=None):
-	if testLabels != None:
-		t = Counter()
-		for x in testLabels:
-			t[label[x]] += 1
-	else:	
-		t = Counter()
-		for x in label:
-			t[label[x]] += 1
-	return t
 
 
 

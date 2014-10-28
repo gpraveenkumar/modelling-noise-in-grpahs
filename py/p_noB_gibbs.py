@@ -5,6 +5,42 @@ import random
 import numpy
 
 
+
+
+# A function to Compute the number of labels in each class
+# Input - list of labels
+# Output - count of labels in each
+def computeLabelCounts(label,testLabels=None):
+	if testLabels != None:
+		t = Counter()
+		for x in testLabels:
+			t[label[x]] += 1
+	else:	
+		t = Counter()
+		for x in label:
+			t[label[x]] += 1
+	return t
+
+
+# A function to Compute the pairings to calculate correlation.
+# Input - Graph
+# Output - list of pairs each of which a list of [startnode,endnode]
+def computePairs(edges,label):
+
+	pairs = []
+	
+	for id, neighbors in edges.iteritems():
+		# cycle through the neighbors
+		for neighbor in neighbors:
+			pairs.append([label[id], label[neighbor]])
+
+			#if not directed:
+			#	pairs.append([label[neighbor], label[id]])
+
+	return pairs	
+
+
+
 # Function the computes correlation. 
 # Take in a list of pairs each of which a list of [startnode,endnode]
 # Returns correlation
@@ -143,8 +179,6 @@ def initializeUnknownLabelsForGibbsSampling(G,label,testLabels):
 	print "Probability Estimates:\n",estimatedProbabities,"\n"
 
 	return (classPrior,estimatedProbabities,currentLabelEstimates,classPriorCounts,estimatedCounts)
-
-AS
 
 
 ## Gibbs Sampling
