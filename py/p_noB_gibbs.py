@@ -181,6 +181,19 @@ def initializeUnknownLabelsForGibbsSampling(G,label,testLabels):
 	return (classPrior,estimatedProbabities,currentLabelEstimates,classPriorCounts,estimatedCounts)
 
 
+
+# Function to compute the Accuracy
+# Input : Original Labels, test labels and the predicted labels
+# Output : Accuracy
+def computeAccuracy(label,testLabels,resultingLabels):
+	accuracy = numpy.zeros([2,2])
+	for i in testLabels:
+		accuracy[ label[i], resultingLabels[i] ] += 1
+
+	accp = (accuracy[0,0]+accuracy[1,1])/sum(sum(accuracy))
+	return accp
+
+
 ## Gibbs Sampling
 
 def gibbsSampling(edges,label,testLabels):
@@ -265,11 +278,7 @@ def gibbsSampling(edges,label,testLabels):
 
 	#print "\nFinal Results:\nNo. of Labels Mismatched:",ctr
 
-	accuracy = numpy.zeros([2,2])
-	for i in testLabels:
-		accuracy[ label[i], resultingLabels[i] ] += 1
-
-	accp = (accuracy[0,0]+accuracy[1,1])/sum(sum(accuracy))
+	accp = computeAccuracy(label,testLabels,resultingLabels)
 
 	#print "Accuracy:\n",accuracy
 	#print "% = ",accp
@@ -277,3 +286,4 @@ def gibbsSampling(edges,label,testLabels):
 	#print "Predicted Labels:",computeLabelCounts(resultingLabels,testLabels)
 
 	return (accp,estimatedProbabities)
+

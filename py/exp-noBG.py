@@ -17,6 +17,7 @@ def silentremove(filename):
         if e.errno != errno.ENOENT: # errno.ENOENT = no such file or directory
             raise # re-raise exception if a different error occured
 silentremove('p_noB_gibbs.pyc')
+
 from p_noB_gibbs import *
 
 
@@ -266,7 +267,6 @@ def func_star(a_b):
 
 
 
-
 def computeMeanAndStandardError(vector):
 	mean = numpy.mean(vector)
 	sd = numpy.std(vector)
@@ -274,18 +274,58 @@ def computeMeanAndStandardError(vector):
 	return (mean,sd,se)
 
 
+
+# Function that is used to set all the labels in the testLabels to a 
+# particular label value (0 or 1). This is primarily used to check if the 
+# performace of the classifier is better than predicting all 0's or 1's.
+# Input : originalLabels, testLabels, Value (Label like 0 or 1 to which 
+#	all test labels should be set)
+# Output : predictedLabels - all testLabels set to that Value
+
+def setLabelForBaselineAccuracies(originalLabels, testLabels, value):
+	predictedLabels = {}
+
+	for i in originalLabels:
+		if i in testLabels:
+			predictedLabels[i] = value
+		else:
+			predictedLabels[i] = originalLabels[i]
+
+	return predictedLabels
+
+
+
+# Function is used to compute to the range of Baseline Predictions. This 
+#	is used to understand if using a small training set size is meaningful
+#	or not i.e. If a prediction result is worse than baseline, then we are not 
+#	making any progress.
+# Input : baseline vector of two elements, representing the min and max value 
+# 	of baseline. curVal - Current value of Baseline.
+# Optput Updated baseline vector
+
+def updateBaselineRanges(baseline,curValue):
+	if curValue < baseline[0]:
+		baseline[0] = curValue
+	if curValue > baseline[1]:
+		baseline[1] = curValue
+	return baseline
+
+
 a1 = []
 e1 = []
+Baseline_0 =[1,0]
+Baseline_1 =[1,0]
 
-for i in range(10):
-	testSize = 0.9
+trainingSize = 0.6
+testSize = 1-trainingSize
+noOfLabelsToMask = int(testSize*len(originalLabels))
+print "testLabels Size:",noOfLabelsToMask
 
-	noOfLabelsToMask = int(testSize*len(originalLabels))
+for i in range(25):
+
 	testLabels = random.sample(originalLabels,noOfLabelsToMask)
-	print len(originalLabels)
-	print len(testLabels)
-
-	print "Repetition No.:",i
+	
+	print "\nRepetition No.:",i
 	originalTrainLabels = [i for i in originalLabels if i not in testLabels]
 
 	arg_t = [originalGraph,originalLabels,testLabels]
@@ -300,17 +340,35 @@ for i in range(10):
 	#print accuracy
 	#print estimatedProbabities[0]
 	e1.append(estimatedProbabities[0])
-	print "\nMean:",mean
+
+	predictedLabels = setLabelForBaselineAccuracies(originalLabels, testLabels, 0)
+	curBaselineValue = computeAccuracy(originalLabels,testLabels, predictedLabels )
+	Baseline_0 = updateBaselineRanges(Baseline_0,curBaselineValue)
+	print "Baseline_0:", curBaselineValue
+	predictedLabels = setLabelForBaselineAccuracies(originalLabels, testLabels, 1)
+	curBaselineValue = computeAccuracy(originalLabels,testLabels, predictedLabels )
+	Baseline_1 = updateBaselineRanges(Baseline_1,curBaselineValue)
+	print "Baseline_1:", curBaselineValue
+	print "Mean:",mean
 	print "SD:",sd
 	print "SE:",se
 	print "estimatedProbabities:\n",estimatedProbabities[0]
 	a1.append(mean)
 #print se
 
-print "\nFinal .................. "
-print a1
 mean,sd,se = computeMeanAndStandardError(a1)
-print "Mean:",mean
-print "SD:",sd
-print "SE:",se
+
+print "\nFINAL .................. "
+print "Baseline_0 range:", Baseline_0
+t = sum(Baseline_0)/len(Baseline_0)
+print "B_0_mean:",t
+print "B_0_std:",t - Baseline_0[0]
+print "Baseline_1 range:", Baseline_1
+t = sum(Baseline_1)/len(Baseline_1)
+print "B_1_mean:",t
+print "B_1_std:",t - Baseline_1[0]
+print a1
+print "Prediction Mean:",mean
+print "Prediction SD:",sd
+print "Prediction SE:",se
 #print e1
