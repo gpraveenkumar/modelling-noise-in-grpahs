@@ -8,7 +8,7 @@ import numpy
 binary = True
 directed = False
 
-testSize = 0.3
+testSize = 0.99
 
 # graph
 edges = {}
@@ -224,8 +224,8 @@ def computeInitialParameters(G,label,testLabels):
 	#print estimatedCounts
 	#print sum(sum(estimatedCounts))
 	#estimatedProbabities = estimatedCounts / sum(sum(estimatedCounts))
-	estimatedProbabities[:,0] = estimatedCounts[:,0] / sum(estimatedCounts[:,0])
-	estimatedProbabities[:,1] = estimatedCounts[:,1] / sum(estimatedCounts[:,1])
+	estimatedProbabities[:,0] = (estimatedCounts[:,0] + 1) / (sum(estimatedCounts[:,0]) + 2)
+	estimatedProbabities[:,1] = (estimatedCounts[:,1] + 1) / (sum(estimatedCounts[:,1]) + 2)
 	#print estimatedProbabities,"\n"
 	return (classPrior,estimatedProbabities,classPriorCounts,estimatedCounts)
 

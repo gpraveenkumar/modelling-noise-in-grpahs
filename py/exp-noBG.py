@@ -3,16 +3,29 @@ from sets import Set
 from collections import Counter
 import random
 import numpy
-import os
+from multiprocessing import Pool
 
-os.remove('p_noB_gibbs.pyc')
+# The .pyc file is not updated as it should be with changes in p_nob_gibbs.py. 
+#Hence, I am manually removing it so that it can be recomplied and a new .pyc 
+#can be generated everytime. THis is just to avoid potential problems.
+import os, errno
+
+def silentremove(filename):
+    try:
+        os.remove(filename)
+    except OSError as e: # this would be "except OSError, e:" before Python 2.6
+        if e.errno != errno.ENOENT: # errno.ENOENT = no such file or directory
+            raise # re-raise exception if a different error occured
+silentremove('p_noB_gibbs.pyc')
 from p_noB_gibbs import *
-#import p_noB_gibbs
+
+
+#random.seed(1)
 
 binary = True
 directed = False
 
-testSize = 0.3
+#testSize = 0.3
 
 # graph
 edges = {}
@@ -107,6 +120,7 @@ print "Original Attr. Cor.:", computeCorrelation(computePairs(originalGraph,orig
 
 ## noB starts here
 
+"""
 print "Original +/- label counts:",computeLabelCounts(originalLabels)
 
 # masking a fraction(=testsize) of labels
@@ -120,7 +134,7 @@ x = computeEstimatedCounts(originalGraph, originalLabels)
 print "Label-Label Count across Edges:\n"
 print x
 print sum(sum(x))
-
+"""
 
 
 
@@ -214,7 +228,7 @@ def func2(a,b):
 	return acc
 
 
-gibbsSampling(originalGraph,originalLabels,testLabels)
+#gibbsSampling(originalGraph,originalLabels,testLabels)
 
 
 
@@ -237,4 +251,66 @@ for nop in noOfFlips:
 	f.close()
 #print "Average of 10 runs:", avg
 
+"""
+arg_t = [originalGraph,originalLabels,testLabels]
 
+arguments = []
+
+for i in range(100):
+	arguments.append(arg_t)
+"""
+
+def func_star(a_b):
+    """Convert `f([1,2])` to `f(1,2)` call."""
+    return gibbsSampling(*a_b)
+
+
+
+
+def computeMeanAndStandardError(vector):
+	mean = numpy.mean(vector)
+	sd = numpy.std(vector)
+	se = sd / math.sqrt(len(vector))
+	return (mean,sd,se)
+
+
+a1 = []
+e1 = []
+
+for i in range(10):
+	testSize = 0.9
+
+	noOfLabelsToMask = int(testSize*len(originalLabels))
+	testLabels = random.sample(originalLabels,noOfLabelsToMask)
+	print len(originalLabels)
+	print len(testLabels)
+
+	print "Repetition No.:",i
+	originalTrainLabels = [i for i in originalLabels if i not in testLabels]
+
+	arg_t = [originalGraph,originalLabels,testLabels]
+	arguments = []
+	for i in range(25):
+		arguments.append(arg_t)
+
+	pool = Pool(processes=30)
+	y = pool.map(func_star, arguments)
+	accuracy, estimatedProbabities = zip(*y)
+	mean,sd,se = computeMeanAndStandardError(accuracy)
+	#print accuracy
+	#print estimatedProbabities[0]
+	e1.append(estimatedProbabities[0])
+	print "\nMean:",mean
+	print "SD:",sd
+	print "SE:",se
+	print "estimatedProbabities:\n",estimatedProbabities[0]
+	a1.append(mean)
+#print se
+
+print "\nFinal .................. "
+print a1
+mean,sd,se = computeMeanAndStandardError(a1)
+print "Mean:",mean
+print "SD:",sd
+print "SE:",se
+#print e1
