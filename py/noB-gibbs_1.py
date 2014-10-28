@@ -238,7 +238,12 @@ def f1(nodeLabel, currentLabelEstimates, neighbors, estimatedProbabities, classP
 			noOfZeroLabeledNeighbours += 1
 	#print str(noOfZeroLabeledNeighbours) + "/ " + str(len(neighbors))
 	#print str(nodeLabel) + " ---- " + str(classPrior[nodeLabel]) + "----" + str(estimatedProbabities[nodeLabel,0]) + " , " + str(estimatedProbabities[nodeLabel,1])
-	prob = classPrior[nodeLabel] * math.pow( estimatedProbabities[nodeLabel,0] , noOfZeroLabeledNeighbours ) * math.pow(estimatedProbabities[nodeLabel,1] ,len(neighbors)-noOfZeroLabeledNeighbours)
+	
+	#prob = classPrior[nodeLabel] * math.pow( estimatedProbabities[nodeLabel,0] , noOfZeroLabeledNeighbours ) * math.pow(estimatedProbabities[nodeLabel,1] ,len(neighbors)-noOfZeroLabeledNeighbours)
+	
+	# Converting to log for better precicion and avoiding overflow
+	t = math.log( classPrior[nodeLabel] ) +  noOfZeroLabeledNeighbours*math.log( estimatedProbabities[nodeLabel,0] ) +  (len(neighbors)-noOfZeroLabeledNeighbours)*math.log( estimatedProbabities[nodeLabel,1] )
+	prob = math.exp( t )
 	#print prob
 	return prob
 
