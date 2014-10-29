@@ -1,0 +1,2374 @@
+Original Attr. Cor.: 0.234118798002
+
+
+
+
+
+trainingSize: 0.01  percentageOfLabelFlips:  0.05  noOfTimesToFlipLabel:  2
+testLabels Size: 613
+
+Repetition No.: 0
+Size of graph: 634
+Baseline_0: 0.52691680261
+Baseline_1: 0.47308319739
+Mean: 0.526394779772
+SD: 0.00164561438342
+SE: 0.000329122876683
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 1
+Size of graph: 634
+Baseline_0: 0.523654159869
+Baseline_1: 0.476345840131
+Mean: 0.523654159869
+SD: 0.0
+SE: 0.0
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 2
+Size of graph: 634
+Baseline_0: 0.52528548124
+Baseline_1: 0.47471451876
+Mean: 0.52528548124
+SD: 3.33066907388e-16
+SE: 6.66133814775e-17
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 3
+Size of graph: 634
+Baseline_0: 0.52691680261
+Baseline_1: 0.47308319739
+Mean: 0.52704730832
+SD: 0.00200698942894
+SE: 0.000401397885787
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 4
+Size of graph: 634
+Baseline_0: 0.52854812398
+Baseline_1: 0.47145187602
+Mean: 0.47145187602
+SD: 0.00166362790003
+SE: 0.000332725580006
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 5
+Size of graph: 634
+Baseline_0: 0.530179445351
+Baseline_1: 0.469820554649
+Mean: 0.469820554649
+SD: 2.22044604925e-16
+SE: 4.4408920985e-17
+estimatedProbabities:
+[[ 0.5    0.125]
+ [ 0.5    0.875]]
+
+Repetition No.: 6
+Size of graph: 634
+Baseline_0: 0.530179445351
+Baseline_1: 0.469820554649
+Mean: 0.469820554649
+SD: 2.22044604925e-16
+SE: 4.4408920985e-17
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 7
+Size of graph: 634
+Baseline_0: 0.52691680261
+Baseline_1: 0.47308319739
+Mean: 0.527308319739
+SD: 0.00174360707548
+SE: 0.000348721415097
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 8
+Size of graph: 634
+Baseline_0: 0.52854812398
+Baseline_1: 0.47145187602
+Mean: 0.471778140294
+SD: 0.00178702302612
+SE: 0.000357404605224
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 9
+Size of graph: 634
+Baseline_0: 0.52691680261
+Baseline_1: 0.47308319739
+Mean: 0.526199021207
+SD: 0.0014649229573
+SE: 0.00029298459146
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 10
+Size of graph: 634
+Baseline_0: 0.52691680261
+Baseline_1: 0.47308319739
+Mean: 0.526721044046
+SD: 0.00148225992713
+SE: 0.000296451985425
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 11
+Size of graph: 634
+Baseline_0: 0.52691680261
+Baseline_1: 0.47308319739
+Mean: 0.472822185971
+SD: 0.00075535640475
+SE: 0.00015107128095
+estimatedProbabities:
+[[ 0.2         0.36363636]
+ [ 0.8         0.63636364]]
+
+Repetition No.: 12
+Size of graph: 634
+Baseline_0: 0.530179445351
+Baseline_1: 0.469820554649
+Mean: 0.469820554649
+SD: 2.22044604925e-16
+SE: 4.4408920985e-17
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 13
+Size of graph: 634
+Baseline_0: 0.52854812398
+Baseline_1: 0.47145187602
+Mean: 0.52854812398
+SD: 2.22044604925e-16
+SE: 4.4408920985e-17
+estimatedProbabities:
+[[ 0.875  0.5  ]
+ [ 0.125  0.5  ]]
+
+Repetition No.: 14
+Size of graph: 634
+Baseline_0: 0.52691680261
+Baseline_1: 0.47308319739
+Mean: 0.526982055465
+SD: 0.00198351506082
+SE: 0.000396703012165
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 15
+Size of graph: 634
+Baseline_0: 0.52854812398
+Baseline_1: 0.47145187602
+Mean: 0.52854812398
+SD: 2.22044604925e-16
+SE: 4.4408920985e-17
+estimatedProbabities:
+[[ 0.875  0.5  ]
+ [ 0.125  0.5  ]]
+
+Repetition No.: 16
+Size of graph: 634
+Baseline_0: 0.52854812398
+Baseline_1: 0.47145187602
+Mean: 0.471778140294
+SD: 0.00138422208389
+SE: 0.000276844416778
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 17
+Size of graph: 634
+Baseline_0: 0.52528548124
+Baseline_1: 0.47471451876
+Mean: 0.52528548124
+SD: 3.33066907388e-16
+SE: 6.66133814775e-17
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 18
+Size of graph: 634
+Baseline_0: 0.52691680261
+Baseline_1: 0.47308319739
+Mean: 0.52704730832
+SD: 0.00216025388023
+SE: 0.000432050776046
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 19
+Size of graph: 634
+Baseline_0: 0.52854812398
+Baseline_1: 0.47145187602
+Mean: 0.471647634584
+SD: 0.00155241464971
+SE: 0.000310482929941
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 20
+Size of graph: 634
+Baseline_0: 0.52691680261
+Baseline_1: 0.47308319739
+Mean: 0.527243066884
+SD: 0.0020112280597
+SE: 0.000402245611939
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 21
+Size of graph: 634
+Baseline_0: 0.52691680261
+Baseline_1: 0.47308319739
+Mean: 0.47308319739
+SD: 2.22044604925e-16
+SE: 4.4408920985e-17
+estimatedProbabities:
+[[ 0.5    0.125]
+ [ 0.5    0.875]]
+
+Repetition No.: 22
+Size of graph: 634
+Baseline_0: 0.52528548124
+Baseline_1: 0.47471451876
+Mean: 0.52528548124
+SD: 3.33066907388e-16
+SE: 6.66133814775e-17
+estimatedProbabities:
+[[ 0.875  0.5  ]
+ [ 0.125  0.5  ]]
+
+Repetition No.: 23
+Size of graph: 634
+Baseline_0: 0.52691680261
+Baseline_1: 0.47308319739
+Mean: 0.526329526917
+SD: 0.0020572767074
+SE: 0.00041145534148
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 24
+Size of graph: 634
+Baseline_0: 0.530179445351
+Baseline_1: 0.469820554649
+Mean: 0.469820554649
+SD: 2.22044604925e-16
+SE: 4.4408920985e-17
+estimatedProbabities:
+[[ 0.5    0.125]
+ [ 0.5    0.875]]
+
+FINAL .................. 
+Baseline_0 range: [0.52365415986949426, 0.53017944535073414]
+B_0_mean: 0.52691680261
+B_0_std: 0.00326264274062
+Baseline_1 range: [0.46982055464926592, 0.47634584013050568]
+B_1_mean: 0.47308319739
+B_1_std: 0.00326264274062
+[0.52639477977161486, 0.52365415986949426, 0.5252854812398039, 0.52704730831973889, 0.47145187601957583, 0.4698205546492657, 0.4698205546492657, 0.5273083197389884, 0.47177814029363785, 0.52619902120717765, 0.52672104404567688, 0.47282218597063641, 0.4698205546492657, 0.52854812398042439, 0.52698205546492649, 0.52854812398042439, 0.47177814029363779, 0.5252854812398039, 0.52704730831973878, 0.47164763458401282, 0.52724306688417621, 0.47308319738988602, 0.5252854812398039, 0.52632952691680246, 0.4698205546492657]
+Prediction Mean: 0.504388907015
+Prediction SD: 0.0271393159668
+Prediction SE: 0.00542786319336
+
+
+
+
+
+trainingSize: 0.01  percentageOfLabelFlips:  0.05  noOfTimesToFlipLabel:  5
+testLabels Size: 613
+
+Repetition No.: 0
+Size of graph: 655
+Baseline_0: 0.52528548124
+Baseline_1: 0.47471451876
+Mean: 0.52528548124
+SD: 3.33066907388e-16
+SE: 6.66133814775e-17
+estimatedProbabities:
+[[ 0.92857143  0.5       ]
+ [ 0.07142857  0.5       ]]
+
+Repetition No.: 1
+Size of graph: 655
+Baseline_0: 0.523654159869
+Baseline_1: 0.476345840131
+Mean: 0.523654159869
+SD: 0.0
+SE: 0.0
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 2
+Size of graph: 655
+Baseline_0: 0.523654159869
+Baseline_1: 0.476345840131
+Mean: 0.523654159869
+SD: 0.0
+SE: 0.0
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 3
+Size of graph: 655
+Baseline_0: 0.52854812398
+Baseline_1: 0.47145187602
+Mean: 0.471843393148
+SD: 0.00180362479101
+SE: 0.000360724958201
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 4
+Size of graph: 655
+Baseline_0: 0.52528548124
+Baseline_1: 0.47471451876
+Mean: 0.52528548124
+SD: 3.33066907388e-16
+SE: 6.66133814775e-17
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 5
+Size of graph: 655
+Baseline_0: 0.52528548124
+Baseline_1: 0.47471451876
+Mean: 0.52528548124
+SD: 3.33066907388e-16
+SE: 6.66133814775e-17
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 6
+Size of graph: 655
+Baseline_0: 0.52854812398
+Baseline_1: 0.47145187602
+Mean: 0.471712887439
+SD: 0.00150789168134
+SE: 0.000301578336269
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 7
+Size of graph: 655
+Baseline_0: 0.531810766721
+Baseline_1: 0.468189233279
+Mean: 0.468189233279
+SD: 0.0
+SE: 0.0
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 8
+Size of graph: 655
+Baseline_0: 0.52854812398
+Baseline_1: 0.47145187602
+Mean: 0.472169657423
+SD: 0.00185023776558
+SE: 0.000370047553116
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 9
+Size of graph: 655
+Baseline_0: 0.52528548124
+Baseline_1: 0.47471451876
+Mean: 0.52528548124
+SD: 3.33066907388e-16
+SE: 6.66133814775e-17
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 10
+Size of graph: 655
+Baseline_0: 0.52854812398
+Baseline_1: 0.47145187602
+Mean: 0.471778140294
+SD: 0.00206347645035
+SE: 0.000412695290071
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 11
+Size of graph: 655
+Baseline_0: 0.52528548124
+Baseline_1: 0.47471451876
+Mean: 0.498923327896
+SD: 0.0109157709188
+SE: 0.00218315418376
+estimatedProbabities:
+[[ 0.125  0.875]
+ [ 0.875  0.125]]
+
+Repetition No.: 12
+Size of graph: 655
+Baseline_0: 0.52528548124
+Baseline_1: 0.47471451876
+Mean: 0.52528548124
+SD: 3.33066907388e-16
+SE: 6.66133814775e-17
+estimatedProbabities:
+[[ 0.65   0.875]
+ [ 0.35   0.125]]
+
+Repetition No.: 13
+Size of graph: 655
+Baseline_0: 0.52691680261
+Baseline_1: 0.47308319739
+Mean: 0.526199021207
+SD: 0.00221667703119
+SE: 0.000443335406237
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 14
+Size of graph: 655
+Baseline_0: 0.52854812398
+Baseline_1: 0.47145187602
+Mean: 0.471973898858
+SD: 0.00177026557471
+SE: 0.000354053114943
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 15
+Size of graph: 655
+Baseline_0: 0.52691680261
+Baseline_1: 0.47308319739
+Mean: 0.496052202284
+SD: 0.0149008147999
+SE: 0.00298016295997
+estimatedProbabities:
+[[ 0.125  0.875]
+ [ 0.875  0.125]]
+
+Repetition No.: 16
+Size of graph: 655
+Baseline_0: 0.52691680261
+Baseline_1: 0.47308319739
+Mean: 0.526525285481
+SD: 0.0014055895092
+SE: 0.000281117901841
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 17
+Size of graph: 655
+Baseline_0: 0.52854812398
+Baseline_1: 0.47145187602
+Mean: 0.471908646003
+SD: 0.0015660685155
+SE: 0.0003132137031
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 18
+Size of graph: 655
+Baseline_0: 0.52528548124
+Baseline_1: 0.47471451876
+Mean: 0.52528548124
+SD: 3.33066907388e-16
+SE: 6.66133814775e-17
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 19
+Size of graph: 655
+Baseline_0: 0.52854812398
+Baseline_1: 0.47145187602
+Mean: 0.471908646003
+SD: 0.0016326259058
+SE: 0.00032652518116
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 20
+Size of graph: 655
+Baseline_0: 0.530179445351
+Baseline_1: 0.469820554649
+Mean: 0.469820554649
+SD: 2.22044604925e-16
+SE: 4.4408920985e-17
+estimatedProbabities:
+[[ 0.5         0.07142857]
+ [ 0.5         0.92857143]]
+
+Repetition No.: 21
+Size of graph: 655
+Baseline_0: 0.52854812398
+Baseline_1: 0.47145187602
+Mean: 0.472104404568
+SD: 0.00172642826171
+SE: 0.000345285652341
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 22
+Size of graph: 655
+Baseline_0: 0.52528548124
+Baseline_1: 0.47471451876
+Mean: 0.52528548124
+SD: 3.33066907388e-16
+SE: 6.66133814775e-17
+estimatedProbabities:
+[[ 0.92857143  0.5       ]
+ [ 0.07142857  0.5       ]]
+
+Repetition No.: 23
+Size of graph: 655
+Baseline_0: 0.52854812398
+Baseline_1: 0.47145187602
+Mean: 0.47145187602
+SD: 0.00178702302612
+SE: 0.000357404605224
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 24
+Size of graph: 655
+Baseline_0: 0.52854812398
+Baseline_1: 0.47145187602
+Mean: 0.471843393148
+SD: 0.00147938454144
+SE: 0.000295876908287
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+FINAL .................. 
+Baseline_0 range: [0.52365415986949426, 0.53181076672104399]
+B_0_mean: 0.527732463295
+B_0_std: 0.00407830342577
+Baseline_1 range: [0.46818923327895595, 0.47634584013050568]
+B_1_mean: 0.472267536705
+B_1_std: 0.00407830342577
+[0.5252854812398039, 0.52365415986949426, 0.52365415986949426, 0.47184339314845014, 0.5252854812398039, 0.5252854812398039, 0.47171288743882533, 0.46818923327895595, 0.47216965742251221, 0.5252854812398039, 0.47177814029363785, 0.49892332789559546, 0.5252854812398039, 0.52619902120717776, 0.47197389885807495, 0.49605220228384994, 0.52652528548123967, 0.47190864600326266, 0.5252854812398039, 0.47190864600326266, 0.4698205546492657, 0.47210440456769981, 0.5252854812398039, 0.47145187601957589, 0.47184339314845031]
+Prediction Mean: 0.497148450245
+Prediction SD: 0.0257948158372
+Prediction SE: 0.00515896316745
+
+
+
+
+
+trainingSize: 0.01  percentageOfLabelFlips:  0.05  noOfTimesToFlipLabel:  10
+testLabels Size: 613
+
+Repetition No.: 0
+Size of graph: 690
+Baseline_0: 0.530179445351
+Baseline_1: 0.469820554649
+Mean: 0.469820554649
+SD: 2.22044604925e-16
+SE: 4.4408920985e-17
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 1
+Size of graph: 690
+Baseline_0: 0.52854812398
+Baseline_1: 0.47145187602
+Mean: 0.47145187602
+SD: 1.11022302463e-16
+SE: 2.22044604925e-17
+estimatedProbabities:
+[[ 0.07692308  0.34285714]
+ [ 0.92307692  0.65714286]]
+
+Repetition No.: 2
+Size of graph: 690
+Baseline_0: 0.52854812398
+Baseline_1: 0.47145187602
+Mean: 0.47145187602
+SD: 1.11022302463e-16
+SE: 2.22044604925e-17
+estimatedProbabities:
+[[ 0.5         0.04166667]
+ [ 0.5         0.95833333]]
+
+Repetition No.: 3
+Size of graph: 690
+Baseline_0: 0.523654159869
+Baseline_1: 0.476345840131
+Mean: 0.523654159869
+SD: 0.0
+SE: 0.0
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 4
+Size of graph: 690
+Baseline_0: 0.52691680261
+Baseline_1: 0.47308319739
+Mean: 0.526590538336
+SD: 0.0015983619855
+SE: 0.000319672397101
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 5
+Size of graph: 690
+Baseline_0: 0.530179445351
+Baseline_1: 0.469820554649
+Mean: 0.469820554649
+SD: 2.22044604925e-16
+SE: 4.4408920985e-17
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 6
+Size of graph: 690
+Baseline_0: 0.530179445351
+Baseline_1: 0.469820554649
+Mean: 0.469820554649
+SD: 2.22044604925e-16
+SE: 4.4408920985e-17
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 7
+Size of graph: 690
+Baseline_0: 0.530179445351
+Baseline_1: 0.469820554649
+Mean: 0.469820554649
+SD: 2.22044604925e-16
+SE: 4.4408920985e-17
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 8
+Size of graph: 690
+Baseline_0: 0.531810766721
+Baseline_1: 0.468189233279
+Mean: 0.468189233279
+SD: 0.0
+SE: 0.0
+estimatedProbabities:
+[[ 0.5         0.04166667]
+ [ 0.5         0.95833333]]
+
+Repetition No.: 9
+Size of graph: 690
+Baseline_0: 0.52854812398
+Baseline_1: 0.47145187602
+Mean: 0.471517128874
+SD: 0.00149370611971
+SE: 0.000298741223942
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 10
+Size of graph: 690
+Baseline_0: 0.52691680261
+Baseline_1: 0.47308319739
+Mean: 0.527243066884
+SD: 0.00166362790003
+SE: 0.000332725580006
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 11
+Size of graph: 690
+Baseline_0: 0.531810766721
+Baseline_1: 0.468189233279
+Mean: 0.468189233279
+SD: 0.0
+SE: 0.0
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 12
+Size of graph: 690
+Baseline_0: 0.52854812398
+Baseline_1: 0.47145187602
+Mean: 0.490831973899
+SD: 0.0143505849068
+SE: 0.00287011698137
+estimatedProbabities:
+[[ 0.07692308  0.92307692]
+ [ 0.92307692  0.07692308]]
+
+Repetition No.: 13
+Size of graph: 690
+Baseline_0: 0.52854812398
+Baseline_1: 0.47145187602
+Mean: 0.530179445351
+SD: 2.22044604925e-16
+SE: 4.4408920985e-17
+estimatedProbabities:
+[[ 0.95833333  0.5       ]
+ [ 0.04166667  0.5       ]]
+
+Repetition No.: 14
+Size of graph: 690
+Baseline_0: 0.52691680261
+Baseline_1: 0.47308319739
+Mean: 0.527177814029
+SD: 0.001884440989
+SE: 0.0003768881978
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 15
+Size of graph: 690
+Baseline_0: 0.52854812398
+Baseline_1: 0.47145187602
+Mean: 0.471712887439
+SD: 0.0019401068512
+SE: 0.00038802137024
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 16
+Size of graph: 690
+Baseline_0: 0.52528548124
+Baseline_1: 0.47471451876
+Mean: 0.52528548124
+SD: 3.33066907388e-16
+SE: 6.66133814775e-17
+estimatedProbabities:
+[[ 0.95833333  0.5       ]
+ [ 0.04166667  0.5       ]]
+
+Repetition No.: 17
+Size of graph: 690
+Baseline_0: 0.52691680261
+Baseline_1: 0.47308319739
+Mean: 0.47145187602
+SD: 1.11022302463e-16
+SE: 2.22044604925e-17
+estimatedProbabities:
+[[ 0.5         0.04166667]
+ [ 0.5         0.95833333]]
+
+Repetition No.: 18
+Size of graph: 690
+Baseline_0: 0.530179445351
+Baseline_1: 0.469820554649
+Mean: 0.498792822186
+SD: 0.0132952591599
+SE: 0.00265905183198
+estimatedProbabities:
+[[ 0.07692308  0.92307692]
+ [ 0.92307692  0.07692308]]
+
+Repetition No.: 19
+Size of graph: 690
+Baseline_0: 0.530179445351
+Baseline_1: 0.469820554649
+Mean: 0.469820554649
+SD: 2.22044604925e-16
+SE: 4.4408920985e-17
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 20
+Size of graph: 690
+Baseline_0: 0.52854812398
+Baseline_1: 0.47145187602
+Mean: 0.471778140294
+SD: 0.00153031509293
+SE: 0.000306063018586
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 21
+Size of graph: 690
+Baseline_0: 0.52691680261
+Baseline_1: 0.47308319739
+Mean: 0.52691680261
+SD: 3.33066907388e-16
+SE: 6.66133814775e-17
+estimatedProbabities:
+[[ 0.97826087  0.5       ]
+ [ 0.02173913  0.5       ]]
+
+Repetition No.: 22
+Size of graph: 690
+Baseline_0: 0.52691680261
+Baseline_1: 0.47308319739
+Mean: 0.526525285481
+SD: 0.00161690201545
+SE: 0.000323380403089
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 23
+Size of graph: 690
+Baseline_0: 0.52528548124
+Baseline_1: 0.47471451876
+Mean: 0.52528548124
+SD: 3.33066907388e-16
+SE: 6.66133814775e-17
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 24
+Size of graph: 690
+Baseline_0: 0.52854812398
+Baseline_1: 0.47145187602
+Mean: 0.470929853181
+SD: 0.00110352590703
+SE: 0.000220705181407
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+FINAL .................. 
+Baseline_0 range: [0.52365415986949426, 0.53181076672104399]
+B_0_mean: 0.527732463295
+B_0_std: 0.00407830342577
+Baseline_1 range: [0.46818923327895595, 0.47634584013050568]
+B_1_mean: 0.472267536705
+B_1_std: 0.00407830342577
+[0.4698205546492657, 0.47145187601957572, 0.47145187601957572, 0.52365415986949426, 0.52659053833605207, 0.4698205546492657, 0.4698205546492657, 0.4698205546492657, 0.46818923327895595, 0.47151712887438818, 0.5272430668841761, 0.46818923327895595, 0.49083197389885813, 0.53017944535073436, 0.5271778140293637, 0.4717128874388255, 0.5252854812398039, 0.47145187601957572, 0.49879282218597071, 0.4698205546492657, 0.47177814029363807, 0.52691680261011387, 0.52652528548123967, 0.5252854812398039, 0.47092985318107666]
+Prediction Mean: 0.492570309951
+Prediction SD: 0.0263410888013
+Prediction SE: 0.00526821776026
+
+
+
+
+
+trainingSize: 0.01  percentageOfLabelFlips:  0.15  noOfTimesToFlipLabel:  2
+testLabels Size: 613
+
+Repetition No.: 0
+Size of graph: 634
+Baseline_0: 0.52691680261
+Baseline_1: 0.47308319739
+Mean: 0.52691680261
+SD: 3.33066907388e-16
+SE: 6.66133814775e-17
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 1
+Size of graph: 634
+Baseline_0: 0.530179445351
+Baseline_1: 0.469820554649
+Mean: 0.469820554649
+SD: 2.22044604925e-16
+SE: 4.4408920985e-17
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 2
+Size of graph: 634
+Baseline_0: 0.523654159869
+Baseline_1: 0.476345840131
+Mean: 0.523654159869
+SD: 0.0
+SE: 0.0
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 3
+Size of graph: 634
+Baseline_0: 0.52854812398
+Baseline_1: 0.47145187602
+Mean: 0.47132137031
+SD: 0.00189794969948
+SE: 0.000379589939896
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 4
+Size of graph: 634
+Baseline_0: 0.52691680261
+Baseline_1: 0.47308319739
+Mean: 0.526851549755
+SD: 0.000319672397101
+SE: 6.39344794201e-05
+estimatedProbabities:
+[[ 0.875  0.5  ]
+ [ 0.125  0.5  ]]
+
+Repetition No.: 5
+Size of graph: 634
+Baseline_0: 0.52854812398
+Baseline_1: 0.47145187602
+Mean: 0.471712887439
+SD: 0.0012786895884
+SE: 0.00025573791768
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 6
+Size of graph: 634
+Baseline_0: 0.52691680261
+Baseline_1: 0.47308319739
+Mean: 0.526982055465
+SD: 0.00149370611971
+SE: 0.000298741223942
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 7
+Size of graph: 634
+Baseline_0: 0.52854812398
+Baseline_1: 0.47145187602
+Mean: 0.471843393148
+SD: 0.00180362479101
+SE: 0.000360724958201
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 8
+Size of graph: 634
+Baseline_0: 0.530179445351
+Baseline_1: 0.469820554649
+Mean: 0.469820554649
+SD: 2.22044604925e-16
+SE: 4.4408920985e-17
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 9
+Size of graph: 634
+Baseline_0: 0.52528548124
+Baseline_1: 0.47471451876
+Mean: 0.52528548124
+SD: 3.33066907388e-16
+SE: 6.66133814775e-17
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 10
+Size of graph: 634
+Baseline_0: 0.52691680261
+Baseline_1: 0.47308319739
+Mean: 0.478564437194
+SD: 0.0146991379592
+SE: 0.00293982759184
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 11
+Size of graph: 634
+Baseline_0: 0.52528548124
+Baseline_1: 0.47471451876
+Mean: 0.477455138662
+SD: 0.00660183484238
+SE: 0.00132036696848
+estimatedProbabities:
+[[ 0.25  0.5 ]
+ [ 0.75  0.5 ]]
+
+Repetition No.: 12
+Size of graph: 634
+Baseline_0: 0.52854812398
+Baseline_1: 0.47145187602
+Mean: 0.523066884176
+SD: 0.0165521168911
+SE: 0.00331042337821
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 13
+Size of graph: 634
+Baseline_0: 0.530179445351
+Baseline_1: 0.469820554649
+Mean: 0.469820554649
+SD: 2.22044604925e-16
+SE: 4.4408920985e-17
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 14
+Size of graph: 634
+Baseline_0: 0.52691680261
+Baseline_1: 0.47308319739
+Mean: 0.527373572594
+SD: 0.0037632289345
+SE: 0.0007526457869
+estimatedProbabities:
+[[ 0.5   0.75]
+ [ 0.5   0.25]]
+
+Repetition No.: 15
+Size of graph: 634
+Baseline_0: 0.52691680261
+Baseline_1: 0.47308319739
+Mean: 0.527308319739
+SD: 0.00202599343507
+SE: 0.000405198687015
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 16
+Size of graph: 634
+Baseline_0: 0.523654159869
+Baseline_1: 0.476345840131
+Mean: 0.523654159869
+SD: 0.0
+SE: 0.0
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 17
+Size of graph: 634
+Baseline_0: 0.530179445351
+Baseline_1: 0.469820554649
+Mean: 0.469820554649
+SD: 2.22044604925e-16
+SE: 4.4408920985e-17
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 18
+Size of graph: 634
+Baseline_0: 0.52691680261
+Baseline_1: 0.47308319739
+Mean: 0.476998368679
+SD: 0.0160102370589
+SE: 0.00320204741178
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 19
+Size of graph: 634
+Baseline_0: 0.52528548124
+Baseline_1: 0.47471451876
+Mean: 0.52528548124
+SD: 3.33066907388e-16
+SE: 6.66133814775e-17
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 20
+Size of graph: 634
+Baseline_0: 0.52528548124
+Baseline_1: 0.47471451876
+Mean: 0.52528548124
+SD: 3.33066907388e-16
+SE: 6.66133814775e-17
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 21
+Size of graph: 634
+Baseline_0: 0.52691680261
+Baseline_1: 0.47308319739
+Mean: 0.526525285481
+SD: 0.00161690201545
+SE: 0.000323380403089
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 22
+Size of graph: 634
+Baseline_0: 0.52691680261
+Baseline_1: 0.47308319739
+Mean: 0.480978792822
+SD: 0.0113648670096
+SE: 0.00227297340192
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 23
+Size of graph: 634
+Baseline_0: 0.523654159869
+Baseline_1: 0.476345840131
+Mean: 0.523654159869
+SD: 0.0
+SE: 0.0
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 24
+Size of graph: 634
+Baseline_0: 0.52528548124
+Baseline_1: 0.47471451876
+Mean: 0.505513866232
+SD: 0.0113239556826
+SE: 0.00226479113653
+estimatedProbabities:
+[[ 0.2  0.8]
+ [ 0.8  0.2]]
+
+FINAL .................. 
+Baseline_0 range: [0.52365415986949426, 0.53017944535073414]
+B_0_mean: 0.52691680261
+B_0_std: 0.00326264274062
+Baseline_1 range: [0.46982055464926592, 0.47634584013050568]
+B_1_mean: 0.47308319739
+B_1_std: 0.00326264274062
+[0.52691680261011387, 0.4698205546492657, 0.52365415986949426, 0.47132137030995092, 0.52685154975530157, 0.47171288743882533, 0.52698205546492649, 0.4718433931484502, 0.4698205546492657, 0.5252854812398039, 0.47856443719412722, 0.47745513866231648, 0.52306688417618274, 0.4698205546492657, 0.52737357259380091, 0.52730831973898851, 0.52365415986949426, 0.4698205546492657, 0.47699836867862971, 0.5252854812398039, 0.5252854812398039, 0.52652528548123967, 0.48097879282218592, 0.52365415986949426, 0.50551386623164751]
+Prediction Mean: 0.501820554649
+Prediction SD: 0.0255856967938
+Prediction SE: 0.00511713935877
+
+
+
+
+
+trainingSize: 0.01  percentageOfLabelFlips:  0.15  noOfTimesToFlipLabel:  5
+testLabels Size: 613
+
+Repetition No.: 0
+Size of graph: 655
+Baseline_0: 0.52854812398
+Baseline_1: 0.47145187602
+Mean: 0.472756933116
+SD: 0.00797847912603
+SE: 0.00159569582521
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 1
+Size of graph: 655
+Baseline_0: 0.52691680261
+Baseline_1: 0.47308319739
+Mean: 0.500228384992
+SD: 0.0177199651002
+SE: 0.00354399302003
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 2
+Size of graph: 655
+Baseline_0: 0.52691680261
+Baseline_1: 0.47308319739
+Mean: 0.525676998369
+SD: 0.00600326264274
+SE: 0.00120065252855
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 3
+Size of graph: 655
+Baseline_0: 0.52528548124
+Baseline_1: 0.47471451876
+Mean: 0.52528548124
+SD: 3.33066907388e-16
+SE: 6.66133814775e-17
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 4
+Size of graph: 655
+Baseline_0: 0.523654159869
+Baseline_1: 0.476345840131
+Mean: 0.523654159869
+SD: 0.0
+SE: 0.0
+estimatedProbabities:
+[[ 0.84615385  0.66666667]
+ [ 0.15384615  0.33333333]]
+
+Repetition No.: 5
+Size of graph: 655
+Baseline_0: 0.52528548124
+Baseline_1: 0.47471451876
+Mean: 0.52528548124
+SD: 3.33066907388e-16
+SE: 6.66133814775e-17
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 6
+Size of graph: 655
+Baseline_0: 0.52528548124
+Baseline_1: 0.47471451876
+Mean: 0.52528548124
+SD: 3.33066907388e-16
+SE: 6.66133814775e-17
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 7
+Size of graph: 655
+Baseline_0: 0.52528548124
+Baseline_1: 0.47471451876
+Mean: 0.52528548124
+SD: 3.33066907388e-16
+SE: 6.66133814775e-17
+estimatedProbabities:
+[[ 0.71428571  0.85714286]
+ [ 0.28571429  0.14285714]]
+
+Repetition No.: 8
+Size of graph: 655
+Baseline_0: 0.52528548124
+Baseline_1: 0.47471451876
+Mean: 0.525415986949
+SD: 0.000442566393679
+SE: 8.85132787357e-05
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 9
+Size of graph: 655
+Baseline_0: 0.52854812398
+Baseline_1: 0.47145187602
+Mean: 0.47145187602
+SD: 1.11022302463e-16
+SE: 2.22044604925e-17
+estimatedProbabities:
+[[ 0.33333333  0.15384615]
+ [ 0.66666667  0.84615385]]
+
+Repetition No.: 10
+Size of graph: 655
+Baseline_0: 0.52691680261
+Baseline_1: 0.47308319739
+Mean: 0.524045676998
+SD: 0.00603862201697
+SE: 0.00120772440339
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 11
+Size of graph: 655
+Baseline_0: 0.530179445351
+Baseline_1: 0.469820554649
+Mean: 0.469820554649
+SD: 2.22044604925e-16
+SE: 4.4408920985e-17
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 12
+Size of graph: 655
+Baseline_0: 0.52691680261
+Baseline_1: 0.47308319739
+Mean: 0.496508972268
+SD: 0.0253978663308
+SE: 0.00507957326616
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 13
+Size of graph: 655
+Baseline_0: 0.52691680261
+Baseline_1: 0.47308319739
+Mean: 0.511908646003
+SD: 0.0205365154739
+SE: 0.00410730309477
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 14
+Size of graph: 655
+Baseline_0: 0.52691680261
+Baseline_1: 0.47308319739
+Mean: 0.504665579119
+SD: 0.0178814254321
+SE: 0.00357628508642
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 15
+Size of graph: 655
+Baseline_0: 0.52854812398
+Baseline_1: 0.47145187602
+Mean: 0.52854812398
+SD: 2.22044604925e-16
+SE: 4.4408920985e-17
+estimatedProbabities:
+[[ 0.84615385  0.66666667]
+ [ 0.15384615  0.33333333]]
+
+Repetition No.: 16
+Size of graph: 655
+Baseline_0: 0.52528548124
+Baseline_1: 0.47471451876
+Mean: 0.501663947798
+SD: 0.00607097075347
+SE: 0.00121419415069
+estimatedProbabities:
+[[ 0.375  0.625]
+ [ 0.625  0.375]]
+
+Repetition No.: 17
+Size of graph: 655
+Baseline_0: 0.52691680261
+Baseline_1: 0.47308319739
+Mean: 0.52704730832
+SD: 0.000442566393679
+SE: 8.85132787357e-05
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 18
+Size of graph: 655
+Baseline_0: 0.52854812398
+Baseline_1: 0.47145187602
+Mean: 0.47145187602
+SD: 1.11022302463e-16
+SE: 2.22044604925e-17
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 19
+Size of graph: 655
+Baseline_0: 0.52854812398
+Baseline_1: 0.47145187602
+Mean: 0.496247960848
+SD: 0.021083842638
+SE: 0.00421676852761
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 20
+Size of graph: 655
+Baseline_0: 0.52691680261
+Baseline_1: 0.47308319739
+Mean: 0.501924959217
+SD: 0.0205195069741
+SE: 0.00410390139481
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 21
+Size of graph: 655
+Baseline_0: 0.52691680261
+Baseline_1: 0.47308319739
+Mean: 0.473344208809
+SD: 0.00621925092721
+SE: 0.00124385018544
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 22
+Size of graph: 655
+Baseline_0: 0.52691680261
+Baseline_1: 0.47308319739
+Mean: 0.525807504078
+SD: 0.00615109835343
+SE: 0.00123021967069
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 23
+Size of graph: 655
+Baseline_0: 0.52691680261
+Baseline_1: 0.47308319739
+Mean: 0.526590538336
+SD: 0.00540063470057
+SE: 0.00108012694011
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 24
+Size of graph: 655
+Baseline_0: 0.52691680261
+Baseline_1: 0.47308319739
+Mean: 0.52704730832
+SD: 0.000442566393679
+SE: 8.85132787357e-05
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+FINAL .................. 
+Baseline_0 range: [0.52365415986949426, 0.53017944535073414]
+B_0_mean: 0.52691680261
+B_0_std: 0.00326264274062
+Baseline_1 range: [0.46982055464926592, 0.47634584013050568]
+B_1_mean: 0.47308319739
+B_1_std: 0.00326264274062
+[0.47275693311582379, 0.50022838499184341, 0.52567699836867865, 0.5252854812398039, 0.52365415986949426, 0.5252854812398039, 0.5252854812398039, 0.5252854812398039, 0.5254159869494287, 0.47145187601957572, 0.52404567699836868, 0.4698205546492657, 0.49650897226753671, 0.5119086460032628, 0.50466557911908649, 0.52854812398042439, 0.50166394779771606, 0.52704730831973878, 0.47145187601957572, 0.49624796084828726, 0.50192495921696578, 0.47334420880913541, 0.52580750407830346, 0.52659053833605218, 0.52704730831973878]
+Prediction Mean: 0.508277977162
+Prediction SD: 0.0210982157886
+Prediction SE: 0.00421964315772
+
+
+
+
+
+trainingSize: 0.01  percentageOfLabelFlips:  0.15  noOfTimesToFlipLabel:  10
+testLabels Size: 613
+
+Repetition No.: 0
+Size of graph: 690
+Baseline_0: 0.531810766721
+Baseline_1: 0.468189233279
+Mean: 0.468189233279
+SD: 0.0
+SE: 0.0
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 1
+Size of graph: 690
+Baseline_0: 0.523654159869
+Baseline_1: 0.476345840131
+Mean: 0.523654159869
+SD: 0.0
+SE: 0.0
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 2
+Size of graph: 690
+Baseline_0: 0.52691680261
+Baseline_1: 0.47308319739
+Mean: 0.510603588907
+SD: 0.0127284888764
+SE: 0.00254569777529
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 3
+Size of graph: 690
+Baseline_0: 0.52691680261
+Baseline_1: 0.47308319739
+Mean: 0.526394779772
+SD: 0.00721803944354
+SE: 0.00144360788871
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 4
+Size of graph: 690
+Baseline_0: 0.52854812398
+Baseline_1: 0.47145187602
+Mean: 0.485807504078
+SD: 0.0168081525251
+SE: 0.00336163050503
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 5
+Size of graph: 690
+Baseline_0: 0.52854812398
+Baseline_1: 0.47145187602
+Mean: 0.47145187602
+SD: 1.11022302463e-16
+SE: 2.22044604925e-17
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 6
+Size of graph: 690
+Baseline_0: 0.52854812398
+Baseline_1: 0.47145187602
+Mean: 0.488743882545
+SD: 0.0188951807316
+SE: 0.00377903614632
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 7
+Size of graph: 690
+Baseline_0: 0.52691680261
+Baseline_1: 0.47308319739
+Mean: 0.495921696574
+SD: 0.0240419359569
+SE: 0.00480838719137
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 8
+Size of graph: 690
+Baseline_0: 0.52691680261
+Baseline_1: 0.47308319739
+Mean: 0.526851549755
+SD: 0.00787750884363
+SE: 0.00157550176873
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 9
+Size of graph: 690
+Baseline_0: 0.52691680261
+Baseline_1: 0.47308319739
+Mean: 0.47308319739
+SD: 2.22044604925e-16
+SE: 4.4408920985e-17
+estimatedProbabities:
+[[ 0.2         0.19047619]
+ [ 0.8         0.80952381]]
+
+Repetition No.: 10
+Size of graph: 690
+Baseline_0: 0.52691680261
+Baseline_1: 0.47308319739
+Mean: 0.525415986949
+SD: 0.0074673902778
+SE: 0.00149347805556
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 11
+Size of graph: 690
+Baseline_0: 0.52691680261
+Baseline_1: 0.47308319739
+Mean: 0.52704730832
+SD: 0.00121377326184
+SE: 0.000242754652369
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 12
+Size of graph: 690
+Baseline_0: 0.523654159869
+Baseline_1: 0.476345840131
+Mean: 0.523654159869
+SD: 0.0
+SE: 0.0
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 13
+Size of graph: 690
+Baseline_0: 0.52691680261
+Baseline_1: 0.47308319739
+Mean: 0.525089722675
+SD: 0.00536741917721
+SE: 0.00107348383544
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 14
+Size of graph: 690
+Baseline_0: 0.52691680261
+Baseline_1: 0.47308319739
+Mean: 0.517128874388
+SD: 0.0157488005039
+SE: 0.00314976010079
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 15
+Size of graph: 690
+Baseline_0: 0.52691680261
+Baseline_1: 0.47308319739
+Mean: 0.528287112561
+SD: 0.00771640874341
+SE: 0.00154328174868
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 16
+Size of graph: 690
+Baseline_0: 0.52528548124
+Baseline_1: 0.47471451876
+Mean: 0.52528548124
+SD: 3.33066907388e-16
+SE: 6.66133814775e-17
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 17
+Size of graph: 690
+Baseline_0: 0.52691680261
+Baseline_1: 0.47308319739
+Mean: 0.52691680261
+SD: 3.33066907388e-16
+SE: 6.66133814775e-17
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 18
+Size of graph: 690
+Baseline_0: 0.530179445351
+Baseline_1: 0.469820554649
+Mean: 0.469820554649
+SD: 2.22044604925e-16
+SE: 4.4408920985e-17
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 19
+Size of graph: 690
+Baseline_0: 0.52691680261
+Baseline_1: 0.47308319739
+Mean: 0.516672104405
+SD: 0.014232902672
+SE: 0.0028465805344
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 20
+Size of graph: 690
+Baseline_0: 0.52854812398
+Baseline_1: 0.47145187602
+Mean: 0.47308319739
+SD: 0.00622472562099
+SE: 0.0012449451242
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 21
+Size of graph: 690
+Baseline_0: 0.52854812398
+Baseline_1: 0.47145187602
+Mean: 0.473800978793
+SD: 0.00768045782082
+SE: 0.00153609156416
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 22
+Size of graph: 690
+Baseline_0: 0.523654159869
+Baseline_1: 0.476345840131
+Mean: 0.523654159869
+SD: 0.0
+SE: 0.0
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 23
+Size of graph: 690
+Baseline_0: 0.531810766721
+Baseline_1: 0.468189233279
+Mean: 0.468189233279
+SD: 0.0
+SE: 0.0
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 24
+Size of graph: 690
+Baseline_0: 0.52854812398
+Baseline_1: 0.47145187602
+Mean: 0.47145187602
+SD: 1.11022302463e-16
+SE: 2.22044604925e-17
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+FINAL .................. 
+Baseline_0 range: [0.52365415986949426, 0.53181076672104399]
+B_0_mean: 0.527732463295
+B_0_std: 0.00407830342577
+Baseline_1 range: [0.46818923327895595, 0.47634584013050568]
+B_1_mean: 0.472267536705
+B_1_std: 0.00407830342577
+[0.46818923327895595, 0.52365415986949426, 0.51060358890701474, 0.52639477977161486, 0.48580750407830336, 0.47145187601957572, 0.48874388254486134, 0.49592169657422519, 0.5268515497553018, 0.47308319738988602, 0.52541598694942915, 0.52704730831973901, 0.52365415986949426, 0.52508972267536724, 0.5171288743882545, 0.52828711256117455, 0.5252854812398039, 0.52691680261011387, 0.4698205546492657, 0.51667210440456779, 0.4730831973898858, 0.47380097879282235, 0.52365415986949426, 0.46818923327895595, 0.47145187601957572]
+Prediction Mean: 0.502647960848
+Prediction SD: 0.0243479932921
+Prediction SE: 0.00486959865841
+
+
+
+
+
+trainingSize: 0.01  percentageOfLabelFlips:  0.3  noOfTimesToFlipLabel:  2
+testLabels Size: 613
+
+Repetition No.: 0
+Size of graph: 634
+Baseline_0: 0.530179445351
+Baseline_1: 0.469820554649
+Mean: 0.530179445351
+SD: 2.22044604925e-16
+SE: 4.4408920985e-17
+estimatedProbabities:
+[[ 0.71428571  0.66666667]
+ [ 0.28571429  0.33333333]]
+
+Repetition No.: 1
+Size of graph: 634
+Baseline_0: 0.52528548124
+Baseline_1: 0.47471451876
+Mean: 0.52528548124
+SD: 3.33066907388e-16
+SE: 6.66133814775e-17
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 2
+Size of graph: 634
+Baseline_0: 0.530179445351
+Baseline_1: 0.469820554649
+Mean: 0.527960848287
+SD: 0.00592472924649
+SE: 0.0011849458493
+estimatedProbabities:
+[[ 0.5   0.75]
+ [ 0.5   0.25]]
+
+Repetition No.: 3
+Size of graph: 634
+Baseline_0: 0.52854812398
+Baseline_1: 0.47145187602
+Mean: 0.47145187602
+SD: 1.11022302463e-16
+SE: 2.22044604925e-17
+estimatedProbabities:
+[[ 0.33333333  0.28571429]
+ [ 0.66666667  0.71428571]]
+
+Repetition No.: 4
+Size of graph: 634
+Baseline_0: 0.530179445351
+Baseline_1: 0.469820554649
+Mean: 0.469820554649
+SD: 2.22044604925e-16
+SE: 4.4408920985e-17
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 5
+Size of graph: 634
+Baseline_0: 0.530179445351
+Baseline_1: 0.469820554649
+Mean: 0.469820554649
+SD: 2.22044604925e-16
+SE: 4.4408920985e-17
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 6
+Size of graph: 634
+Baseline_0: 0.52691680261
+Baseline_1: 0.47308319739
+Mean: 0.486133768352
+SD: 0.0146274138802
+SE: 0.00292548277605
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 7
+Size of graph: 634
+Baseline_0: 0.52528548124
+Baseline_1: 0.47471451876
+Mean: 0.524306688418
+SD: 0.00145909819086
+SE: 0.000291819638173
+estimatedProbabities:
+[[ 0.5   0.75]
+ [ 0.5   0.25]]
+
+Repetition No.: 8
+Size of graph: 634
+Baseline_0: 0.531810766721
+Baseline_1: 0.468189233279
+Mean: 0.468189233279
+SD: 0.0
+SE: 0.0
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 9
+Size of graph: 634
+Baseline_0: 0.52854812398
+Baseline_1: 0.47145187602
+Mean: 0.52854812398
+SD: 2.22044604925e-16
+SE: 4.4408920985e-17
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 10
+Size of graph: 634
+Baseline_0: 0.52691680261
+Baseline_1: 0.47308319739
+Mean: 0.47308319739
+SD: 2.22044604925e-16
+SE: 4.4408920985e-17
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 11
+Size of graph: 634
+Baseline_0: 0.52691680261
+Baseline_1: 0.47308319739
+Mean: 0.526264274062
+SD: 0.00178702302612
+SE: 0.000357404605224
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 12
+Size of graph: 634
+Baseline_0: 0.52528548124
+Baseline_1: 0.47471451876
+Mean: 0.52528548124
+SD: 3.33066907388e-16
+SE: 6.66133814775e-17
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 13
+Size of graph: 634
+Baseline_0: 0.52691680261
+Baseline_1: 0.47308319739
+Mean: 0.52691680261
+SD: 3.33066907388e-16
+SE: 6.66133814775e-17
+estimatedProbabities:
+[[ 0.71428571  0.66666667]
+ [ 0.28571429  0.33333333]]
+
+Repetition No.: 14
+Size of graph: 634
+Baseline_0: 0.530179445351
+Baseline_1: 0.469820554649
+Mean: 0.469820554649
+SD: 2.22044604925e-16
+SE: 4.4408920985e-17
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 15
+Size of graph: 634
+Baseline_0: 0.52691680261
+Baseline_1: 0.47308319739
+Mean: 0.517650897227
+SD: 0.00328604980411
+SE: 0.000657209960823
+estimatedProbabities:
+[[ 0.41666667  0.7       ]
+ [ 0.58333333  0.3       ]]
+
+Repetition No.: 16
+Size of graph: 634
+Baseline_0: 0.52691680261
+Baseline_1: 0.47308319739
+Mean: 0.475432300163
+SD: 0.0118544881272
+SE: 0.00237089762545
+estimatedProbabities:
+[[ 0.6  0.4]
+ [ 0.4  0.6]]
+
+Repetition No.: 17
+Size of graph: 634
+Baseline_0: 0.52854812398
+Baseline_1: 0.47145187602
+Mean: 0.471517128874
+SD: 0.00156334728231
+SE: 0.000312669456462
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 18
+Size of graph: 634
+Baseline_0: 0.52854812398
+Baseline_1: 0.47145187602
+Mean: 0.468580750408
+SD: 0.00518503635245
+SE: 0.00103700727049
+estimatedProbabities:
+[[ 0.25  0.5 ]
+ [ 0.75  0.5 ]]
+
+Repetition No.: 19
+Size of graph: 634
+Baseline_0: 0.530179445351
+Baseline_1: 0.469820554649
+Mean: 0.469820554649
+SD: 2.22044604925e-16
+SE: 4.4408920985e-17
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 20
+Size of graph: 634
+Baseline_0: 0.52691680261
+Baseline_1: 0.47308319739
+Mean: 0.47308319739
+SD: 2.22044604925e-16
+SE: 4.4408920985e-17
+estimatedProbabities:
+[[ 0.33333333  0.28571429]
+ [ 0.66666667  0.71428571]]
+
+Repetition No.: 21
+Size of graph: 634
+Baseline_0: 0.52691680261
+Baseline_1: 0.47308319739
+Mean: 0.52704730832
+SD: 0.00216025388023
+SE: 0.000432050776046
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 22
+Size of graph: 634
+Baseline_0: 0.52528548124
+Baseline_1: 0.47471451876
+Mean: 0.52528548124
+SD: 3.33066907388e-16
+SE: 6.66133814775e-17
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 23
+Size of graph: 634
+Baseline_0: 0.52854812398
+Baseline_1: 0.47145187602
+Mean: 0.471386623165
+SD: 0.00192910218585
+SE: 0.00038582043717
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 24
+Size of graph: 634
+Baseline_0: 0.52854812398
+Baseline_1: 0.47145187602
+Mean: 0.471060358891
+SD: 0.00281723107927
+SE: 0.000563446215854
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+FINAL .................. 
+Baseline_0 range: [0.52528548123980423, 0.53181076672104399]
+B_0_mean: 0.52854812398
+B_0_std: 0.00326264274062
+Baseline_1 range: [0.46818923327895595, 0.47471451876019577]
+B_1_mean: 0.47145187602
+B_1_std: 0.00326264274062
+[0.53017944535073436, 0.5252854812398039, 0.52796084828711265, 0.47145187601957572, 0.4698205546492657, 0.4698205546492657, 0.48613376835236544, 0.52430668841761818, 0.46818923327895595, 0.52854812398042439, 0.47308319738988602, 0.52626427406199017, 0.5252854812398039, 0.52691680261011387, 0.4698205546492657, 0.51765089722675361, 0.47543230016313232, 0.47151712887438813, 0.46858075040783043, 0.4698205546492657, 0.47308319738988602, 0.52704730831973878, 0.5252854812398039, 0.47138662316476337, 0.4710603588907013]
+Prediction Mean: 0.49575725938
+Prediction SD: 0.0269767021167
+Prediction SE: 0.00539534042335
+
+
+
+
+
+trainingSize: 0.01  percentageOfLabelFlips:  0.3  noOfTimesToFlipLabel:  5
+testLabels Size: 613
+
+Repetition No.: 0
+Size of graph: 655
+Baseline_0: 0.52691680261
+Baseline_1: 0.47308319739
+Mean: 0.52691680261
+SD: 3.33066907388e-16
+SE: 6.66133814775e-17
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 1
+Size of graph: 655
+Baseline_0: 0.52854812398
+Baseline_1: 0.47145187602
+Mean: 0.482936378467
+SD: 0.0159734936882
+SE: 0.00319469873763
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 2
+Size of graph: 655
+Baseline_0: 0.52691680261
+Baseline_1: 0.47308319739
+Mean: 0.526982055465
+SD: 0.00149370611971
+SE: 0.000298741223942
+estimatedProbabities:
+[[ 0.4375  0.75  ]
+ [ 0.5625  0.25  ]]
+
+Repetition No.: 3
+Size of graph: 655
+Baseline_0: 0.523654159869
+Baseline_1: 0.476345840131
+Mean: 0.523654159869
+SD: 0.0
+SE: 0.0
+estimatedProbabities:
+[[ 0.63636364  0.8       ]
+ [ 0.36363636  0.2       ]]
+
+Repetition No.: 4
+Size of graph: 655
+Baseline_0: 0.523654159869
+Baseline_1: 0.476345840131
+Mean: 0.523654159869
+SD: 0.0
+SE: 0.0
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 5
+Size of graph: 655
+Baseline_0: 0.52528548124
+Baseline_1: 0.47471451876
+Mean: 0.52528548124
+SD: 3.33066907388e-16
+SE: 6.66133814775e-17
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 6
+Size of graph: 655
+Baseline_0: 0.52691680261
+Baseline_1: 0.47308319739
+Mean: 0.518433931485
+SD: 0.0185483463668
+SE: 0.00370966927336
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 7
+Size of graph: 655
+Baseline_0: 0.52691680261
+Baseline_1: 0.47308319739
+Mean: 0.516150081566
+SD: 0.0129851541547
+SE: 0.00259703083095
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 8
+Size of graph: 655
+Baseline_0: 0.52854812398
+Baseline_1: 0.47145187602
+Mean: 0.47132137031
+SD: 0.00159302520271
+SE: 0.000318605040541
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 9
+Size of graph: 655
+Baseline_0: 0.52691680261
+Baseline_1: 0.47308319739
+Mean: 0.52691680261
+SD: 3.33066907388e-16
+SE: 6.66133814775e-17
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 10
+Size of graph: 655
+Baseline_0: 0.52528548124
+Baseline_1: 0.47471451876
+Mean: 0.52528548124
+SD: 3.33066907388e-16
+SE: 6.66133814775e-17
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 11
+Size of graph: 655
+Baseline_0: 0.530179445351
+Baseline_1: 0.469820554649
+Mean: 0.475301794454
+SD: 0.0169524354893
+SE: 0.00339048709786
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 12
+Size of graph: 655
+Baseline_0: 0.52528548124
+Baseline_1: 0.47471451876
+Mean: 0.52528548124
+SD: 3.33066907388e-16
+SE: 6.66133814775e-17
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 13
+Size of graph: 655
+Baseline_0: 0.52854812398
+Baseline_1: 0.47145187602
+Mean: 0.47145187602
+SD: 1.11022302463e-16
+SE: 2.22044604925e-17
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 14
+Size of graph: 655
+Baseline_0: 0.52854812398
+Baseline_1: 0.47145187602
+Mean: 0.47145187602
+SD: 1.11022302463e-16
+SE: 2.22044604925e-17
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 15
+Size of graph: 655
+Baseline_0: 0.52691680261
+Baseline_1: 0.47308319739
+Mean: 0.47308319739
+SD: 2.22044604925e-16
+SE: 4.4408920985e-17
+estimatedProbabities:
+[[ 0.53846154  0.4       ]
+ [ 0.46153846  0.6       ]]
+
+Repetition No.: 16
+Size of graph: 655
+Baseline_0: 0.52528548124
+Baseline_1: 0.47471451876
+Mean: 0.52528548124
+SD: 3.33066907388e-16
+SE: 6.66133814775e-17
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 17
+Size of graph: 655
+Baseline_0: 0.531810766721
+Baseline_1: 0.468189233279
+Mean: 0.468189233279
+SD: 0.0
+SE: 0.0
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 18
+Size of graph: 655
+Baseline_0: 0.52854812398
+Baseline_1: 0.47145187602
+Mean: 0.52854812398
+SD: 2.22044604925e-16
+SE: 4.4408920985e-17
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 19
+Size of graph: 655
+Baseline_0: 0.531810766721
+Baseline_1: 0.468189233279
+Mean: 0.468189233279
+SD: 0.0
+SE: 0.0
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 20
+Size of graph: 655
+Baseline_0: 0.530179445351
+Baseline_1: 0.469820554649
+Mean: 0.469820554649
+SD: 2.22044604925e-16
+SE: 4.4408920985e-17
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 21
+Size of graph: 655
+Baseline_0: 0.52854812398
+Baseline_1: 0.47145187602
+Mean: 0.528482871126
+SD: 0.00187310931085
+SE: 0.000374621862171
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 22
+Size of graph: 655
+Baseline_0: 0.52854812398
+Baseline_1: 0.47145187602
+Mean: 0.47145187602
+SD: 1.11022302463e-16
+SE: 2.22044604925e-17
+estimatedProbabities:
+[[ 0.2         0.36363636]
+ [ 0.8         0.63636364]]
+
+Repetition No.: 23
+Size of graph: 655
+Baseline_0: 0.52854812398
+Baseline_1: 0.47145187602
+Mean: 0.47132137031
+SD: 0.00189794969948
+SE: 0.000379589939896
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 24
+Size of graph: 655
+Baseline_0: 0.52691680261
+Baseline_1: 0.47308319739
+Mean: 0.517977161501
+SD: 0.0139198273299
+SE: 0.00278396546597
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+FINAL .................. 
+Baseline_0 range: [0.52365415986949426, 0.53181076672104399]
+B_0_mean: 0.527732463295
+B_0_std: 0.00407830342577
+Baseline_1 range: [0.46818923327895595, 0.47634584013050568]
+B_1_mean: 0.472267536705
+B_1_std: 0.00407830342577
+[0.52691680261011387, 0.48293637846655785, 0.5269820554649266, 0.52365415986949426, 0.52365415986949426, 0.5252854812398039, 0.51843393148450245, 0.51615008156606845, 0.47132137030995097, 0.52691680261011387, 0.5252854812398039, 0.47530179445350718, 0.5252854812398039, 0.47145187601957572, 0.47145187601957572, 0.47308319738988602, 0.5252854812398039, 0.46818923327895595, 0.52854812398042439, 0.46818923327895595, 0.4698205546492657, 0.52848287112561176, 0.47145187601957572, 0.47132137030995092, 0.51797716150081574]
+Prediction Mean: 0.501335073409
+Prediction SD: 0.0260839322057
+Prediction SE: 0.00521678644114
+
+
+
+
+
+trainingSize: 0.01  percentageOfLabelFlips:  0.3  noOfTimesToFlipLabel:  10
+testLabels Size: 613
+
+Repetition No.: 0
+Size of graph: 690
+Baseline_0: 0.52691680261
+Baseline_1: 0.47308319739
+Mean: 0.519151712887
+SD: 0.0148102419542
+SE: 0.00296204839083
+estimatedProbabities:
+[[ 0.5  0.5]
+ [ 0.5  0.5]]
+
+Repetition No.: 1
+Size of graph: 690

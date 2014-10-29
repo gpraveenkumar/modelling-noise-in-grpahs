@@ -17,7 +17,8 @@ def silentremove(filename):
     except OSError as e: # this would be "except OSError, e:" before Python 2.6
         if e.errno != errno.ENOENT: # errno.ENOENT = no such file or directory
             raise # re-raise exception if a different error occured
-silentremove('p_noB_gibbs.pyc')
+
+#silentremove('p_noB_gibbs.pyc')
 
 from p_noB_gibbs import *
 
@@ -33,8 +34,8 @@ directed = False
 edges = {}
 label = {}
 
-#f_in = open('../data/polblogs-nodes.txt')
-f_in = open('../data/school074-nodes.txt')
+f_in = open('../data/polblogs-nodes.txt')
+#f_in = open('../data/school074-nodes.txt')
 
 # no need for first line...Skipping the header
 junk_ = f_in.readline()
@@ -46,8 +47,8 @@ for line in f_in:
 
 f_in.close()
 
-#f_in = open('../data/polblogs-edges.txt')
-f_in = open('../data/school074-edges.txt')
+f_in = open('../data/polblogs-edges.txt')
+#f_in = open('../data/school074-edges.txt')
 
 # no need for first line...Skipping the header
 junk_ = f_in.readline()
@@ -390,7 +391,7 @@ def updateBaselineRanges(baseline,curValue):
 # Input : fileName,Label,trainingSize,Accuracy_Mean,Accuracy_SD
 # Output : None
 def writeToFile(fileName,a,b,c,d):
-	path = '../results/' + 'school_'
+	path = '../results/' + 'polBlogs_'
 	f_out = open(path+fileName,'a')
 	f_out.write(a + "\t" + b + "\t" + c + "\t" + d + "\n")
 	f_out.close()
@@ -402,9 +403,9 @@ def writeToFile(fileName,a,b,c,d):
 #noOfTimesToFlipLabel = 10
 
 
-for trainingSize in [0.01,0.05,0.1,0.2,0.4,0.7]:
-	for percentageOfLabelFlips in [0.05,0.15,0.30]:
-		for noOfTimesToFlipLabel in [2,5,10]:
+for trainingSize in [0.01,0.05,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9]:
+	for percentageOfLabelFlips in [0]:
+		for noOfTimesToFlipLabel in [0]:
 
 
 				print "\n\n\n\n\ntrainingSize:",trainingSize," percentageOfLabelFlips: ",percentageOfLabelFlips," noOfTimesToFlipLabel: ",noOfTimesToFlipLabel
@@ -423,8 +424,8 @@ for trainingSize in [0.01,0.05,0.1,0.2,0.4,0.7]:
 					testLabels = random.sample(originalLabels,noOfLabelsToMask)
 					#originalTrainLabels = [i for i in originalLabels if i not in testLabels]
 
-					#currentGraph,currentLabels = originalGraph,originalLabels
-					currentGraph,currentLabels = Flip(percentageOfLabelFlips,noOfTimesToFlipLabel,originalGraph,originalLabels,testLabels)
+					currentGraph,currentLabels = originalGraph,originalLabels
+					#currentGraph,currentLabels = Flip(percentageOfLabelFlips,noOfTimesToFlipLabel,originalGraph,originalLabels,testLabels)
 
 					print "\nRepetition No.:",i
 					print "Size of graph:",len(currentLabels)
@@ -434,7 +435,7 @@ for trainingSize in [0.01,0.05,0.1,0.2,0.4,0.7]:
 					for i in range(25):
 						arguments.append(list(arg_t))
 
-					pool = Pool(processes=30)
+					pool = Pool(processes=7)
 					y = pool.map(func_star, arguments)
 
 					accuracy, estimatedProbabities = zip(*y)
