@@ -33,8 +33,8 @@ directed = False
 edges = {}
 label = {}
 
-#f_in = open('../data/polblogs-nodes.txt')
-f_in = open('../data/school074-nodes.txt')
+f_in = open('../data/polblogs-nodes.txt')
+#f_in = open('../data/school074-nodes.txt')
 
 # no need for first line...Skipping the header
 junk_ = f_in.readline()
@@ -46,8 +46,8 @@ for line in f_in:
 
 f_in.close()
 
-#f_in = open('../data/polblogs-edges.txt')
-f_in = open('../data/school074-edges.txt')
+f_in = open('../data/polblogs-edges.txt')
+#f_in = open('../data/school074-edges.txt')
 
 # no need for first line...Skipping the header
 junk_ = f_in.readline()
@@ -231,6 +231,52 @@ def func2(a,b):
 
 
 
+def func_star1(a_b):
+    """Convert `f([1,2])` to `f(1,2)` call."""
+    return makeGraph(*a_b)
+
+def makeGraph(onlyTrainLabels_keys,onlyTrainLabels,onlyTrainGraph,nodeIdCounter):
+	# Randomly sample a percentage of original label and flip it
+	#onlyTrainLabels_keys = onlyTrainLabels.keys()
+	noOfLabelsToFlip = int(percentageOfLabelFlips*len(onlyTrainLabels_keys))
+	labelsToFlip = random.sample(onlyTrainLabels_keys,noOfLabelsToFlip)
+
+	# Map to store the relationships between nodes/labels in the training set and the new 
+	# node formed due to flips. The is needed in order to replace old edges with new edges.
+	map_onlyTrainLabelId_newLabelId = {}
+	newGraph = {}
+	newLabels = {}
+
+	# Add new nodes and edges to the graph from the old training Data with label flips
+	for i in onlyTrainLabels:
+		t = onlyTrainLabels[i]
+		
+		# Flip the labels. The XORing with 1 reverses the labels
+		# 0^1 = 1
+		# 1^1 = 0
+		if i in labelsToFlip:
+			t = t^1
+		
+		# Add the modify labels to newLabels
+		newLabels[nodeIdCounter] = t
+		map_onlyTrainLabelId_newLabelId[ i ] = nodeIdCounter
+
+		nodeIdCounter += 1
+
+
+	# Modify the edge connection based on the new nodes id and add them to the newGraph
+	for node,neighbors in onlyTrainGraph.iteritems():
+
+		mappedId = map_onlyTrainLabelId_newLabelId[ node ]
+
+		newNeighbors = set()
+		for neighbor in neighbors:
+			newNeighbors.add( map_onlyTrainLabelId_newLabelId[ neighbor ] )
+
+		newGraph[ mappedId ] = newNeighbors
+
+	return (newGraph,newLabels)		
+
 
 # Function to Flip the data
 def Flip(percentageOfLabelFlips,noOfTimesToFlipLabel,originalGraph,originalLabels,testLabels):
@@ -261,45 +307,32 @@ def Flip(percentageOfLabelFlips,noOfTimesToFlipLabel,originalGraph,originalLabel
 					newNeighbors.remove( neighbor )
 			onlyTrainGraph[node] = newNeighbors
 
+	arguments = []
+	for i in range(noOfTimesToFlipLabel):
+		ctr = nodeIdCounter + i*len(originalLabels)
+		l = []
+		l.append( onlyTrainLabels.keys() )
+		l.append( onlyTrainLabels )
+		l.append( onlyTrainGraph )
+		l.append( ctr )
+		arguments.append(l)
 
-	for notfl in range(noOfTimesToFlipLabel):
-		# Randomly sample a percentage of original label and flip it
-		onlyTrainLabels_keys = onlyTrainLabels.keys()
-		noOfLabelsToFlip = int(percentageOfLabelFlips*len(onlyTrainLabels_keys))
-		labelsToFlip = random.sample(onlyTrainLabels_keys,noOfLabelsToFlip)
+	pool = Pool(processes=noofProcesses)
+	y = pool.map(func_star1, arguments)
+	pool.close()
+	pool.join()
 
-		# Map to store the relationships between nodes/labels in the training set and the new 
-		# node formed due to flips. The is needed in order to replace old edges with new edges.
-		map_onlyTrainLabelId_newLabelId = {}
+	allGraphs,allLabels = zip(*y)		
 
-		# Add new nodes and edges to the graph from the old training Data with label flips
-		for i in onlyTrainLabels:
-			t = onlyTrainLabels[i]
-			
-			# Flip the labels. The XORing with 1 reverses the labels
-			# 0^1 = 1
-			# 1^1 = 0
-			if i in labelsToFlip:
-				t = t^1
-			
-			# Add the modify labels to newLabels
-			newLabels[nodeIdCounter] = t
-			map_onlyTrainLabelId_newLabelId[ i ] = nodeIdCounter
+	for dic in allGraphs:
+		newGraph.update(dic)
 
-			nodeIdCounter += 1
-
-
-		# Modify the edge connection based on the new nodes id and add them to the newGraph
-		for node,neighbors in onlyTrainGraph.iteritems():
-
-			mappedId = map_onlyTrainLabelId_newLabelId[ node ]
-
-			newNeighbors = set()
-			for neighbor in neighbors:
-				newNeighbors.add( map_onlyTrainLabelId_newLabelId[ neighbor ] )
-
-			newGraph[ mappedId ] = newNeighbors
-
+	for dic in allLabels:
+		newLabels.update(dic)
+	
+	# Freeup Space
+	del arguments[:]
+	gc.collect()
 
 	return (newGraph,newLabels)
 
@@ -390,7 +423,7 @@ def updateBaselineRanges(baseline,curValue):
 # Input : fileName,Label,trainingSize,Accuracy_Mean,Accuracy_SD
 # Output : None
 def writeToFile(fileName,a,b,c,d):
-	path = '../results/' + 'school_'
+	path = '../results/' + 'original_polBlog_'
 	f_out = open(path+fileName,'a')
 	f_out.write(a + "\t" + b + "\t" + c + "\t" + d + "\n")
 	f_out.close()
@@ -401,10 +434,11 @@ def writeToFile(fileName,a,b,c,d):
 #percentageOfLabelFlips = 0.05   # express in fraction instead of percentage...incorrect naming, will update soon
 #noOfTimesToFlipLabel = 10
 
+noofProcesses = 25
 
-for trainingSize in [0.01,0.05,0.1,0.2,0.4,0.7]:
-	for percentageOfLabelFlips in [0.05,0.15,0.30]:
-		for noOfTimesToFlipLabel in [2,5,10]:
+for trainingSize in [0.02,0.03,0.04]:
+	for percentageOfLabelFlips in [0]:
+		for noOfTimesToFlipLabel in [0]:
 
 
 				print "\n\n\n\n\ntrainingSize:",trainingSize," percentageOfLabelFlips: ",percentageOfLabelFlips," noOfTimesToFlipLabel: ",noOfTimesToFlipLabel
@@ -423,8 +457,8 @@ for trainingSize in [0.01,0.05,0.1,0.2,0.4,0.7]:
 					testLabels = random.sample(originalLabels,noOfLabelsToMask)
 					#originalTrainLabels = [i for i in originalLabels if i not in testLabels]
 
-					#currentGraph,currentLabels = originalGraph,originalLabels
-					currentGraph,currentLabels = Flip(percentageOfLabelFlips,noOfTimesToFlipLabel,originalGraph,originalLabels,testLabels)
+					currentGraph,currentLabels = originalGraph,originalLabels
+					#currentGraph,currentLabels = Flip(percentageOfLabelFlips,noOfTimesToFlipLabel,originalGraph,originalLabels,testLabels)
 
 					print "\nRepetition No.:",i
 					print "Size of graph:",len(currentLabels)
@@ -434,8 +468,10 @@ for trainingSize in [0.01,0.05,0.1,0.2,0.4,0.7]:
 					for i in range(25):
 						arguments.append(list(arg_t))
 
-					pool = Pool(processes=30)
+					pool = Pool(processes=noofProcesses)
 					y = pool.map(func_star, arguments)
+					pool.close()
+					pool.join()
 
 					accuracy, estimatedProbabities = zip(*y)
 					mean,sd,se = computeMeanAndStandardError(accuracy)
@@ -464,7 +500,7 @@ for trainingSize in [0.01,0.05,0.1,0.2,0.4,0.7]:
 
 				mean,sd,se = computeMeanAndStandardError(a1)
 
-				prefix = str(percentageOfLabelFlips) + "perc_" + str(noOfTimesToFlipLabel) + "flips_" + str(trainingSize) + "trainSize"
+				prefix = str(percentageOfLabelFlips*100) + "perc_" + str(noOfTimesToFlipLabel) + "flips"
 				
 				print "\nFINAL .................. "
 				print "Baseline_0 range:", Baseline_0
@@ -483,6 +519,6 @@ for trainingSize in [0.01,0.05,0.1,0.2,0.4,0.7]:
 				print "Prediction Mean:",mean
 				print "Prediction SD:",sd
 				print "Prediction SE:",se
-				writeToFile("flipResultsBaselines.txt",prefix , str(trainingSize) , str(round(t,4)) , str(round(t1,4)) )
-				writeToFile("flipResults.txt",prefix , str(trainingSize) , str(round(t,4)) , str(round(t1,4)) )
+				writeToFile("flipResultsBaselines.txt",prefix , str(trainingSize) , str(round(mean,4)) , str(round(sd,4)) )
+				writeToFile("flipResults.txt",prefix , str(trainingSize) , str(round(mean,4)) , str(round(sd,4)) )
 				#print e1

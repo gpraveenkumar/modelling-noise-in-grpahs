@@ -309,7 +309,7 @@ def Flip(percentageOfLabelFlips,noOfTimesToFlipLabel,originalGraph,originalLabel
 			onlyTrainGraph[node] = newNeighbors
 
 	arguments = []
-	for i in range(10):
+	for i in range(noOfTimesToFlipLabel):
 		ctr = nodeIdCounter + i*len(originalLabels)
 		l = []
 		l.append( onlyTrainLabels.keys() )
@@ -320,6 +320,8 @@ def Flip(percentageOfLabelFlips,noOfTimesToFlipLabel,originalGraph,originalLabel
 
 	pool = Pool(processes=7)
 	y = pool.map(func_star1, arguments)
+	pool.close()
+	pool.join()
 
 	allGraphs,allLabels = zip(*y)		
 
@@ -328,6 +330,10 @@ def Flip(percentageOfLabelFlips,noOfTimesToFlipLabel,originalGraph,originalLabel
 
 	for dic in allLabels:
 		newLabels.update(dic)
+	
+	# Freeup Space
+	del arguments[:]
+	gc.collect()
 
 	return (newGraph,newLabels)
 
@@ -418,13 +424,11 @@ def updateBaselineRanges(baseline,curValue):
 # Input : fileName,Label,trainingSize,Accuracy_Mean,Accuracy_SD
 # Output : None
 def writeToFile(fileName,a,b,c,d):
-	x = 2
-	"""
-	path = '../results/' + 'polBlogs_'
+	path = '../results/' + 't_school_'
 	f_out = open(path+fileName,'a')
 	f_out.write(a + "\t" + b + "\t" + c + "\t" + d + "\n")
 	f_out.close()
-	"""
+	
 
 
 
@@ -433,9 +437,9 @@ def writeToFile(fileName,a,b,c,d):
 #noOfTimesToFlipLabel = 10
 
 
-for trainingSize in [0.7]:
-	for percentageOfLabelFlips in [0]:
-		for noOfTimesToFlipLabel in [0]:
+for trainingSize in [0.1]:
+	for percentageOfLabelFlips in [0.05,0.15,0.30]:
+		for noOfTimesToFlipLabel in [2,5,10]:
 
 
 				print "\n\n\n\n\ntrainingSize:",trainingSize," percentageOfLabelFlips: ",percentageOfLabelFlips," noOfTimesToFlipLabel: ",noOfTimesToFlipLabel
@@ -446,10 +450,10 @@ for trainingSize in [0.7]:
 
 				a1 = []
 				e1 = []
-				Baseline_0 =[1,0]
+				Baseline_0 =[1,0] 
 				Baseline_1 =[1,0]
 
-				for i in range(1):
+				for i in range(25):
 
 					testLabels = random.sample(originalLabels,noOfLabelsToMask)
 					#originalTrainLabels = [i for i in originalLabels if i not in testLabels]
@@ -462,11 +466,13 @@ for trainingSize in [0.7]:
 
 					arg_t = [currentGraph,currentLabels,testLabels]
 					arguments = []
-					for i in range(7):
+					for i in range(25):
 						arguments.append(list(arg_t))
 
 					pool = Pool(processes=7)
 					y = pool.map(func_star, arguments)
+					pool.close()
+					pool.join()
 
 					accuracy, estimatedProbabities = zip(*y)
 					mean,sd,se = computeMeanAndStandardError(accuracy)
@@ -495,7 +501,7 @@ for trainingSize in [0.7]:
 
 				mean,sd,se = computeMeanAndStandardError(a1)
 
-				prefix = str(percentageOfLabelFlips) + "perc_" + str(noOfTimesToFlipLabel) + "flips_" + str(trainingSize) + "trainSize"
+				prefix = str(percentageOfLabelFlips) + "perc_" + str(noOfTimesToFlipLabel) + "flips"
 				
 				print "\nFINAL .................. "
 				print "Baseline_0 range:", Baseline_0
@@ -514,6 +520,6 @@ for trainingSize in [0.7]:
 				print "Prediction Mean:",mean
 				print "Prediction SD:",sd
 				print "Prediction SE:",se
-				writeToFile("flipResultsBaselines.txt",prefix , str(trainingSize) , str(round(t,4)) , str(round(t1,4)) )
-				writeToFile("flipResults.txt",prefix , str(trainingSize) , str(round(t,4)) , str(round(t1,4)) )
+				writeToFile("flipResultsBaselines.txt",prefix , str(trainingSize) , str(round(mean,4)) , str(round(sd,4)) )
+				writeToFile("flipResults.txt",prefix , str(trainingSize) , str(round(mean,4)) , str(round(sd,4)) )
 				#print e1
