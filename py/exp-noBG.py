@@ -33,8 +33,8 @@ directed = False
 edges = {}
 label = {}
 
-f_in = open('../data/polblogs-nodes.txt')
-#f_in = open('../data/school074-nodes.txt')
+#f_in = open('../data/polblogs-nodes.txt')
+f_in = open('../data/school074-nodes.txt')
 
 # no need for first line...Skipping the header
 junk_ = f_in.readline()
@@ -46,8 +46,8 @@ for line in f_in:
 
 f_in.close()
 
-f_in = open('../data/polblogs-edges.txt')
-#f_in = open('../data/school074-edges.txt')
+#f_in = open('../data/polblogs-edges.txt')
+f_in = open('../data/school074-edges.txt')
 
 # no need for first line...Skipping the header
 junk_ = f_in.readline()
@@ -420,12 +420,15 @@ def updateBaselineRanges(baseline,curValue):
 
 
 # Function to write the results to a file
-# Input : fileName,Label,trainingSize,Accuracy_Mean,Accuracy_SD
+# Input : A list consisting of fileName,Label,trainingSize,Accuracy_Mean,Accuracy_SD,Precision_Mean(optional),Precision_Recall(optional)
 # Output : None
-def writeToFile(fileName,a,b,c,d):
-	path = '../results/' + 'original_polBlog_'
+def writeToFile(l):
+	fileName = l[0]
+	# Remove the fileName from the list, so as to facilitate join
+	l.pop(0)
+	path = '../results/' + 'test'
 	f_out = open(path+fileName,'a')
-	f_out.write(a + "\t" + b + "\t" + c + "\t" + d + "\n")
+	f_out.write("\t".join(l)  + "\n")
 	f_out.close()
 
 
@@ -436,7 +439,7 @@ def writeToFile(fileName,a,b,c,d):
 
 noofProcesses = 25
 
-for trainingSize in [0.02,0.03,0.04]:
+for trainingSize in [0.7]:
 	for percentageOfLabelFlips in [0]:
 		for noOfTimesToFlipLabel in [0]:
 
@@ -448,6 +451,8 @@ for trainingSize in [0.02,0.03,0.04]:
 				print "testLabels Size:",noOfLabelsToMask
 
 				a1 = []
+				p1 = []
+				r1 = []
 				e1 = []
 				Baseline_0 =[1,0]
 				Baseline_1 =[1,0]
@@ -473,32 +478,42 @@ for trainingSize in [0.02,0.03,0.04]:
 					pool.close()
 					pool.join()
 
-					accuracy, estimatedProbabities = zip(*y)
-					mean,sd,se = computeMeanAndStandardError(accuracy)
+					accuracy, precision, recall, estimatedProbabities = zip(*y)
+					meanAccuracy,sd,se = computeMeanAndStandardError(accuracy)
+					meanPrecision,uselessSd,uselessSe = computeMeanAndStandardError(precision)
+					meanRecall,uselessSd,uselessSe = computeMeanAndStandardError(recall)
+					
 					#print accuracy
 					#print estimatedProbabities[0]
 					e1.append(estimatedProbabities[0])
 
 					predictedLabels = setLabelForBaselineAccuracies(currentLabels, testLabels, 0)
-					curBaselineValue = computeAccuracy(currentLabels,testLabels, predictedLabels )
+					curBaselineValue,uselessPrecision,uselessRecall = computeAccuracy(currentLabels,testLabels, predictedLabels )
 					Baseline_0 = updateBaselineRanges(Baseline_0,curBaselineValue)
 					print "Baseline_0:", curBaselineValue
 					predictedLabels = setLabelForBaselineAccuracies(currentLabels, testLabels, 1)
-					curBaselineValue = computeAccuracy(currentLabels,testLabels, predictedLabels )
+					curBaselineValue,uselessPrecision,uselessRecall = computeAccuracy(currentLabels,testLabels, predictedLabels )
 					Baseline_1 = updateBaselineRanges(Baseline_1,curBaselineValue)
 					print "Baseline_1:", curBaselineValue
-					print "Mean:",mean
+					print "MeanAccuracy:",meanAccuracy
 					print "SD:",sd
 					print "SE:",se
+					print "MeanPrecision:",meanPrecision
+					print "MeanRecall:",meanRecall
 					print "estimatedProbabities:\n",estimatedProbabities[0]
-					a1.append(mean)
+					a1.append(meanAccuracy)
+					p1.append(meanPrecision)
+					r1.append(meanRecall)
 
 					#Freeup space
 					del arguments[:]
 					gc.collect()
 				#print se
 
-				mean,sd,se = computeMeanAndStandardError(a1)
+				meanAccuracy,sd,se = computeMeanAndStandardError(a1)
+				meanPrecision,useless1,useless2 = computeMeanAndStandardError(p1)
+				meanRecall,useless1,useless2 = computeMeanAndStandardError(r1)
+				f1 = (2*meanPrecision*meanRecall)/(meanPrecision+meanRecall)
 
 				prefix = str(percentageOfLabelFlips*100) + "perc_" + str(noOfTimesToFlipLabel) + "flips"
 				
@@ -509,16 +524,19 @@ for trainingSize in [0.02,0.03,0.04]:
 				print "B_0_mean:",t
 				print "B_0_std:",t1
 				print "Baseline_1 range:", Baseline_1
-				writeToFile("flipResultsBaselines.txt",prefix + "_Baseline_0" , str(trainingSize) , str(round(t,4)) , str(round(t1,4)) )
+				writeToFile( [ "flipResultsBaselines.txt",prefix + "_Baseline_0" , str(trainingSize) , str(round(t,4)) , str(round(t1,4)) ] )
 				t = sum(Baseline_1)/len(Baseline_1)
 				t1 = t - Baseline_1[0]
 				print "B_1_mean:",t
 				print "B_1_std:",t1
-				writeToFile("flipResultsBaselines.txt",prefix + "_Baseline_1" , str(trainingSize) , str(round(t,4)) , str(round(t1,4)) )
+				writeToFile( [ "flipResultsBaselines.txt",prefix + "_Baseline_1" , str(trainingSize) , str(round(t,4)) , str(round(t1,4)) ] )
 				print a1
-				print "Prediction Mean:",mean
+				print "Prediction meanAccuracy:",meanAccuracy
 				print "Prediction SD:",sd
 				print "Prediction SE:",se
-				writeToFile("flipResultsBaselines.txt",prefix , str(trainingSize) , str(round(mean,4)) , str(round(sd,4)) )
-				writeToFile("flipResults.txt",prefix , str(trainingSize) , str(round(mean,4)) , str(round(sd,4)) )
+				print "Prediction MeanPrecision:",meanPrecision
+				print "Prediction MeanRecall:",meanRecall
+				print "Prediction F1:",f1
+				writeToFile( [ "flipResultsBaselines.txt",prefix , str(trainingSize) , str(round(meanAccuracy,4)) , str(round(sd,4)) , str(round(meanPrecision,4)) , str(round(meanRecall,4)) , str(round(f1,4)) ] )
+				writeToFile( [ "flipResults.txt",prefix , str(trainingSize) , str(round(meanAccuracy,4)) , str(round(sd,4)) , str(round(meanPrecision,4)) , str(round(meanRecall,4)) , str(round(f1,4)) ])
 				#print e1
