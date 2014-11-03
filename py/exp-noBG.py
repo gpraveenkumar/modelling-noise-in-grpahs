@@ -457,7 +457,7 @@ for trainingSize in [0.05,0.1,0.2,0.25,0.3,0.35,0.4,0.45,0.5,0.6,0.7]:
 				meanRecall,useless1,useless2 = computeMeanAndStandardError(r1)
 				f1 = (2*meanPrecision*meanRecall)/(meanPrecision+meanRecall)
 
-				prefix = str(percentageOfGraph*100) + "perc_" + str(noOfTimesToRepeat) + "flips"
+				prefix = str(int(percentageOfGraph*100)) + "perc_" + str(noOfTimesToRepeat) + "flips"
 				
 				print "\nFINAL .................. "
 				print "Baseline_0 range:", Baseline_0
