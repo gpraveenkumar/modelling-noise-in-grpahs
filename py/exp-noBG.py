@@ -146,7 +146,7 @@ def func_star_FlipLabels(a_b):
     """Convert `f([1,2])` to `f(1,2)` call."""
     return makeGraph_FlipLabels(*a_b)
 
-def makeGraph_FlipLabels(onlyTrainLabels_keys,onlyTrainLabels,onlyTrainGraph,nodeIdCounter):
+def makeGraph_FlipLabels(onlyTrainLabels_keys,onlyTrainLabels,onlyTrainGraph,nodeIdCounter,edgeList):
 	# Map to store the relationships between nodes/labels in the training set and the new 
 	# node formed due to flips. The is needed in order to replace old edges with new edges.
 	map_onlyTrainLabelId_newLabelId = {}
@@ -158,8 +158,8 @@ def makeGraph_FlipLabels(onlyTrainLabels_keys,onlyTrainLabels,onlyTrainGraph,nod
 	noOfLabelsToFlip = int(percentageOfGraph*len(onlyTrainLabels_keys))
 	labelsToFlip = random.sample(onlyTrainLabels_keys,noOfLabelsToFlip)
 
-	# Add new nodes and edges to the graph from the old training Data with label flips
-	for i in onlyTrainLabels:
+	# Add new nodes to the graph from the old training Data with label flips
+	for i in onlyTrainLabels_keys:
 		t = onlyTrainLabels[i]
 		
 		# Flip the labels. The XORing with 1 reverses the labels
@@ -194,9 +194,9 @@ def func_star_DropLabels(a_b):
     """Convert `f([1,2])` to `f(1,2)` call."""
     return makeGraph_DropLabels(*a_b)
 
-def makeGraph_DropLabels(onlyTrainLabels_keys,onlyTrainLabels,onlyTrainGraph,nodeIdCounter):
+def makeGraph_DropLabels(onlyTrainLabels_keys,onlyTrainLabels,onlyTrainGraph,nodeIdCounter,edgeList):
 	# Map to store the relationships between nodes/labels in the training set and the new 
-	# node formed due to flips. The is needed in order to replace old edges with new edges.
+	# node formed due to drops. The is needed in order to replace old edges with new edges.
 	map_onlyTrainLabelId_newLabelId = {}
 	newGraph = {}
 	newLabels = {}
@@ -205,8 +205,8 @@ def makeGraph_DropLabels(onlyTrainLabels_keys,onlyTrainLabels,onlyTrainGraph,nod
 	noOfLabelsToDrop = int(percentageOfGraph*len(onlyTrainLabels_keys))
 	labelsToDrop = random.sample(onlyTrainLabels_keys,noOfLabelsToDrop)
 
-	# Add new nodes and edges to the graph from the old training Data after dropping nodes
-	for i in onlyTrainLabels:
+	# Add new nodes to the graph from the old training Data after dropping nodes
+	for i in onlyTrainLabels_keys:
 		
 		# If i is one of the labels to be dropped, just continue
 		if i in labelsToDrop:
@@ -240,9 +240,129 @@ def makeGraph_DropLabels(onlyTrainLabels_keys,onlyTrainLabels,onlyTrainGraph,nod
 	return (newGraph,newLabels)		
 
 
+def func_star_DropEdges(a_b):
+    """Convert `f([1,2])` to `f(1,2)` call."""
+    return makeGraph_DropEdges(*a_b)
+
+def makeGraph_DropEdges(onlyTrainLabels_keys,onlyTrainLabels,onlyTrainGraph,nodeIdCounter,edgeList):
+	# Map to store the relationships between nodes/labels in the training set and the new 
+	# node formed. The is needed in order to replace old edges with new edges.
+	map_onlyTrainLabelId_newLabelId = {}
+	newGraph = {}
+	newLabels = {}
+
+	# Randomly sample a percentage of original label and flip it
+	noOfEdgesToDrop = int(percentageOfGraph*len(edgeList))
+	edgesToDrop = random.sample(edgeList,noOfEdgesToDrop)
+
+	# Add new nodes to the graph from the old training Data after dropping nodes
+	for i in onlyTrainLabels_keys:
+		
+		newLabels[nodeIdCounter] = onlyTrainLabels[i]
+		map_onlyTrainLabelId_newLabelId[ i ] = nodeIdCounter
+		nodeIdCounter += 1
+
+
+	# Modify the edge connection based on the new nodes id and add them to the newGraph
+	for node,neighbors in onlyTrainGraph.iteritems():
+
+		mappedId = map_onlyTrainLabelId_newLabelId[ node ]
+
+		newNeighbors = set()
+		for neighbor in neighbors:
+			# If [node,neighbor] is one of the edges to be dropped, just continue
+			if (node,neighbor) in edgesToDrop or (neighbor,node) in edgesToDrop:
+				continue
+			# If not add the neighbours	
+			newNeighbors.add( map_onlyTrainLabelId_newLabelId[ neighbor ] )
+
+		newGraph[ mappedId ] = newNeighbors
+
+	return (newGraph,newLabels)	
+
+
+
+def func_star_RewireEdges(a_b):
+    """Convert `f([1,2])` to `f(1,2)` call."""
+    return makeGraph_RewireEdges(*a_b)
+
+def makeGraph_RewireEdges(onlyTrainLabels_keys,onlyTrainLabels,onlyTrainGraph,nodeIdCounter,edgeList):
+	# Similar to drop Edges, first selection a fraction of edges and drop them.
+	# Next, randomly select one end point of the end. Select an node from the graph excluding this point.
+	# Rewire that edge starting from that one end point to the selected node.
+
+	# Map to store the relationships between nodes/labels in the training set and the new 
+	# node formed. The is needed in order to replace old edges with new edges.
+	map_onlyTrainLabelId_newLabelId = {}
+	newGraph = {}
+	newLabels = {}
+
+	# Randomly sample a percentage of original label and flip it
+	noOfEdgesToDrop = int(percentageOfGraph*len(edgeList))
+	edgesToDrop = random.sample(edgeList,noOfEdgesToDrop)
+
+	# Add new nodes to the graph from the old training Data after dropping nodes
+	for i in onlyTrainLabels_keys:
+		
+		newLabels[nodeIdCounter] = onlyTrainLabels[i]
+		map_onlyTrainLabelId_newLabelId[ i ] = nodeIdCounter
+		nodeIdCounter += 1
+
+	# Modify the edge connection based on the new nodes id and add them to the newGraph
+	for node,neighbors in onlyTrainGraph.iteritems():
+
+		mappedId = map_onlyTrainLabelId_newLabelId[ node ]
+
+		newNeighbors = set()
+		for neighbor in neighbors:
+			# If [node,neighbor] is one of the edges to be dropped, just continue
+			if (node,neighbor) in edgesToDrop or (neighbor,node) in edgesToDrop:
+				continue
+			# If not add the neighbours	
+			newNeighbors.add( map_onlyTrainLabelId_newLabelId[ neighbor ] )
+
+		newGraph[ mappedId ] = newNeighbors
+
+	
+	# Do reviwing of edgesToDrop.
+	# For each tuple in edgeToDrop select and fix either the start or the end point - call it start. 
+	# Next randomly sample a node from the rest of the graph leaving this selected node out - call it end.
+	# This start node and end node together form the new rewired edge.
+
+	rewireEdgeList = Set()
+
+	for edge in edgesToDrop:
+		# Pick an index to keep it fixed. Let us call it the start vertex of the edge
+		index = random.sample([0,1],1)
+		start = edge[ index[0] ] # index is a list of 1 element.
+
+		# Compute leaveIndexOut_onlyTrainLabels_keys by excluding the original start and end points from 
+		# onlyTrainLabels_keys and find the new end point by randomly sampling an node
+		leaveIndexOut_onlyTrainLabels_keys = [i for i in onlyTrainLabels_keys if i != edge]
+		end = random.sample(leaveIndexOut_onlyTrainLabels_keys,1)
+		end = end[0] # end is a list of one element. Hence, list not needed.
+
+		# Make a tuple of the new edge and add it to rewireEdgeList
+		rewireEdgeList.add( (start,end) )
+
+
+	# Add the rewired edges back to the graph
+	for edge in rewireEdgeList:
+		start = map_onlyTrainLabelId_newLabelId[ edge[0] ]
+		end = map_onlyTrainLabelId_newLabelId[ edge[1] ]
+
+		newGraph[ start ].add( end )
+		newGraph[ end ].add( start )
+
+
+	return (newGraph,newLabels)	
+
+
 
 # Function to Flip the data
 def makeNoisyGraphs(action,percentageOfGraph,noOfTimesToRepeat,originalGraph,originalLabels,testLabels):
+
+	print "In makeNoisyGraphs() ...."
 	# Copy the Graph
 	newGraph = dict(originalGraph)
 	newLabels = dict(originalLabels)
@@ -270,6 +390,15 @@ def makeNoisyGraphs(action,percentageOfGraph,noOfTimesToRepeat,originalGraph,ori
 					newNeighbors.remove( neighbor )
 			onlyTrainGraph[node] = newNeighbors
 
+	
+	# Store edges as list of lists
+	edgeList = Set()
+	for node, neighbors in onlyTrainGraph.iteritems():
+		for neighbor in neighbors:
+			if (neighbor,node) not in edgeList:
+				edgeList.add( ( node, neighbor) )
+
+
 	arguments = []
 	for i in range(noOfTimesToRepeat):
 		ctr = nodeIdCounter + i*len(originalLabels)
@@ -278,12 +407,17 @@ def makeNoisyGraphs(action,percentageOfGraph,noOfTimesToRepeat,originalGraph,ori
 		l.append( onlyTrainLabels )
 		l.append( onlyTrainGraph )
 		l.append( ctr )
+		l.append( edgeList )
 		arguments.append(l)
 
 	if action == "flipLabel":
 		functionToCall = func_star_FlipLabels
 	elif action == "dropLabel":
 		functionToCall = func_star_DropLabels
+	elif action == "dropEdges":
+		functionToCall = func_star_DropEdges	
+	elif action == "rewireEdges":
+		functionToCall = func_star_RewireEdges
 
 	pool = Pool(processes=noofProcesses)
 	y = pool.map(functionToCall, arguments)
@@ -361,7 +495,7 @@ def updateBaselineRanges(baseline,curValue):
 
 
 # Function to write the results to a file
-# Input : A list consisting of fileName,Label,trainingSize,Accuracy_Mean,Accuracy_SD,Precision_Mean(optional),Precision_Recall(optional)
+# Input : A list consisting of fileName,Label,trainingSize,Accuracy_Mean,Accuracy_SD,Accuracy_SE,Precision_Mean(optional),Recall_Mean(optional)
 # Output : None
 def writeToFile(l):
 	fileName = l[0]
@@ -378,11 +512,20 @@ def writeToFile(l):
 #percentageOfGraph = 0.05   # express in fraction instead of percentage...incorrect naming, will update soon
 #noOfTimesToRepeat = 10
 
-Action = "dropLabel"
+Action = "rewireEdges"
 
 noofProcesses = 25
 
-for trainingSize in [0.05,0.1,0.2,0.25,0.3,0.35,0.4,0.45,0.5,0.6,0.7]:
+writeToFile( [ Action + "ResultsBaselines.txt", "Label" , "trainingSize" , "Accuracy_Mean","Accuracy_SD","Accuracy_SE","Precision_Mean","Recall_Mean","F1"] )
+writeToFile( [ Action + "Results.txt", "Label" , "trainingSize" , "Accuracy_Mean","Accuracy_SD","Accuracy_SE","Precision_Mean","Recall_Mean","F1"])
+
+"""
+for trainingSize in [0.7]:
+	for percentageOfGraph in [0.1]:
+		for noOfTimesToRepeat in [2]:
+"""
+
+for trainingSize in [0.05,0.1,0.2,0.25,0.3,0.35,0.4,0.45,0.5,0.6,0.7,0.8,0.9]:
 	for percentageOfGraph in [0.05,0.10,0.15,0.20,0.25,0.30]:
 		for noOfTimesToRepeat in [2,5,10]:
 
@@ -400,14 +543,14 @@ for trainingSize in [0.05,0.1,0.2,0.25,0.3,0.35,0.4,0.45,0.5,0.6,0.7]:
 				Baseline_1 =[1,0]
 
 				for i in range(25):
+					print "\nRepetition No.:",i+1
 
 					testLabels = random.sample(originalLabels,noOfLabelsToMask)
 					#originalTrainLabels = [i for i in originalLabels if i not in testLabels]
 
-					currentGraph,currentLabels = originalGraph,originalLabels
-					#currentGraph,currentLabels = makeNoisyGraphs(Action,percentageOfGraph,noOfTimesToRepeat,originalGraph,originalLabels,testLabels)
-
-					print "\nRepetition No.:",i
+					#currentGraph,currentLabels = originalGraph,originalLabels
+					currentGraph,currentLabels = makeNoisyGraphs(Action,percentageOfGraph,noOfTimesToRepeat,originalGraph,originalLabels,testLabels)
+					
 					print "Size of graph:",len(currentLabels)
 
 					arg_t = [currentGraph,currentLabels,testLabels]
@@ -457,7 +600,7 @@ for trainingSize in [0.05,0.1,0.2,0.25,0.3,0.35,0.4,0.45,0.5,0.6,0.7]:
 				meanRecall,useless1,useless2 = computeMeanAndStandardError(r1)
 				f1 = (2*meanPrecision*meanRecall)/(meanPrecision+meanRecall)
 
-				prefix = str(int(percentageOfGraph*100)) + "perc_" + str(noOfTimesToRepeat) + "flips"
+				prefix = str(int(percentageOfGraph*100)) + "perc_" + str(noOfTimesToRepeat) + "repeat"
 				
 				print "\nFINAL .................. "
 				print "Baseline_0 range:", Baseline_0
@@ -479,6 +622,6 @@ for trainingSize in [0.05,0.1,0.2,0.25,0.3,0.35,0.4,0.45,0.5,0.6,0.7]:
 				print "Prediction MeanPrecision:",meanPrecision
 				print "Prediction MeanRecall:",meanRecall
 				print "Prediction F1:",f1
-				writeToFile( [ Action + "ResultsBaselines.txt",prefix , str(trainingSize) , str(round(meanAccuracy,4)) , str(round(sd,4)) , str(round(meanPrecision,4)) , str(round(meanRecall,4)) , str(round(f1,4)) ] )
-				writeToFile( [ Action + "Results.txt",prefix , str(trainingSize) , str(round(meanAccuracy,4)) , str(round(sd,4)) , str(round(meanPrecision,4)) , str(round(meanRecall,4)) , str(round(f1,4)) ])
+				writeToFile( [ Action + "ResultsBaselines.txt",prefix , str(trainingSize) , str(round(meanAccuracy,4)) , str(round(sd,4)) , str(round(se,4)) , str(round(meanPrecision,4)) , str(round(meanRecall,4)) , str(round(f1,4)) ] )
+				writeToFile( [ Action + "Results.txt",prefix , str(trainingSize) , str(round(meanAccuracy,4)) , str(round(sd,4)) , str(round(se,4)) , str(round(meanPrecision,4)) , str(round(meanRecall,4)) , str(round(f1,4)) ])
 				#print e1
