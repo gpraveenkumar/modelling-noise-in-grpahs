@@ -453,7 +453,8 @@ def computeMeanAndStandardError(vector):
 	mean = numpy.mean(vector)
 	sd = numpy.std(vector)
 	se = sd / math.sqrt(len(vector))
-	return (mean,sd,se)
+	median = numpy.median(vector)
+	return (mean,sd,se,median)
 
 
 
@@ -501,7 +502,7 @@ def writeToFile(l):
 	fileName = l[0]
 	# Remove the fileName from the list, so as to facilitate join
 	l.pop(0)
-	path = '../results/' + 'school_'
+	path = '../results/' + 'distributionTest100_MeanMedian_school_'
 	f_out = open(path+fileName,'a')
 	f_out.write("\t".join(l)  + "\n")
 	f_out.close()
@@ -512,7 +513,7 @@ def writeToFile(l):
 #percentageOfGraph = 0.05   # express in fraction instead of percentage...incorrect naming, will update soon
 #noOfTimesToRepeat = 10
 
-Action = "rewireEdges"
+Action = "flipLabel"
 
 noofProcesses = 25
 
@@ -520,108 +521,118 @@ writeToFile( [ Action + "ResultsBaselines.txt", "Label" , "trainingSize" , "Accu
 writeToFile( [ Action + "Results.txt", "Label" , "trainingSize" , "Accuracy_Mean","Accuracy_SD","Accuracy_SE","Precision_Mean","Recall_Mean","F1"])
 
 """
-for trainingSize in [0.7]:
-	for percentageOfGraph in [0.1]:
-		for noOfTimesToRepeat in [2]:
-"""
 
+for trainingSize in [0.05,0.1,0.2,0.25,0.3,0.35,0.4,0.45,0.5,0.6,0.7,0.8,0.9]:
+	for percentageOfGraph in [0]:
+		for noOfTimesToRepeat in [0]:
 for trainingSize in [0.05,0.1,0.2,0.25,0.3,0.35,0.4,0.45,0.5,0.6,0.7,0.8,0.9]:
 	for percentageOfGraph in [0.05,0.10,0.15,0.20,0.25,0.30]:
 		for noOfTimesToRepeat in [2,5,10]:
-
-				print "\n\n\n\n\ntrainingSize:",trainingSize," percentageOfGraph: ",percentageOfGraph," noOfTimesToRepeat: ",noOfTimesToRepeat
-
-				testSize = 1-trainingSize
-				noOfLabelsToMask = int(testSize*len(originalLabels))
-				print "testLabels Size:",noOfLabelsToMask
-
-				a1 = []
-				p1 = []
-				r1 = []
-				e1 = []
-				Baseline_0 =[1,0]
-				Baseline_1 =[1,0]
-
-				for i in range(25):
-					print "\nRepetition No.:",i+1
-
-					testLabels = random.sample(originalLabels,noOfLabelsToMask)
-					#originalTrainLabels = [i for i in originalLabels if i not in testLabels]
-
-					#currentGraph,currentLabels = originalGraph,originalLabels
-					currentGraph,currentLabels = makeNoisyGraphs(Action,percentageOfGraph,noOfTimesToRepeat,originalGraph,originalLabels,testLabels)
-					
-					print "Size of graph:",len(currentLabels)
-
-					arg_t = [currentGraph,currentLabels,testLabels]
-					arguments = []
-					for i in range(25):
-						arguments.append(list(arg_t))
-
-					pool = Pool(processes=noofProcesses)
-					y = pool.map(func_star, arguments)
-					pool.close()
-					pool.join()
-
-					accuracy, precision, recall, estimatedProbabities = zip(*y)
-					meanAccuracy,sd,se = computeMeanAndStandardError(accuracy)
-					meanPrecision,uselessSd,uselessSe = computeMeanAndStandardError(precision)
-					meanRecall,uselessSd,uselessSe = computeMeanAndStandardError(recall)
-					
-					#print accuracy
-					#print estimatedProbabities[0]
-					e1.append(estimatedProbabities[0])
-
-					predictedLabels = setLabelForBaselineAccuracies(currentLabels, testLabels, 0)
-					curBaselineValue,uselessPrecision,uselessRecall = computeAccuracy(currentLabels,testLabels, predictedLabels )
-					Baseline_0 = updateBaselineRanges(Baseline_0,curBaselineValue)
-					print "Baseline_0:", curBaselineValue
-					predictedLabels = setLabelForBaselineAccuracies(currentLabels, testLabels, 1)
-					curBaselineValue,uselessPrecision,uselessRecall = computeAccuracy(currentLabels,testLabels, predictedLabels )
-					Baseline_1 = updateBaselineRanges(Baseline_1,curBaselineValue)
-					print "Baseline_1:", curBaselineValue
-					print "MeanAccuracy:",meanAccuracy
-					print "SD:",sd
-					print "SE:",se
-					print "MeanPrecision:",meanPrecision
-					print "MeanRecall:",meanRecall
-					print "estimatedProbabities:\n",estimatedProbabities[0]
-					a1.append(meanAccuracy)
-					p1.append(meanPrecision)
-					r1.append(meanRecall)
-
-					#Freeup space
-					del arguments[:]
-					gc.collect()
-				#print se
-
-				meanAccuracy,sd,se = computeMeanAndStandardError(a1)
-				meanPrecision,useless1,useless2 = computeMeanAndStandardError(p1)
-				meanRecall,useless1,useless2 = computeMeanAndStandardError(r1)
-				f1 = (2*meanPrecision*meanRecall)/(meanPrecision+meanRecall)
-
-				prefix = str(int(percentageOfGraph*100)) + "perc_" + str(noOfTimesToRepeat) + "repeat"
 				
-				print "\nFINAL .................. "
-				print "Baseline_0 range:", Baseline_0
-				t = sum(Baseline_0)/len(Baseline_0)
-				t1 = t - Baseline_0[0]
-				print "B_0_mean:",t
-				print "B_0_std:",t1
-				print "Baseline_1 range:", Baseline_1
-				writeToFile( [ Action + "ResultsBaselines.txt",prefix + "_Baseline_0" , str(trainingSize) , str(round(t,4)) , str(round(t1,4)) ] )
-				t = sum(Baseline_1)/len(Baseline_1)
-				t1 = t - Baseline_1[0]
-				print "B_1_mean:",t
-				print "B_1_std:",t1
-				writeToFile( [ Action + "ResultsBaselines.txt",prefix + "_Baseline_1" , str(trainingSize) , str(round(t,4)) , str(round(t1,4)) ] )
-				print a1
-				print "Prediction meanAccuracy:",meanAccuracy
-				print "Prediction SD:",sd
-				print "Prediction SE:",se
-				print "Prediction MeanPrecision:",meanPrecision
-				print "Prediction MeanRecall:",meanRecall
-				print "Prediction F1:",f1
-				writeToFile( [ Action + "ResultsBaselines.txt",prefix , str(trainingSize) , str(round(meanAccuracy,4)) , str(round(sd,4)) , str(round(se,4)) , str(round(meanPrecision,4)) , str(round(meanRecall,4)) , str(round(f1,4)) ] )
-				writeToFile( [ Action + "Results.txt",prefix , str(trainingSize) , str(round(meanAccuracy,4)) , str(round(sd,4)) , str(round(se,4)) , str(round(meanPrecision,4)) , str(round(meanRecall,4)) , str(round(f1,4)) ])
-				#print e1
+"""
+for i in range(100):
+	for trainingSize in [0.4]:
+		for percentageOfGraph in [0]:
+			for noOfTimesToRepeat in [0]:
+
+					print "\n\n\n\n\ntrainingSize:",trainingSize," percentageOfGraph: ",percentageOfGraph," noOfTimesToRepeat: ",noOfTimesToRepeat
+					
+					testSize = 1-trainingSize
+					noOfLabelsToMask = int(testSize*len(originalLabels))
+					print "testLabels Size:",noOfLabelsToMask
+
+					a1 = []
+					p1 = []
+					r1 = []
+					e1 = []
+					Baseline_0 =[1,0]
+					Baseline_1 =[1,0]
+
+					for i in range(100):
+						print "\nRepetition No.:",i+1
+
+						testLabels = random.sample(originalLabels,noOfLabelsToMask)
+						#originalTrainLabels = [i for i in originalLabels if i not in testLabels]
+
+						currentGraph,currentLabels = originalGraph,originalLabels
+						#currentGraph,currentLabels = makeNoisyGraphs(Action,percentageOfGraph,noOfTimesToRepeat,originalGraph,originalLabels,testLabels)
+						
+						print "Size of graph:",len(currentLabels)
+
+						arg_t = [currentGraph,currentLabels,testLabels]
+						arguments = []
+						for i in range(25):
+							arguments.append(list(arg_t))
+
+						pool = Pool(processes=noofProcesses)
+						y = pool.map(func_star, arguments)
+						pool.close()
+						pool.join()
+
+						accuracy, precision, recall, estimatedProbabities = zip(*y)
+						meanAccuracy,sd,se,uselessMedian = computeMeanAndStandardError(accuracy)
+						meanPrecision,uselessSd,uselessSe,uselessMedian = computeMeanAndStandardError(precision)
+						meanRecall,uselessSd,uselessSe,uselessMedian = computeMeanAndStandardError(recall)
+						
+						#print accuracy
+						#print estimatedProbabities[0]
+						e1.append(estimatedProbabities[0])
+
+						predictedLabels = setLabelForBaselineAccuracies(currentLabels, testLabels, 0)
+						curBaselineValue,uselessPrecision,uselessRecall = computeAccuracy(currentLabels,testLabels, predictedLabels )
+						Baseline_0 = updateBaselineRanges(Baseline_0,curBaselineValue)
+						print "Baseline_0:", curBaselineValue
+						predictedLabels = setLabelForBaselineAccuracies(currentLabels, testLabels, 1)
+						curBaselineValue,uselessPrecision,uselessRecall = computeAccuracy(currentLabels,testLabels, predictedLabels )
+						Baseline_1 = updateBaselineRanges(Baseline_1,curBaselineValue)
+						print "Baseline_1:", curBaselineValue
+						print "MeanAccuracy:",meanAccuracy
+						print "SD:",sd
+						print "SE:",se
+						print "MeanPrecision:",meanPrecision
+						print "MeanRecall:",meanRecall
+						print "estimatedProbabities:\n",estimatedProbabities[0]
+						a1.append(meanAccuracy)
+						p1.append(meanPrecision)
+						r1.append(meanRecall)
+
+						#Freeup space
+						del arguments[:]
+						gc.collect()
+					#print se
+
+					meanAccuracy,sd,se,medianAccuracy = computeMeanAndStandardError(a1)
+					meanPrecision,useless1,useless2,medianPrecision = computeMeanAndStandardError(p1)
+					meanRecall,useless1,useless2,medianRecall = computeMeanAndStandardError(r1)
+					f1 = (2*meanPrecision*meanRecall)/(meanPrecision+meanRecall)
+					
+					# Calculating medianPrecision and medianRecall might not make sense... because precicion and recall are dependent .... and median can select different values for them.
+					#f1_median = (2*medianPrecision*medianRecall)/(medianPrecision+medianRecall)
+
+					prefix = str(int(percentageOfGraph*100)) + "perc_" + str(noOfTimesToRepeat) + "repeat"
+					
+					print "\nFINAL .................. "
+					print "Baseline_0 range:", Baseline_0
+					t = sum(Baseline_0)/len(Baseline_0)
+					t1 = t - Baseline_0[0]
+					print "B_0_mean:",t
+					print "B_0_std:",t1
+					print "Baseline_1 range:", Baseline_1
+					writeToFile( [ Action + "ResultsBaselines.txt",prefix + "_Baseline_0" , str(trainingSize) , str(round(t,4)) , str(round(t1,4)) ] )
+					t = sum(Baseline_1)/len(Baseline_1)
+					t1 = t - Baseline_1[0]
+					print "B_1_mean:",t
+					print "B_1_std:",t1
+					writeToFile( [ Action + "ResultsBaselines.txt",prefix + "_Baseline_1" , str(trainingSize) , str(round(t,4)) , str(round(t1,4)) ] )
+					print a1
+					print "Prediction medianAccuracy:",medianAccuracy
+					print "Prediction meanAccuracy:",meanAccuracy
+					print "Prediction SD:",sd
+					print "Prediction SE:",se
+					print "Prediction MeanPrecision:",meanPrecision
+					print "Prediction MeanRecall:",meanRecall
+					print "Prediction F1:",f1
+					writeToFile( [ Action + "ResultsBaselines.txt",prefix , str(trainingSize) , str(round(meanAccuracy,4)) , str(round(sd,4)) , str(round(se,4)) , str(round(meanPrecision,4)) , str(round(meanRecall,4)) , str(round(f1,4)) ] )
+					writeToFile( [ Action + "Results.txt",prefix , str(trainingSize) , str(round(meanAccuracy,4)) , str(round(sd,4)) , str(round(se,4)) , str(round(meanPrecision,4)) , str(round(meanRecall,4)) , str(round(f1,4)) ])
+					writeToFile( [ Action + "Results.txt","Median_"+prefix , str(trainingSize) , str(round(medianAccuracy,4)) , str(round(0,4)) , str(round(0,4)) , str(round(0,4)) , str(round(0,4)) , str(round(0,4)) ])
+					#print e1

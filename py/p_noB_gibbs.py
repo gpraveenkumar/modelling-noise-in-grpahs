@@ -190,9 +190,14 @@ def computeAccuracy(label,testLabels,resultingLabels):
 	for i in testLabels:
 		counts[ label[i], resultingLabels[i] ] += 1
 
-	accuracy = (counts[0,0]+counts[1,1])/sum(sum(counts))
-	precision = (counts[0,1]+counts[1,1])/sum(sum(counts))
-	recall = (counts[1,0]+counts[1,1])/sum(sum(counts))
+	accuracy = (counts[0,0]+counts[1,1] + 0.0)/sum(sum(counts))
+
+	precision = 0.0
+	recall = 0.0
+	if (counts[0,1]+counts[1,1]) != 0:
+		precision = counts[1,1] /(counts[0,1]+counts[1,1])
+	if (counts[1,0]+counts[1,1]) != 0:
+		recall = counts[1,1]  / (counts[1,0]+counts[1,1])
 	return accuracy,precision,recall
 
 
@@ -239,8 +244,8 @@ def gibbsSampling(edges,label,testLabels):
 				if temp != label[j]:
 					LabelDifferenceBetweenIterations += 1
 
-		"""
-		if i >= 2*burnin:
+		
+		if i >= burnin:
 			# Check if the numbers of labels estimated differ from the previous interation
 			if LabelDifferenceBetweenIterations == previousLabelDifferenceBetweenIterations:
 				LabelDifferenceBetweenIterationsCounter += 1
@@ -249,13 +254,13 @@ def gibbsSampling(edges,label,testLabels):
 				previousLabelDifferenceBetweenIterations = LabelDifferenceBetweenIterations
 			
 			#If the estimates don't change for 100 interations, we can exit considering it has converged
-			if LabelDifferenceBetweenIterationsCounter >= 100:
-				print "Interations ended at " + str(i) + " as estimates have not changed!"
+			#if LabelDifferenceBetweenIterationsCounter >= 100:
+			#	print "Interations ended at " + str(i) + " as estimates have not changed!"
 
 				# In the absence on this line
-				iteration = i
-				break
-		"""
+				#iteration = i
+				#break
+		
 
 		#if not i%10:
 			#print "\n--------------------------------------------------\n" + "Iteration no : " +str(i)
@@ -286,6 +291,8 @@ def gibbsSampling(edges,label,testLabels):
 	#print "% = ",accp
 	#print "Ground Truth:",computeLabelCounts(label,testLabels)
 	#print "Predicted Labels:",computeLabelCounts(resultingLabels,testLabels)
+
+	print "No. of interation in which labels have not changed:",LabelDifferenceBetweenIterationsCounter
 
 	return (accuracy,precision,recall,estimatedProbabities)
 
