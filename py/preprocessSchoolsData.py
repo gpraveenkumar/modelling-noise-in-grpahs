@@ -5,7 +5,7 @@ import random
 import numpy
 
 path = "../data/"
-school = "school074"
+school = "school034"
 f_in = open(path + school + '-parsed.txt')
 
 binary = True
@@ -110,6 +110,7 @@ for id, neighbors in edges1.iteritems():
 	edges[id] = n
 
 # remove those node with no neighbours
+edges1 = dict(edges)
 for id, neighbors in edges1.iteritems():
 	if len(neighbors) == 0:
 		del edges[id]
@@ -179,17 +180,32 @@ print 'Label 1:', computeCorrelation(pairs_1)
 print 'Label 2:', computeCorrelation(pairs_2) 
 
 
+# Function takes in a map of nodeId, label and return a distribution of labels
+def getDistributionCount(label):
+	c = Counter()
+
+	for i in label:
+		c[ label[i] ] += 1
+
+	print c
+
+getDistributionCount( labels_0 )
+getDistributionCount( labels_1 )
+getDistributionCount( labels_2 )
+
+label = labels_0
+labelName ="label0"
 
 # Write the nodeId and Label to a file - space separated
 # Next, write edge pairs to a file
-f_out = open(path + school + '-nodes.txt','w')
-f_out1 = open(path + school + '-edges.txt','w')
+f_out = open(path + school + '_' + labelName + '-nodes.txt','w')
+f_out1 = open(path + school + '_' + labelName + '-edges.txt','w')
 
 f_out.write("Id value\n")
 f_out1.write("Source Target\n")
 
 for id, neighbors in edges.iteritems():
-	f_out.write( str(id) + " " + str(labels_0[id]) + "\n" )
+	f_out.write( str(id) + " " + str(label[id]) + "\n" )
 	for neighbor in neighbors:
 		f_out1.write( str(id) + " " + str(neighbor) + "\n" )
 

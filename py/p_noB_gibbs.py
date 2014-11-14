@@ -148,7 +148,7 @@ def f2(currentLabelEstimates, neighbors, estimatedProbabities, classPrior):
 
 
 
-# Note - estimated probability is actually estimated counts
+# Note - estimated probability is actually estimated counts - not true anymore
 
 def initializeUnknownLabelsForGibbsSampling(G,label,testLabels):
 	currentLabelEstimates = dict(label)

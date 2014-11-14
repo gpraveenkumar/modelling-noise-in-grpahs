@@ -30,23 +30,23 @@ rhg_cols <- c("maroon", "dodgerblue1",
 
 
 path = "../results/"
-#fileName = "polBlog_flipResults"
+fileName = "school074-label1_flipLabelResults"
 #fileName = "school_flipLabelResults"
 #fileName = "school_dropLabelResults"
-fileName = "school_dropEdgesResults"
+#fileName = "school_dropEdgesResults"
 #fileName = "school_rewireEdgesResults"
 suffix = ""
 data <- read.table(file = paste(path, fileName , '.txt' , sep = ""), header = T)
 #data <- subset(data,trainingSize <= 0.10)
-data <- subset(data,Label != "10perc_2repeat")
-data <- subset(data,Label != "10perc_5repeat")
-data <- subset(data,Label != "10perc_10repeat")
-data <- subset(data,Label != "20perc_2repeat")
-data <- subset(data,Label != "20perc_5repeat")
-data <- subset(data,Label != "20perc_10repeat")
-data <- subset(data,Label != "25perc_2repeat")
-data <- subset(data,Label != "25perc_5repeat")
-data <- subset(data,Label != "25perc_10repeat")
+#data <- subset(data,Label != "10perc_2repeat")
+#data <- subset(data,Label != "10perc_5repeat")
+#data <- subset(data,Label != "10perc_10repeat")
+#data <- subset(data,Label != "20perc_2repeat")
+#data <- subset(data,Label != "20perc_5repeat")
+#data <- subset(data,Label != "20perc_10repeat")
+#data <- subset(data,Label != "25perc_2repeat")
+#data <- subset(data,Label != "25perc_5repeat")
+#data <- subset(data,Label != "25perc_10repeat")
 #data <- subset(data,Label != "15perc_2repeat")
 #data <- subset(data,Label != "15perc_5repeat")
 #data <- subset(data,Label != "15perc_10repeat")
@@ -59,13 +59,13 @@ data <- subset(data,Label != "25perc_10repeat")
 
 
 pd <- position_dodge(0)
-ggplot(data, aes(x=trainingSize, y=Accuracy_Mean, colour=Label)) + 
+ggplot(data, aes(x=trainingSize, y=Accuracy_Median, colour=Label)) + 
   geom_line(position = pd) +
   geom_point(position = pd) +
-  ggtitle( paste(fileName ,suffix) )+
+  ggtitle( paste(fileName ,suffix) ) +
   scale_colour_manual(values = rhg_cols)
 
-ggsave(file=paste('./plots/', fileName ,suffix, '.png' , sep = ""))
+ggsave(file=paste('./plots/all', fileName ,suffix, '.png' , sep = ""))
 
 
 

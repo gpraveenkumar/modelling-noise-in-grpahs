@@ -1,0 +1,295 @@
+0perc_0repeat_Baseline_0	0.4	0.5202	0.039
+0perc_0repeat_Baseline_1	0.4	0.4798	0.039
+0perc_0repeat	0.4	0.5569	0.0472	0.0094	0.6778	0.2787	0.395
+0perc_0repeat_Baseline_0	0.4	0.5242	0.0323
+0perc_0repeat_Baseline_1	0.4	0.4758	0.0323
+0perc_0repeat	0.4	0.562	0.0626	0.0125	0.5917	0.3493	0.4393
+0perc_0repeat_Baseline_0	0.4	0.5269	0.0269
+0perc_0repeat_Baseline_1	0.4	0.4731	0.0269
+0perc_0repeat	0.4	0.5481	0.0506	0.0101	0.6457	0.2118	0.319
+0perc_0repeat_Baseline_0	0.4	0.5255	0.0363
+0perc_0repeat_Baseline_1	0.4	0.4745	0.0363
+0perc_0repeat	0.4	0.569	0.0614	0.0123	0.652	0.228	0.3379
+0perc_0repeat_Baseline_0	0.4	0.5323	0.0242
+0perc_0repeat_Baseline_1	0.4	0.4677	0.0242
+0perc_0repeat	0.4	0.5524	0.0544	0.0109	0.6777	0.2923	0.4084
+0perc_0repeat_Baseline_0	0.4	0.5269	0.0269
+0perc_0repeat_Baseline_1	0.4	0.4731	0.0269
+0perc_0repeat	0.4	0.5524	0.0408	0.0082	0.6788	0.1748	0.278
+0perc_0repeat_Baseline_0	0.4	0.5228	0.0336
+0perc_0repeat_Baseline_1	0.4	0.4772	0.0336
+0perc_0repeat	0.4	0.541	0.0421	0.0084	0.657	0.2134	0.3222
+0perc_0repeat_Baseline_0	0.4	0.5336	0.0228
+0perc_0repeat_Baseline_1	0.4	0.4664	0.0228
+0perc_0repeat	0.4	0.5489	0.0543	0.0109	0.6547	0.269	0.3814
+0perc_0repeat_Baseline_0	0.4	0.5202	0.0336
+0perc_0repeat_Baseline_1	0.4	0.4798	0.0336
+0perc_0repeat	0.4	0.5421	0.0427	0.0085	0.6068	0.1737	0.2701
+0perc_0repeat_Baseline_0	0.4	0.5255	0.0336
+0perc_0repeat_Baseline_1	0.4	0.4745	0.0336
+0perc_0repeat	0.4	0.5487	0.0374	0.0075	0.656	0.164	0.2625
+0perc_0repeat_Baseline_0	0.4	0.5323	0.0457
+0perc_0repeat_Baseline_1	0.4	0.4677	0.0457
+0perc_0repeat	0.4	0.5529	0.0604	0.0121	0.651	0.3077	0.4179
+0perc_0repeat_Baseline_0	0.4	0.5376	0.0376
+0perc_0repeat_Baseline_1	0.4	0.4624	0.0376
+0perc_0repeat	0.4	0.5492	0.0492	0.0098	0.6631	0.242	0.3546
+0perc_0repeat_Baseline_0	0.4	0.5376	0.0349
+0perc_0repeat_Baseline_1	0.4	0.4624	0.0349
+0perc_0repeat	0.4	0.564	0.0691	0.0138	0.6076	0.3365	0.4331
+0perc_0repeat_Baseline_0	0.4	0.5282	0.0363
+0perc_0repeat_Baseline_1	0.4	0.4718	0.0363
+0perc_0repeat	0.4	0.5414	0.0489	0.0098	0.6521	0.1713	0.2713
+0perc_0repeat_Baseline_0	0.4	0.5296	0.0323
+0perc_0repeat_Baseline_1	0.4	0.4704	0.0323
+0perc_0repeat	0.4	0.5733	0.0605	0.0121	0.694	0.3158	0.434
+0perc_0repeat_Baseline_0	0.4	0.5202	0.0417
+0perc_0repeat_Baseline_1	0.4	0.4798	0.0417
+0perc_0repeat	0.4	0.5364	0.0405	0.0081	0.629	0.2132	0.3185
+0perc_0repeat_Baseline_0	0.4	0.5349	0.043
+0perc_0repeat_Baseline_1	0.4	0.4651	0.043
+0perc_0repeat	0.4	0.5566	0.0656	0.0131	0.6389	0.2785	0.3879
+0perc_0repeat_Baseline_0	0.4	0.5148	0.0363
+0perc_0repeat_Baseline_1	0.4	0.4852	0.0363
+0perc_0repeat	0.4	0.5558	0.0501	0.01	0.6285	0.1445	0.235
+0perc_0repeat_Baseline_0	0.4	0.5269	0.0323
+0perc_0repeat_Baseline_1	0.4	0.4731	0.0323
+0perc_0repeat	0.4	0.5584	0.0608	0.0122	0.6067	0.2823	0.3854
+0perc_0repeat_Baseline_0	0.4	0.5323	0.0269
+0perc_0repeat_Baseline_1	0.4	0.4677	0.0269
+0perc_0repeat	0.4	0.5643	0.0417	0.0083	0.7283	0.1917	0.3035
+0perc_0repeat_Baseline_0	0.4	0.5269	0.0242
+0perc_0repeat_Baseline_1	0.4	0.4731	0.0242
+0perc_0repeat	0.4	0.5464	0.0383	0.0077	0.6527	0.1273	0.2131
+0perc_0repeat_Baseline_0	0.4	0.5121	0.0309
+0perc_0repeat_Baseline_1	0.4	0.4879	0.0309
+0perc_0repeat	0.4	0.5621	0.053	0.0106	0.6837	0.1995	0.3089
+0perc_0repeat_Baseline_0	0.4	0.5269	0.0349
+0perc_0repeat_Baseline_1	0.4	0.4731	0.0349
+0perc_0repeat	0.4	0.552	0.0568	0.0114	0.6171	0.3221	0.4233
+0perc_0repeat_Baseline_0	0.4	0.5215	0.0403
+0perc_0repeat_Baseline_1	0.4	0.4785	0.0403
+0perc_0repeat	0.4	0.5489	0.0606	0.0121	0.6214	0.3484	0.4465
+0perc_0repeat_Baseline_0	0.4	0.5296	0.0269
+0perc_0repeat_Baseline_1	0.4	0.4704	0.0269
+0perc_0repeat	0.4	0.5517	0.0589	0.0118	0.5994	0.2712	0.3734
+0perc_0repeat_Baseline_0	0.4	0.5363	0.0255
+0perc_0repeat_Baseline_1	0.4	0.4637	0.0255
+0perc_0repeat	0.4	0.562	0.0627	0.0125	0.686	0.2326	0.3474
+0perc_0repeat_Baseline_0	0.4	0.5269	0.0323
+0perc_0repeat_Baseline_1	0.4	0.4731	0.0323
+0perc_0repeat	0.4	0.5744	0.0446	0.0089	0.6793	0.2578	0.3737
+0perc_0repeat_Baseline_0	0.4	0.5269	0.0269
+0perc_0repeat_Baseline_1	0.4	0.4731	0.0269
+0perc_0repeat	0.4	0.5574	0.0538	0.0108	0.6438	0.2219	0.3301
+0perc_0repeat_Baseline_0	0.4	0.5202	0.0202
+0perc_0repeat_Baseline_1	0.4	0.4798	0.0202
+0perc_0repeat	0.4	0.5484	0.0438	0.0088	0.7061	0.0968	0.1702
+0perc_0repeat_Baseline_0	0.4	0.5148	0.0444
+0perc_0repeat_Baseline_1	0.4	0.4852	0.0444
+0perc_0repeat	0.4	0.5384	0.0461	0.0092	0.5985	0.1792	0.2758
+0perc_0repeat_Baseline_0	0.4	0.5323	0.0323
+0perc_0repeat_Baseline_1	0.4	0.4677	0.0323
+0perc_0repeat	0.4	0.5464	0.07	0.014	0.7101	0.3354	0.4556
+0perc_0repeat_Baseline_0	0.4	0.5255	0.0255
+0perc_0repeat_Baseline_1	0.4	0.4745	0.0255
+0perc_0repeat	0.4	0.565	0.0596	0.0119	0.6011	0.213	0.3145
+0perc_0repeat_Baseline_0	0.4	0.5296	0.0269
+0perc_0repeat_Baseline_1	0.4	0.4704	0.0269
+0perc_0repeat	0.4	0.5632	0.0523	0.0105	0.6879	0.1746	0.2785
+0perc_0repeat_Baseline_0	0.4	0.5228	0.0255
+0perc_0repeat_Baseline_1	0.4	0.4772	0.0255
+0perc_0repeat	0.4	0.5674	0.0556	0.0111	0.6391	0.1917	0.2949
+0perc_0repeat_Baseline_0	0.4	0.5323	0.0323
+0perc_0repeat_Baseline_1	0.4	0.4677	0.0323
+0perc_0repeat	0.4	0.5375	0.0536	0.0107	0.6029	0.3498	0.4427
+0perc_0repeat_Baseline_0	0.4	0.5255	0.039
+0perc_0repeat_Baseline_1	0.4	0.4745	0.039
+0perc_0repeat	0.4	0.5512	0.0532	0.0106	0.7018	0.2223	0.3377
+0perc_0repeat_Baseline_0	0.4	0.5242	0.0215
+0perc_0repeat_Baseline_1	0.4	0.4758	0.0215
+0perc_0repeat	0.4	0.5669	0.0498	0.01	0.6034	0.2606	0.364
+0perc_0repeat_Baseline_0	0.4	0.5309	0.039
+0perc_0repeat_Baseline_1	0.4	0.4691	0.039
+0perc_0repeat	0.4	0.5402	0.0356	0.0071	0.6411	0.181	0.2822
+0perc_0repeat_Baseline_0	0.4	0.5282	0.0336
+0perc_0repeat_Baseline_1	0.4	0.4718	0.0336
+0perc_0repeat	0.4	0.5423	0.0574	0.0115	0.6478	0.3298	0.4371
+0perc_0repeat_Baseline_0	0.4	0.5242	0.0269
+0perc_0repeat_Baseline_1	0.4	0.4758	0.0269
+0perc_0repeat	0.4	0.5653	0.0523	0.0105	0.6924	0.1722	0.2757
+0perc_0repeat_Baseline_0	0.4	0.5349	0.043
+0perc_0repeat_Baseline_1	0.4	0.4651	0.043
+0perc_0repeat	0.4	0.5535	0.0534	0.0107	0.6651	0.2401	0.3528
+0perc_0repeat_Baseline_0	0.4	0.5242	0.0349
+0perc_0repeat_Baseline_1	0.4	0.4758	0.0349
+0perc_0repeat	0.4	0.5457	0.0548	0.011	0.6149	0.2048	0.3073
+0perc_0repeat_Baseline_0	0.4	0.5323	0.0296
+0perc_0repeat_Baseline_1	0.4	0.4677	0.0296
+0perc_0repeat	0.4	0.5564	0.0568	0.0114	0.6754	0.2297	0.3428
+0perc_0repeat_Baseline_0	0.4	0.5282	0.0363
+0perc_0repeat_Baseline_1	0.4	0.4718	0.0363
+0perc_0repeat	0.4	0.5651	0.0531	0.0106	0.617	0.2266	0.3314
+0perc_0repeat_Baseline_0	0.4	0.5282	0.0255
+0perc_0repeat_Baseline_1	0.4	0.4718	0.0255
+0perc_0repeat	0.4	0.5615	0.05	0.01	0.7239	0.2254	0.3438
+0perc_0repeat_Baseline_0	0.4	0.5296	0.0296
+0perc_0repeat_Baseline_1	0.4	0.4704	0.0296
+0perc_0repeat	0.4	0.5517	0.0571	0.0114	0.6818	0.2821	0.399
+0perc_0repeat_Baseline_0	0.4	0.5282	0.0363
+0perc_0repeat_Baseline_1	0.4	0.4718	0.0363
+0perc_0repeat	0.4	0.5655	0.0629	0.0126	0.6346	0.261	0.3698
+0perc_0repeat_Baseline_0	0.4	0.5255	0.0309
+0perc_0repeat_Baseline_1	0.4	0.4745	0.0309
+0perc_0repeat	0.4	0.5436	0.0407	0.0081	0.6751	0.2306	0.3438
+0perc_0repeat_Baseline_0	0.4	0.5296	0.0242
+0perc_0repeat_Baseline_1	0.4	0.4704	0.0242
+0perc_0repeat	0.4	0.5608	0.0485	0.0097	0.6946	0.1932	0.3024
+0perc_0repeat_Baseline_0	0.4	0.5242	0.0269
+0perc_0repeat_Baseline_1	0.4	0.4758	0.0269
+0perc_0repeat	0.4	0.5719	0.0502	0.01	0.6542	0.2226	0.3322
+7
+0perc_0repeat_Baseline_0	0.4	0.5323	0.0403
+0perc_0repeat_Baseline_1	0.4	0.4677	0.0403
+0perc_0repeat	0.4	0.5306	0.0431	0.0086	0.612	0.2776	0.382
+0perc_0repeat_Baseline_0	0.4	0.5269	0.0323
+0perc_0repeat_Baseline_1	0.4	0.4731	0.0323
+0perc_0repeat	0.4	0.5509	0.0508	0.0102	0.6576	0.2028	0.31
+0perc_0repeat_Baseline_0	0.4	0.5417	0.0417
+0perc_0repeat_Baseline_1	0.4	0.4583	0.0417
+0perc_0repeat	0.4	0.5499	0.0615	0.0123	0.5958	0.295	0.3946
+0perc_0repeat_Baseline_0	0.4	0.5242	0.0403
+0perc_0repeat_Baseline_1	0.4	0.4758	0.0403
+0perc_0repeat	0.4	0.5473	0.0546	0.0109	0.6142	0.2697	0.3748
+0perc_0repeat_Baseline_0	0.4	0.5336	0.0255
+0perc_0repeat_Baseline_1	0.4	0.4664	0.0255
+0perc_0repeat	0.4	0.5561	0.0489	0.0098	0.6534	0.302	0.4131
+0perc_0repeat_Baseline_0	0.4	0.5255	0.0336
+0perc_0repeat_Baseline_1	0.4	0.4745	0.0336
+0perc_0repeat	0.4	0.5503	0.0589	0.0118	0.6232	0.1693	0.2663
+0perc_0repeat_Baseline_0	0.4	0.5323	0.0323
+0perc_0repeat_Baseline_1	0.4	0.4677	0.0323
+0perc_0repeat	0.4	0.5485	0.0529	0.0106	0.6617	0.3561	0.463
+0perc_0repeat_Baseline_0	0.4	0.5296	0.0349
+0perc_0repeat_Baseline_1	0.4	0.4704	0.0349
+0perc_0repeat	0.4	0.5604	0.0641	0.0128	0.6598	0.2708	0.384
+0perc_0repeat_Baseline_0	0.4	0.5336	0.0309
+0perc_0repeat_Baseline_1	0.4	0.4664	0.0309
+0perc_0repeat	0.4	0.545	0.0331	0.0066	0.7092	0.213	0.3276
+0perc_0repeat_Baseline_0	0.4	0.5269	0.0323
+0perc_0repeat_Baseline_1	0.4	0.4731	0.0323
+0perc_0repeat	0.4	0.5574	0.0444	0.0089	0.6701	0.1989	0.3067
+0perc_0repeat_Baseline_0	0.4	0.5269	0.0269
+0perc_0repeat_Baseline_1	0.4	0.4731	0.0269
+0perc_0repeat	0.4	0.5569	0.06	0.012	0.6918	0.279	0.3976
+0perc_0repeat_Baseline_0	0.4	0.5202	0.0282
+0perc_0repeat_Baseline_1	0.4	0.4798	0.0282
+0perc_0repeat	0.4	0.5517	0.0422	0.0084	0.6755	0.1787	0.2827
+0perc_0repeat_Baseline_0	0.4	0.5148	0.0309
+0perc_0repeat_Baseline_1	0.4	0.4852	0.0309
+0perc_0repeat	0.4	0.5383	0.0408	0.0082	0.6539	0.0708	0.1277
+0perc_0repeat_Baseline_0	0.4	0.5242	0.0242
+0perc_0repeat_Baseline_1	0.4	0.4758	0.0242
+0perc_0repeat	0.4	0.5596	0.042	0.0084	0.6493	0.1483	0.2415
+0perc_0repeat_Baseline_0	0.4	0.5188	0.0376
+0perc_0repeat_Baseline_1	0.4	0.4812	0.0376
+0perc_0repeat	0.4	0.5363	0.0427	0.0085	0.6344	0.2554	0.3641
+0perc_0repeat_Baseline_0	0.4	0.5242	0.0457
+0perc_0repeat_Baseline_1	0.4	0.4758	0.0457
+0perc_0repeat	0.4	0.5692	0.0598	0.012	0.6473	0.2509	0.3616
+0perc_0repeat_Baseline_0	0.4	0.5282	0.0202
+0perc_0repeat_Baseline_1	0.4	0.4718	0.0202
+0perc_0repeat	0.4	0.5477	0.0402	0.008	0.7029	0.1812	0.2882
+0perc_0repeat_Baseline_0	0.4	0.5363	0.0444
+0perc_0repeat_Baseline_1	0.4	0.4637	0.0444
+0perc_0repeat	0.4	0.5514	0.0553	0.0111	0.6348	0.2587	0.3676
+0perc_0repeat_Baseline_0	0.4	0.5228	0.0363
+0perc_0repeat_Baseline_1	0.4	0.4772	0.0363
+0perc_0repeat	0.4	0.5533	0.0482	0.0096	0.6778	0.2265	0.3395
+0perc_0repeat_Baseline_0	0.4	0.5282	0.0336
+0perc_0repeat_Baseline_1	0.4	0.4718	0.0336
+0perc_0repeat	0.4	0.545	0.0485	0.0097	0.6089	0.2578	0.3622
+0perc_0repeat_Baseline_0	0.4	0.5215	0.0323
+0perc_0repeat_Baseline_1	0.4	0.4785	0.0323
+0perc_0repeat	0.4	0.5544	0.0523	0.0105	0.6607	0.2164	0.326
+0perc_0repeat_Baseline_0	0.4	0.5282	0.0309
+0perc_0repeat_Baseline_1	0.4	0.4718	0.0309
+0perc_0repeat	0.4	0.5641	0.0563	0.0113	0.6278	0.2604	0.3681
+0perc_0repeat_Baseline_0	0.4	0.5296	0.0376
+0perc_0repeat_Baseline_1	0.4	0.4704	0.0376
+0perc_0repeat	0.4	0.5501	0.057	0.0114	0.6061	0.3114	0.4114
+0perc_0repeat_Baseline_0	0.4	0.5121	0.0336
+0perc_0repeat_Baseline_1	0.4	0.4879	0.0336
+0perc_0repeat	0.4	0.555	0.0456	0.0091	0.6466	0.1429	0.2341
+0perc_0repeat_Baseline_0	0.4	0.5269	0.0296
+0perc_0repeat_Baseline_1	0.4	0.4731	0.0296
+0perc_0repeat	0.4	0.5538	0.0495	0.0099	0.6111	0.1507	0.2418
+0perc_0repeat_Baseline_0	0.4	0.5282	0.0417
+0perc_0repeat_Baseline_1	0.4	0.4718	0.0417
+0perc_0repeat	0.4	0.5548	0.0655	0.0131	0.6214	0.2292	0.3349
+0perc_0repeat_Baseline_0	0.4	0.5228	0.0336
+0perc_0repeat_Baseline_1	0.4	0.4772	0.0336
+0perc_0repeat	0.4	0.5338	0.0351	0.007	0.6093	0.1633	0.2576
+0perc_0repeat_Baseline_0	0.4	0.5323	0.0376
+0perc_0repeat_Baseline_1	0.4	0.4677	0.0376
+0perc_0repeat	0.4	0.547	0.0599	0.012	0.5943	0.251	0.353
+0perc_0repeat_Baseline_0	0.4	0.5255	0.0282
+0perc_0repeat_Baseline_1	0.4	0.4745	0.0282
+0perc_0repeat	0.4	0.5373	0.043	0.0086	0.6854	0.1463	0.2412
+0perc_0repeat_Baseline_0	0.4	0.5363	0.0444
+0perc_0repeat_Baseline_1	0.4	0.4637	0.0444
+0perc_0repeat	0.4	0.5385	0.0501	0.01	0.6154	0.1721	0.2689
+0perc_0repeat_Baseline_0	0.4	0.5269	0.0296
+0perc_0repeat_Baseline_1	0.4	0.4731	0.0296
+0perc_0repeat	0.4	0.5463	0.0413	0.0083	0.5971	0.1459	0.2345
+0perc_0repeat_Baseline_0	0.4	0.5255	0.0336
+0perc_0repeat_Baseline_1	0.4	0.4745	0.0336
+0perc_0repeat	0.4	0.5744	0.058	0.0116	0.7365	0.2374	0.3591
+0perc_0repeat_Baseline_0	0.4	0.5215	0.0349
+0perc_0repeat_Baseline_1	0.4	0.4785	0.0349
+0perc_0repeat	0.4	0.5488	0.0469	0.0094	0.6566	0.1766	0.2783
+0perc_0repeat_Baseline_0	0.4	0.5282	0.0228
+0perc_0repeat_Baseline_1	0.4	0.4718	0.0228
+0perc_0repeat	0.4	0.5479	0.0334	0.0067	0.6622	0.2036	0.3114
+0perc_0repeat_Baseline_0	0.4	0.5269	0.0376
+0perc_0repeat_Baseline_1	0.4	0.4731	0.0376
+0perc_0repeat	0.4	0.554	0.0561	0.0112	0.6681	0.3029	0.4168
+0perc_0repeat_Baseline_0	0.4	0.5309	0.0363
+0perc_0repeat_Baseline_1	0.4	0.4691	0.0363
+0perc_0repeat	0.4	0.5705	0.0576	0.0115	0.6339	0.2869	0.395
+0perc_0repeat_Baseline_0	0.4	0.5255	0.0228
+0perc_0repeat_Baseline_1	0.4	0.4745	0.0228
+0perc_0repeat	0.4	0.556	0.0476	0.0095	0.6471	0.2163	0.3242
+0perc_0repeat_Baseline_0	0.4	0.5228	0.0336
+0perc_0repeat_Baseline_1	0.4	0.4772	0.0336
+0perc_0repeat	0.4	0.5684	0.0568	0.0114	0.6294	0.2863	0.3935
+0perc_0repeat_Baseline_0	0.4	0.5309	0.0282
+0perc_0repeat_Baseline_1	0.4	0.4691	0.0282
+0perc_0repeat	0.4	0.5635	0.0541	0.0108	0.7176	0.235	0.354
+0perc_0repeat_Baseline_0	0.4	0.5215	0.0323
+0perc_0repeat_Baseline_1	0.4	0.4785	0.0323
+0perc_0repeat	0.4	0.5493	0.0536	0.0107	0.6388	0.1836	0.2852
+0perc_0repeat_Baseline_0	0.4	0.5269	0.0323
+0perc_0repeat_Baseline_1	0.4	0.4731	0.0323
+0perc_0repeat	0.4	0.5799	0.0668	0.0134	0.5974	0.379	0.4637
+0perc_0repeat_Baseline_0	0.4	0.5309	0.0363
+0perc_0repeat_Baseline_1	0.4	0.4691	0.0363
+0perc_0repeat	0.4	0.543	0.0571	0.0114	0.5612	0.2693	0.364
+0perc_0repeat_Baseline_0	0.4	0.5188	0.0403
+0perc_0repeat_Baseline_1	0.4	0.4812	0.0403
+0perc_0repeat	0.4	0.5334	0.0366	0.0073	0.6041	0.1674	0.2621
+0perc_0repeat_Baseline_0	0.4	0.5228	0.0309
+0perc_0repeat_Baseline_1	0.4	0.4772	0.0309
+0perc_0repeat	0.4	0.5582	0.0483	0.0097	0.6456	0.3111	0.4199
+0perc_0repeat_Baseline_0	0.4	0.5282	0.0363
+0perc_0repeat_Baseline_1	0.4	0.4718	0.0363
+0perc_0repeat	0.4	0.5486	0.0486	0.0097	0.6374	0.2213	0.3285
+0perc_0repeat_Baseline_0	0.4	0.5175	0.0363
+0perc_0repeat_Baseline_1	0.4	0.4825	0.0363
+0perc_0repeat	0.4	0.5489	0.0424	0.0085	0.6526	0.1602	0.2573
+0perc_0repeat_Baseline_0	0.4	0.5255	0.0282
+0perc_0repeat_Baseline_1	0.4	0.4745	0.0282
+0perc_0repeat	0.4	0.5511	0.0531	0.0106	0.68	0.2598	0.376
+0perc_0repeat_Baseline_0	0.4	0.5215	0.0296
+0perc_0repeat_Baseline_1	0.4	0.4785	0.0296
+0perc_0repeat	0.4	0.5395	0.0471	0.0094	0.6545	0.1201	0.203

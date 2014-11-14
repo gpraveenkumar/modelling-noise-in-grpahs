@@ -269,3 +269,45 @@ Label	trainingSize	Accuracy_Mean	Accuracy_SD	Accuracy_SE	Precision_Mean	Recall_M
 0perc_0repeat_Baseline_0	0.4	0.5255	0.0363
 0perc_0repeat_Baseline_1	0.4	0.4745	0.0363
 0perc_0repeat	0.4	0.5489	0.0526	0.0053	0.6234	0.2761	0.3827
+0perc_0repeat_Baseline_0	0.4	0.5323	0.0457
+0perc_0repeat_Baseline_1	0.4	0.4677	0.0457
+0perc_0repeat	0.4	0.5478	0.0468	0.0047	0.6136	0.2524	0.3577
+0perc_0repeat_Baseline_0	0.4	0.5242	0.0349
+0perc_0repeat_Baseline_1	0.4	0.4758	0.0349
+0perc_0repeat	0.4	0.5548	0.0514	0.0051	0.6337	0.2231	0.3301
+0perc_0repeat_Baseline_0	0.4	0.5215	0.0323
+0perc_0repeat_Baseline_1	0.4	0.4785	0.0323
+0perc_0repeat	0.4	0.5571	0.051	0.0051	0.6702	0.186	0.2911
+0perc_0repeat_Baseline_0	0.4	0.5309	0.0444
+0perc_0repeat_Baseline_1	0.4	0.4691	0.0444
+0perc_0repeat	0.4	0.5506	0.0559	0.0056	0.6455	0.2237	0.3323
+0perc_0repeat_Baseline_0	0.4	0.5336	0.0417
+0perc_0repeat_Baseline_1	0.4	0.4664	0.0417
+0perc_0repeat	0.4	0.5503	0.0596	0.006	0.6071	0.2578	0.3619
+0perc_0repeat_Baseline_0	0.4	0.5282	0.039
+0perc_0repeat_Baseline_1	0.4	0.4718	0.039
+0perc_0repeat	0.4	0.5457	0.0516	0.0052	0.6268	0.2605	0.368
+0perc_0repeat_Baseline_0	0.4	0.5282	0.039
+0perc_0repeat_Baseline_1	0.4	0.4718	0.039
+0perc_0repeat	0.4	0.5538	0.0519	0.0052	0.614	0.2356	0.3405
+0perc_0repeat_Baseline_0	0.4	0.5309	0.039
+0perc_0repeat_Baseline_1	0.4	0.4691	0.039
+0perc_0repeat	0.4	0.5492	0.0488	0.0049	0.6584	0.2198	0.3296
+0perc_0repeat_Baseline_0	0.4	0.5376	0.0457
+0perc_0repeat_Baseline_1	0.4	0.4624	0.0457
+0perc_0repeat	0.4	0.5532	0.0504	0.005	0.6587	0.2354	0.3469
+0perc_0repeat_Baseline_0	0.4	0.5296	0.0403
+0perc_0repeat_Baseline_1	0.4	0.4704	0.0403
+0perc_0repeat	0.4	0.5539	0.0546	0.0055	0.6262	0.2314	0.3379
+0perc_0repeat_Baseline_0	0.4	0.5228	0.0497
+0perc_0repeat_Baseline_1	0.4	0.4772	0.0497
+0perc_0repeat	0.4	0.5579	0.0603	0.006	0.632	0.2797	0.3878
+0perc_0repeat_Baseline_0	0.4	0.5242	0.043
+0perc_0repeat_Baseline_1	0.4	0.4758	0.043
+0perc_0repeat	0.4	0.5492	0.0529	0.0053	0.6108	0.2688	0.3734
+0perc_0repeat_Baseline_0	0.4	0.5242	0.0511
+0perc_0repeat_Baseline_1	0.4	0.4758	0.0511
+0perc_0repeat	0.4	0.5461	0.042	0.0042	0.6363	0.1684	0.2663
+0perc_0repeat_Baseline_0	0.4	0.5269	0.0457
+0perc_0repeat_Baseline_1	0.4	0.4731	0.0457
+0perc_0repeat	0.4	0.5515	0.0477	0.0048	0.6478	0.2094	0.3165
