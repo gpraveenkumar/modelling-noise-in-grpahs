@@ -4,14 +4,109 @@ library(gridExtra)
 
 
 path = "../results/"
-fileName = "distributionTest_1000_MeanMedian_school_flipLabelResults"
+fileName = "school074-label0_0.4trainingSize_100iterations_DistributionTest_flipLabelResultsWithParameters"
+
+#fName = "school074-label0_0.4trainingSize_100iterations_DistributionTest_flipLabelResultsWithParameters"
+
+data <- read.table(file = paste(path, fileName , '.txt' , sep = ""), header = T)
+#dat <- read.table(file = paste(path, fileName , '.txt' , sep = ""), header = T)
+
+#data <- subset(data,data$Label=="5perc_2repeat")
+
+plot_main <- ggplot(data, aes(x = 1:100,y = Accuracy_Mean,colo)) + geom_point() + geom_line() +
+  geom_hline(aes(yintercept=mean(Accuracy_Mean)), color="red", linetype="solid", size=1) +
+  geom_hline(aes(yintercept=mean(Accuracy_Mean) - sd(Accuracy_Mean)), color="blue", linetype="dashed", size=1, ) +
+  geom_hline(aes(yintercept=mean(Accuracy_Mean) + sd(Accuracy_Mean)), color="blue", linetype="dashed", size=1) +
+  geom_hline(aes(yintercept=mean(Accuracy_Mean) - 2*sd(Accuracy_Mean)), color="green", linetype="dashed", size=1) +
+  geom_hline(aes(yintercept=mean(Accuracy_Mean) + 2*sd(Accuracy_Mean)), color="green", linetype="dashed", size=1) +
+  geom_hline(aes(yintercept=mean(Accuracy_Mean) - 3*sd(Accuracy_Mean)), color="orange", linetype="dashed", size=1) +
+  geom_hline(aes(yintercept=mean(Accuracy_Mean) + 3*sd(Accuracy_Mean)), color="orange", linetype="dashed", size=1) +
+  geom_hline(aes(yintercept=median(Accuracy_Mean)), color="yellow", linetype="dashed", size=1) + 
+  #ylim(0.52,0.59) +
+  geom_point( aes(x = 1:100,y = Accuracy_Median),color="violet") +
+  geom_line(aes(x = 1:100,y = Accuracy_Median),color="violet") +
+  geom_point( aes(x = 1:100,y = PriorClass0_Mean),color="chocolate1") +
+  geom_line(aes(x = 1:100,y = PriorClass0_Mean),color="chocolate1") +
+  geom_point( aes(x = 1:100,y = ProbabilityEstimate_0given0_Mean),color="maroon") +
+  geom_line(aes(x = 1:100,y = ProbabilityEstimate_0given0_Mean),color="maroon") +
+  geom_point( aes(x = 1:100,y = ProbabilityEstimate_0given1_Mean),color="skyblue2") +
+  geom_line(aes(x = 1:100,y = ProbabilityEstimate_0given1_Mean),color="skyblue2")
+
+
+
+
+
+ggplot(data, aes(x = Accuracy_Mean, color=Label)) + 
+  geom_density(alpha=.5) +
+  geom_density(aes(x = Accuracy_Median),color="violet") +
+  geom_density(aes(x = PriorClass0_Mean),color="chocolate1") +
+  geom_density(aes(x = ProbabilityEstimate_0given0_Mean),color="maroon") +
+  geom_density(aes(x = ProbabilityEstimate_0given1_Mean),color="skyblue") 
+  
+
+ggplot(data, aes(x = Accuracy_Mean, color=Label)) + 
+  geom_density(alpha=.5) +
+  #geom_density(aes(x = Accuracy_Median, color=Label)) +
+  geom_density(aes(x = PriorClass0_Mean, color=Label)) +
+  geom_density(aes(x = ProbabilityEstimate_0given0_Mean, color=Label)) +
+  geom_density(aes(x = ProbabilityEstimate_0given1_Mean, color=Label))   
+
+
+
+
+#+
+#  geom_point(data=med, colour="purple") +
+#  geom_line(data=med, colour="purple")
+
+plot_right <- ggplot(data, aes(x = Accuracy_Mean)) + 
+  geom_density(alpha=.5) +
+  geom_vline(aes(xintercept=mean(Accuracy_Mean)), color="red", linetype="solid", size=1) +
+  geom_vline(aes(xintercept=mean(Accuracy_Mean) - sd(Accuracy_Mean)), color="blue", linetype="dashed", size=1) +
+  geom_vline(aes(xintercept=mean(Accuracy_Mean) + sd(Accuracy_Mean)), color="blue", linetype="dashed", size=1) +
+  geom_vline(aes(xintercept=mean(Accuracy_Mean) - 2*sd(Accuracy_Mean)), color="green", linetype="dashed", size=1) +
+  geom_vline(aes(xintercept=mean(Accuracy_Mean) + 2*sd(Accuracy_Mean)), color="green", linetype="dashed", size=1) +
+  geom_vline(aes(xintercept=mean(Accuracy_Mean) - 3*sd(Accuracy_Mean)), color="orange", linetype="dashed", size=1) +
+  geom_vline(aes(xintercept=mean(Accuracy_Mean) + 3*sd(Accuracy_Mean)), color="orange", linetype="dashed", size=1) +
+  geom_vline(aes(xintercept=median(Accuracy_Mean)), color="yellow", linetype="dashed", size=1) +
+  xlim(0.52,0.59) + 
+  coord_flip() 
+
+#arrange the plots together, with appropriate height and width for each row and column
+grid.arrange(plot_main, plot_right, ncol=2, nrow=1, widths=c(4, 1), heights=c(1, 4))
+
+g <- arrangeGrob(plot_main, plot_right, ncol=2, nrow=1, widths=c(4, 1), heights=c(1, 4))
+
+ggsave(file=paste('./plots/', fileName , '.png' , sep = ""),g)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Old and deprecated
 
 d <- read.table(file = paste(path, fileName , '.txt' , sep = ""), header = T)
 data <- d[d$Label=="0perc_0repeat",] 
 
 med <- d[d$Label=="Median_0perc_0repeat",]
 
-plot_main <- ggplot(data, aes(x = 1:11,y = Accuracy_Mean)) + geom_point() + geom_line() +
+plot_main <- ggplot(data, aes(x = 1:100,y = Accuracy_Mean)) + geom_point() + geom_line() +
   geom_hline(aes(yintercept=mean(Accuracy_Mean)), color="red", linetype="solid", size=1) +
   geom_hline(aes(yintercept=mean(Accuracy_Mean) - sd(Accuracy_Mean)), color="blue", linetype="dashed", size=1, ) +
   geom_hline(aes(yintercept=mean(Accuracy_Mean) + sd(Accuracy_Mean)), color="blue", linetype="dashed", size=1) +
@@ -45,6 +140,12 @@ g <- arrangeGrob(plot_main, plot_right, ncol=2, nrow=1, widths=c(4, 1), heights=
 ggsave(file=paste('./plots/', fileName , '.png' , sep = ""),g)
 
 
+
+
+
+
+
+
 q <- c(0.54043010752688159, 0.62892473118279568, 0.5148387096774194, 0.55010752688172027, 0.53720430107526884, 0.47086021505376335, 0.51903225806451614, 0.45322580645161287, 0.48849462365591395, 0.52268817204301055, 0.54978494623655927, 0.53720430107526862, 0.62064516129032254, 0.54849462365591384, 0.51849462365591403, 0.50978494623655923, 0.58010752688172051, 0.57924731182795719, 0.52376344086021509, 0.4981720430107528, 0.50827956989247303, 0.51806451612903226, 0.5235483870967742, 0.53602150537634408, 0.47752688172043023, 0.5797849462365593, 0.50505376344086028, 0.53182795698924734, 0.521720430107527, 0.53602150537634397, 0.55365591397849456, 0.55602150537634409, 0.48645161290322569, 0.50376344086021507, 0.44247311827956987, 0.52655913978494628, 0.65763440860215039, 0.53365591397849454, 0.60806451612903234, 0.6470967741935485, 0.55075268817204293, 0.58473118279569891, 0.54000000000000004, 0.53494623655913986, 0.56580645161290322, 0.62419354838709673, 0.5910752688172044, 0.61430107526881716, 0.58978494623655908, 0.53924731182795715, 0.57440860215053779, 0.5094623655913979, 0.63290322580645164, 0.53913978494623649, 0.50827956989247303, 0.59709677419354845, 0.4770967741935484, 0.52892473118279582, 0.46430107526881714, 0.53569892473118275, 0.45967741935483858, 0.47043010752688191, 0.5102150537634409, 0.52010752688172035, 0.53924731182795693, 0.51268817204301087, 0.45860215053763431, 0.62043010752688188, 0.53946236559139804, 0.5130107526881722, 0.46677419354838712, 0.57021505376344084, 0.60892473118279578, 0.53053763440860191, 0.50655913978494627, 0.5402150537634407, 0.64526881720430107, 0.56365591397849457, 0.533010752688172, 0.5025806451612902, 0.47075268817204313, 0.50225806451612909, 0.55559139784946243, 0.43688172043010759, 0.51698924731182805, 0.60075268817204308, 0.43580645161290327, 0.62709677419354837, 0.52849462365591393, 0.57301075268817214, 0.54365591397849455, 0.54634408602150519, 0.51397849462365597, 0.53043010752688158, 0.56344086021505357, 0.62935483870967746, 0.62268817204301063, 0.49924731182795701, 0.52935483870967748, 0.55763440860215052)
 q <- c(0.58505376344086024, 0.52150537634408589, 0.5675268817204302, 0.55182795698924736, 0.52365591397849454, 0.49161290322580653, 0.65741935483870961, 0.53537634408602142, 0.67387096774193556, 0.52795698924731171, 0.52000000000000002, 0.50881720430107524, 0.51290322580645165, 0.50419354838709673, 0.50473118279569884, 0.61677419354838714, 0.53247311827956967, 0.65698924731182795, 0.53655913978494618, 0.52247311827956988, 0.57182795698924727, 0.51172043010752699, 0.5122580645161291, 0.54365591397849444, 0.51204301075268821)
 
@@ -63,3 +164,71 @@ q <- c(q,0.63752688172043004, 0.67053763440860203, 0.52516129032258074, 0.478494
 q <- sort(q)
 data1 <- data.frame(rep(1,1000),q)
 colnames(data1) <- c("Label","Accuracy_Mean")
+
+
+
+
+
+summary(Indometh)
+wide <- reshape(Indometh, v.names = "conc", idvar = "Subject",
+                timevar = "time", direction = "wide")
+wide
+
+reshape(wide, direction = "long")
+reshape(wide, idvar = "Subject", varying = list(2:12),
+        v.names = "conc", direction = "long")
+
+## times need not be numeric
+df <- data.frame(id = rep(1:4, rep(2,4)),
+                 visit = I(rep(c("Before","After"), 4)),
+                 x = rnorm(4), y = runif(4))
+df
+reshape(df, timevar = "visit", idvar = "id", direction = "wide")
+## warns that y is really varying
+reshape(df, timevar = "visit", idvar = "id", direction = "wide", v.names = "x")
+
+
+##  unbalanced 'long' data leads to NA fill in 'wide' form
+df2 <- df[1:7, ]
+df2
+reshape(df2, timevar = "visit", idvar = "id", direction = "wide")
+
+## Alternative regular expressions for guessing names
+df3 <- data.frame(id = 1:4, age = c(40,50,60,50), dose1 = c(1,2,1,2),
+                  dose2 = c(2,1,2,1), dose4 = c(3,3,3,3))
+reshape(df3, direction = "long", varying = 3:5, sep = "")
+
+
+## an example that isn't longitudinal data
+state.x77 <- as.data.frame(state.x77)
+long <- reshape(state.x77, idvar = "state", ids = row.names(state.x77),
+                times = names(state.x77), timevar = "Characteristic",
+                varying = list(names(state.x77)), direction = "long")
+
+reshape(long, direction = "wide")
+
+reshape(long, direction = "wide", new.row.names = unique(long$state))
+
+## multiple id variables
+df3 <- data.frame(school = rep(1:3, each = 4), class = rep(9:10, 6),
+                  time = rep(c(1,1,2,2), 3), score = rnorm(12))
+wide <- reshape(df3, idvar = c("school","class"), direction = "wide")
+wide
+## transform back
+
+reshape(wide)
+
+
+
+
+require(reshape)
+df <- data.frame(time = 1:2, label=c("a","b"),
+                 MeanVar1 = cumsum(rnorm(2)),
+                 SdVar1 = cumsum(rnorm(2)),
+                 MedianVar1 = cumsum(rnorm(2)),
+                 MeanVar2 = cumsum(rnorm(2)),
+                 SdVar2 = cumsum(rnorm(2))
+                 )
+df <- 
+  melt(df ,  id = 'time', variable_name = 'series', id.vars=c("a","c"))
+

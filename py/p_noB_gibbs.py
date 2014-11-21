@@ -70,6 +70,31 @@ def computeCorrelation(pairs):
 
 
 def computeInitialParameters(G,label,testLabels):
+
+	# This is code used for downsampling.
+	# True = Downsampling
+	# False = No Downampling
+	if False:
+		print "DownSampling...."
+		downSamplePercentage = 0.75
+
+		# We want to downsample only the training data.
+		originalTrainingLabels = [i for i in label if i not in testLabels]
+
+		noOfLabelsToMask = int(downSamplePercentage*len(originalTrainingLabels))
+		originalTrainingLabelsToMask = random.sample(originalTrainingLabels,noOfLabelsToMask)
+
+		print len(originalTrainingLabels)
+		print len(originalTrainingLabelsToMask)
+		print len(testLabels)
+
+		# In this function, the only use of testLabels is to remove those nodes from the graph. 
+		# So, I am adding the label to be revomed for downsampling to the testLabels set, so 
+		# that the code below removes all those nodes from the graph and then calculates the probabily estiamtes.
+		for i in originalTrainingLabelsToMask:
+			testLabels.append(i)
+		print len(testLabels)
+
 	#class priors
 	t = Counter()
 	for x in label:
@@ -141,10 +166,17 @@ def f2(currentLabelEstimates, neighbors, estimatedProbabities, classPrior):
 	class0 = class0/denominator
 	class1 = class1/denominator
 
-	if random.uniform(0,1) < class0:
-		return 0
+	x = random.uniform(0,1)
+	if x < class0:
+		t = 0
 	else:
-		return 1
+		t = 1
+
+	#print str(class0),str(class1)
+	#print x
+	#print str(t),str(int(class1/class0 > 1)),'\n'
+
+	return t#int(class1/class0 > 1)
 
 
 
@@ -199,6 +231,20 @@ def computeAccuracy(label,testLabels,resultingLabels):
 	if (counts[1,0]+counts[1,1]) != 0:
 		recall = counts[1,1]  / (counts[1,0]+counts[1,1])
 	return accuracy,precision,recall
+
+
+# Function to compute the squared loss
+# Input : Original Labels, test labels and the predicted labels
+# Output : squared loss
+def computeSquaredLoss(label,testLabels,resultingLabels):
+	squaredLoss = 0
+	for i in testLabels:
+		squaredLoss += math.pow((label[i] - resultingLabels[i]),2)
+
+	squaredLoss /= len(testLabels)
+
+	return squaredLoss
+
 
 
 ## Gibbs Sampling
@@ -272,9 +318,13 @@ def gibbsSampling(edges,label,testLabels):
 			#print sum(sum(estimatedCounts))
 			#print estimatedProbabities
 	
+	# Will be used for computing Squared loss. Is a dictionary because of the 
+	# second line in the for loop and for it to be consistent to resultingLabels
+	resultingLabelsForSquaredLoss = {}
 
 	for i in resultingLabels:
 		resultingLabels[i] = (resultingLabels[i] + 0.0)/(iteration - burnin) 
+		resultingLabelsForSquaredLoss[i] = resultingLabels[i]
 		resultingLabels[i] = int(resultingLabels[i]  >= 0.5)
 	
 	ctr = 0
@@ -282,10 +332,13 @@ def gibbsSampling(edges,label,testLabels):
 		if label[i] != resultingLabels[i]:
 			ctr += 1
 
-
 	#print "\nFinal Results:\nNo. of Labels Mismatched:",ctr
 
 	accuracy,precision,recall = computeAccuracy(label,testLabels,resultingLabels)
+
+	# Compute Squared Loss with the averages of Gibbs sampling before assigning them a single value
+	squaredLoss = computeSquaredLoss(label,testLabels,resultingLabelsForSquaredLoss)
+	accuracy = squaredLoss
 
 	#print "Accuracy:\n",accuracy
 	#print "% = ",accp
@@ -294,5 +347,5 @@ def gibbsSampling(edges,label,testLabels):
 
 	print "No. of interation in which labels have not changed:",LabelDifferenceBetweenIterationsCounter
 
-	return (accuracy,precision,recall,estimatedProbabities)
+	return (accuracy,precision,recall,classPrior,estimatedProbabities)
 

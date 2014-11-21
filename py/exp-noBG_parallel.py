@@ -1,3 +1,5 @@
+
+
 import sys, math
 from sets import Set
 from collections import Counter
@@ -5,6 +7,12 @@ import random
 import numpy
 from multiprocessing import Pool
 import gc
+
+
+basePath = '/homes/pgurumur/jen/noise/py/'
+school = "school074"
+schoolLabel = "label0"
+
 
 # The .pyc file is not updated as it should be with changes in p_nob_gibbs.py. 
 #Hence, I am manually removing it so that it can be recomplied and a new .pyc 
@@ -17,7 +25,7 @@ def silentremove(filename):
     except OSError as e: # this would be "except OSError, e:" before Python 2.6
         if e.errno != errno.ENOENT: # errno.ENOENT = no such file or directory
             raise # re-raise exception if a different error occured
-silentremove('p_noB_gibbs.pyc')
+silentremove(basePath + 'p_noB_gibbs.pyc')
 
 from p_noB_gibbs import *
 
@@ -32,10 +40,6 @@ directed = False
 # graph
 edges = {}
 label = {}
-
-basePath = '/homes/pgurumur/jen/noise/py/'
-school = "school074"
-schoolLabel = "label0"
 
 #f_in = open(basePath + '../data/polblogs-nodes.txt')
 f_in = open(basePath + '../data/' + school + '_' + schoolLabel +'-nodes.txt')
@@ -452,12 +456,12 @@ def func_star(a_b):
     return gibbsSampling(*a_b)
 
 
-
-def computeMeanAndStandardError(vector):
-	mean = numpy.mean(vector)
-	sd = numpy.std(vector)
-	se = sd / math.sqrt(len(vector))
-	median = numpy.median(vector)
+# ListOfObject can be a list of numbers or a list of vectors or a list of matrices
+def computeMeanAndStandardError(listOfObjects):
+	mean = numpy.mean(listOfObjects,0)
+	sd = numpy.std(listOfObjects,0)
+	se = sd / math.sqrt(len(listOfObjects))
+	median = numpy.median(listOfObjects,0)
 	return (mean,sd,se,median)
 
 
@@ -506,7 +510,7 @@ def writeToFile(l):
 	fileName = l[0]
 	# Remove the fileName from the list, so as to facilitate join
 	l.pop(0)
-	path = basePath + '../results/' + school + '-' + schoolLabel + '_'
+	path = basePath + '../results/' + school + '-' + schoolLabel + '_squaredLoss_run2_'
 	f_out = open(path+fileName,'a')
 	f_out.write("\t".join(l)  + "\n")
 	f_out.close()
@@ -545,7 +549,7 @@ percentageOfGraphList = [ float(arg2) ]
 for trainingSize in trainingSizeList:
 	for percentageOfGraph in percentageOfGraphList:
 		outputTofile = []
-		for noOfTimesToRepeat in [2,5,10]:
+		for noOfTimesToRepeat in [2,5]:
 
 				print "\n\n\n\n\ntrainingSize:",trainingSize," percentageOfGraph: ",percentageOfGraph," noOfTimesToRepeat: ",noOfTimesToRepeat
 				
@@ -557,17 +561,21 @@ for trainingSize in trainingSizeList:
 				p1 = []
 				r1 = []
 				e1 = []
+				c1 = []
 				Baseline_0 =[1,0]
 				Baseline_1 =[1,0]
 
-				for i in range(5):
+				for i in range(200):
 					print "\nRepetition No.:",i+1
 
 					testLabels = random.sample(originalLabels,noOfLabelsToMask)
 					#originalTrainLabels = [i for i in originalLabels if i not in testLabels]
 
-					currentGraph,currentLabels = originalGraph,originalLabels
-					#currentGraph,currentLabels = makeNoisyGraphs(Action,percentageOfGraph,noOfTimesToRepeat,originalGraph,originalLabels,testLabels)
+					# When there is no need to repeat just work with the original graph
+					if noOfTimesToRepeat == 0:
+						currentGraph,currentLabels = originalGraph,originalLabels
+					else:
+						currentGraph,currentLabels = makeNoisyGraphs(Action,percentageOfGraph,noOfTimesToRepeat,originalGraph,originalLabels,testLabels)
 					
 					print "Size of graph:",len(currentLabels)
 
@@ -581,14 +589,14 @@ for trainingSize in trainingSizeList:
 					pool.close()
 					pool.join()
 
-					accuracy, precision, recall, estimatedProbabities = zip(*y)
+					accuracy, precision, recall, classPrior, estimatedProbabities = zip(*y)
 					meanAccuracy,sd,se,uselessMedian = computeMeanAndStandardError(accuracy)
 					meanPrecision,uselessSd,uselessSe,uselessMedian = computeMeanAndStandardError(precision)
 					meanRecall,uselessSd,uselessSe,uselessMedian = computeMeanAndStandardError(recall)
 					
-					#print accuracy
-					#print estimatedProbabities[0]
-					e1.append(estimatedProbabities[0])
+					meanClassPrior,sdClassPrior,seClassPrior,uselessMedian = computeMeanAndStandardError(classPrior)
+					meanEstimatedProbabilities,seEstimatedProbabilities,seEstimatedProbabilities,uselessMedian = computeMeanAndStandardError(estimatedProbabities)
+					
 
 					predictedLabels = setLabelForBaselineAccuracies(currentLabels, testLabels, 0)
 					curBaselineValue,uselessPrecision,uselessRecall = computeAccuracy(currentLabels,testLabels, predictedLabels )
@@ -603,10 +611,19 @@ for trainingSize in trainingSizeList:
 					print "SE:",se
 					print "MeanPrecision:",meanPrecision
 					print "MeanRecall:",meanRecall
-					print "estimatedProbabities:\n",estimatedProbabities[0]
+					
+					# This sd and variance are less than 10<-16
+					#print "MeanClassPrior:",meanClassPrior
+					#print "ClassPriorSD:",classPriorSd
+					#print "ClassPriorSE:",classPriorSe
+					#print "MeanEstimatedProbabilities:\n",meanEstimatedProbabilities
+					#print "EstimatedProbabilitiesSD:\n",sdEstimatedProbabilities
+					#print "EstimatedProbabilitiesSE:\n",seEstimatedProbabilities
 					a1.append(meanAccuracy)
 					p1.append(meanPrecision)
 					r1.append(meanRecall)
+					c1.append(meanClassPrior)
+					e1.append(meanEstimatedProbabilities)
 
 					#Freeup space
 					del arguments[:]
@@ -615,9 +632,12 @@ for trainingSize in trainingSizeList:
 
 				meanAccuracy,sd,se,medianAccuracy = computeMeanAndStandardError(a1)
 				meanPrecision,useless1,useless2,medianPrecision = computeMeanAndStandardError(p1)
+				print r1
 				meanRecall,useless1,useless2,medianRecall = computeMeanAndStandardError(r1)
-				f1 = 0
+				meanClassPrior,sdClassPrior,seClassPrior,uselessMedian = computeMeanAndStandardError(c1)
+				meanEstimatedProbabilities,sdEstimatedProbabilities,sdEstimatedProbabilities,uselessMedian = computeMeanAndStandardError(e1)
 
+				f1 = 0
 				# Precision and Recall are calculated w.r.t label 1. So if everything converges to label 0, both P and R will be 0
 				if precision != 0 and recall != 0:
 					f1 = (2*meanPrecision*meanRecall)/(meanPrecision+meanRecall)
@@ -648,8 +668,14 @@ for trainingSize in trainingSizeList:
 				print "Prediction MeanPrecision:",meanPrecision
 				print "Prediction MeanRecall:",meanRecall
 				print "Prediction F1:",f1
+				print "MeanClassPrior:",meanClassPrior
+				print "ClassPriorSD:",sdClassPrior
+				print "ClassPriorSE:",seClassPrior
+				print "MeanEstimatedProbabilities:\n",meanEstimatedProbabilities
+				print "EstimatedProbabilitiesSD:\n",sdEstimatedProbabilities
+				print "EstimatedProbabilitiesSE:\n",seEstimatedProbabilities
 				#outputTofile.append( [ Action + "ResultsBaselines.txt",prefix , str(trainingSize) , str(round(meanAccuracy,4)) , str(round(sd,4)) , str(round(se,4)) , str(round(meanPrecision,4)) , str(round(meanRecall,4)) , str(round(f1,4)), str(round(medianAccuracy,4))])
-				outputTofile.append( [ Action + "Results.txt",prefix , str(trainingSize) , str(round(meanAccuracy,4)) , str(round(sd,4)) , str(round(se,4)) , str(round(meanPrecision,4)) , str(round(meanRecall,4)) , str(round(f1,4)), str(round(medianAccuracy,4))])
+				outputTofile.append( [ Action + "ResultsWithParameters.txt",prefix , str(trainingSize) , str(round(meanAccuracy,4)) , str(round(sd,4)) , str(round(se,4)) , str(round(meanPrecision,4)) , str(round(meanRecall,4)) , str(round(f1,4)), str(round(medianAccuracy,4)), str(round(meanClassPrior[0],4)), str(round(sdClassPrior[0],4)), str(round(seClassPrior[0],4)), str(round(meanEstimatedProbabilities[0,0],4)), str(round(sdEstimatedProbabilities[0,0],4)), str(round(seEstimatedProbabilities[0,0],4)), str(round(meanEstimatedProbabilities[0,1],4)), str(round(sdEstimatedProbabilities[0,1],4)), str(round(seEstimatedProbabilities[0,1],4))])
 				#outputTofile.append( [ Action + "Results.txt","Median_"+prefix , str(trainingSize) , str(round(medianAccuracy,4)) , str(round(0,4)) , str(round(0,4)) , str(round(0,4)) , str(round(0,4)) , str(round(0,4)) ])
 				#print e1
 		for otf in outputTofile:
