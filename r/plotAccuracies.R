@@ -4,7 +4,7 @@ library(ggplot2)
 pd <- position_dodge(.025)
 
 ggplot(data, aes(x=trainingSize, y=Accuracy_Mean, colour=Label)) + 
-  geom_errorbar(aes(ymin=Accuracy_Mean-Accuracy_SD, ymax=Accuracy_Mean+Accuracy_SD), width=.02,position = pd) +
+  geom_errorbar(aes(ymin=Accuracy_Mean-Accuracy_SE, ymax=Accuracy_Mean+Accuracy_SE), width=.02,position = pd) +
   geom_line(position = pd) +
   geom_point(position = pd)  +
   ggtitle( paste(fileName ) )+
@@ -24,6 +24,10 @@ rhg_cols <- c("maroon", "dodgerblue1", "skyblue2",
               "palevioletred1", "lightsalmon4", "darkgoldenrod1")
 
 rhg_cols <- c("maroon", "dodgerblue1",  
+              "chocolate1", "bisque3","black","lightgreen","skyblue2","mediumpurple3",
+              "palevioletred1", "lightsalmon4", "darkgoldenrod1")
+
+rhg_cols <- c("maroon", "dodgerblue1",  
               "chocolate1", "black", "skyblue2", "bisque3",  "lightgreen",  "mediumpurple3",
               "palevioletred1", "lightsalmon4", "darkgoldenrod1")
 
@@ -35,13 +39,17 @@ fileName = "school074-label0_squaredLoss_flipLabelResultsWithParameters"
 data <- read.table(file = paste(path, fileName , '.txt' , sep = ""), header = T)
 
 pd <- position_dodge(0)
-ggplot(data, aes(x=trainingSize, y=Accuracy_Median, colour=Label)) + 
+ggplot(data, aes(x=trainingSize, y=Accuracy_Mean, colour=Label)) + 
   geom_line(position = pd) +
   geom_point(position = pd) +
   ggtitle( paste(fileName) ) +
-  scale_colour_manual(values = rhg_cols)
+  ylab("Squared Loss") 
++
+  scale_colour_manual(values = rhg_cols) 
 
-ggsave(file=paste('./plots/', fileName, '.png' , sep = ""))
+suffix = "till_0.8"
+
+ggsave(file=paste('./plots/', fileName, suffix, '.png' , sep = ""))
 
 
 

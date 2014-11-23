@@ -76,7 +76,7 @@ def computeInitialParameters(G,label,testLabels):
 	# False = No Downampling
 	if False:
 		print "DownSampling...."
-		downSamplePercentage = 0.75
+		downSamplePercentage = 0.25
 
 		# We want to downsample only the training data.
 		originalTrainingLabels = [i for i in label if i not in testLabels]

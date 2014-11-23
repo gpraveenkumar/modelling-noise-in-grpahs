@@ -44,13 +44,26 @@ ggplot(data, aes(x = Accuracy_Mean, color=Label)) +
   geom_density(aes(x = ProbabilityEstimate_0given1_Mean),color="skyblue") 
   
 
+rhg_cols <- c("maroon", "dodgerblue1","lightgreen" , 
+              "chocolate1", "bisque3",  "black", "skyblue2" ,"mediumpurple3",
+              "palevioletred1", "lightsalmon4", "darkgoldenrod1")
+
+fileName = "school074-label0_0.4trainingSize_100iterations_DistributionTest_flipLabelResultsWithParameters"
+fileName = "school074-label0_0.4trainingSize_100iterations_DistributionTest_flipLabelResultsWithParameters_run2"
+
+data <- read.table(file = paste(path, fileName , '.txt' , sep = ""), header = T)
+
+
 ggplot(data, aes(x = Accuracy_Mean, color=Label)) + 
-  geom_density(alpha=.5) +
+  scale_colour_manual(values = rhg_cols)  +
+  geom_density(alpha=.5)
++
   #geom_density(aes(x = Accuracy_Median, color=Label)) +
   geom_density(aes(x = PriorClass0_Mean, color=Label)) +
   geom_density(aes(x = ProbabilityEstimate_0given0_Mean, color=Label)) +
-  geom_density(aes(x = ProbabilityEstimate_0given1_Mean, color=Label))   
+  geom_density(aes(x = ProbabilityEstimate_0given1_Mean, color=Label))
 
+ggsave(file=paste('./plots/', fileName , '.png' , sep = ""))
 
 
 

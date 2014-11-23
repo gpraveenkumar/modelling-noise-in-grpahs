@@ -510,7 +510,7 @@ def writeToFile(l):
 	fileName = l[0]
 	# Remove the fileName from the list, so as to facilitate join
 	l.pop(0)
-	path = basePath + '../results/' + school + '-' + schoolLabel + '_squaredLoss_run2_'
+	path = basePath + '../results/' + school + '-' + schoolLabel + '_squaredLoss_'
 	f_out = open(path+fileName,'a')
 	f_out.write("\t".join(l)  + "\n")
 	f_out.close()
@@ -549,7 +549,7 @@ percentageOfGraphList = [ float(arg2) ]
 for trainingSize in trainingSizeList:
 	for percentageOfGraph in percentageOfGraphList:
 		outputTofile = []
-		for noOfTimesToRepeat in [2,5]:
+		for noOfTimesToRepeat in [2,5,10]:
 
 				print "\n\n\n\n\ntrainingSize:",trainingSize," percentageOfGraph: ",percentageOfGraph," noOfTimesToRepeat: ",noOfTimesToRepeat
 				
