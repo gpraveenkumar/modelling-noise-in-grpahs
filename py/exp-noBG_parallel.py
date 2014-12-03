@@ -510,7 +510,7 @@ def writeToFile(l):
 	fileName = l[0]
 	# Remove the fileName from the list, so as to facilitate join
 	l.pop(0)
-	path = basePath + '../results/' + school + '-' + schoolLabel + '_squaredLoss_'
+	path = basePath + '../results/' + school + '-' + schoolLabel + '_run2_original_'
 	f_out = open(path+fileName,'a')
 	f_out.write("\t".join(l)  + "\n")
 	f_out.close()
@@ -523,6 +523,13 @@ def writeToFile(l):
 
 Action = "flipLabel"
 
+"""
+import socket
+if socket.gethostname() == "mc18.cs.purdue.edu":
+	noofProcesses = 25
+else:
+	noofProcesses = 7
+"""
 noofProcesses = 7
 
 #writeToFile( [ Action + "ResultsBaselines.txt", "Label" , "trainingSize" , "Accuracy_Mean","Accuracy_SD","Accuracy_SE","Precision_Mean","Recall_Mean","F1"] )
@@ -539,17 +546,30 @@ for trainingSize in [0.05,0.1,0.2,0.25,0.3,0.35,0.4,0.45,0.5,0.6,0.7,0.8,0.9]:
 				
 """
 
-arg1,arg2 = sys.argv[1].split(' ')
+arg1,arg2,arg3 = sys.argv[1].split(' ')
 
 
 trainingSizeList = [ float(arg1) ]
 percentageOfGraphList = [ float(arg2) ]
+noOfTimesToRepeatList = [ int(arg3) ]
+
+#Read the testLabels from the files to make it constant across runs
+testLabelsList = []
+testSize = 1-trainingSizeList[0]
+f = open(basePath + "RandomTestLabelsForIterations/" + str(testSize) + "_testLabels.txt")
+tLL = f.readlines()
+f.close
+
+for line in tLL:
+	t = line.strip().split(',')
+	testLabelsList.append([int(i) for i in t])
+
 
 
 for trainingSize in trainingSizeList:
 	for percentageOfGraph in percentageOfGraphList:
 		outputTofile = []
-		for noOfTimesToRepeat in [2,5,10]:
+		for noOfTimesToRepeat in noOfTimesToRepeatList:
 
 				print "\n\n\n\n\ntrainingSize:",trainingSize," percentageOfGraph: ",percentageOfGraph," noOfTimesToRepeat: ",noOfTimesToRepeat
 				
@@ -562,14 +582,19 @@ for trainingSize in trainingSizeList:
 				r1 = []
 				e1 = []
 				c1 = []
+				s1 = []
+
 				Baseline_0 =[1,0]
 				Baseline_1 =[1,0]
 
 				for i in range(200):
 					print "\nRepetition No.:",i+1
 
+					# Uncomment the first line to generate random testLables for each iteration
+					# Uncomment the first line to read the generated random testLables for each iteration. Based on Jen's suggestion to keep the testLabels constant across iterations.
+
 					testLabels = random.sample(originalLabels,noOfLabelsToMask)
-					#originalTrainLabels = [i for i in originalLabels if i not in testLabels]
+					#testLabels = testLabelsList[i]
 
 					# When there is no need to repeat just work with the original graph
 					if noOfTimesToRepeat == 0:
@@ -589,21 +614,24 @@ for trainingSize in trainingSizeList:
 					pool.close()
 					pool.join()
 
-					accuracy, precision, recall, classPrior, estimatedProbabities = zip(*y)
+					accuracy, precision, recall, classPrior, estimatedProbabities, squaredLoss = zip(*y)
 					meanAccuracy,sd,se,uselessMedian = computeMeanAndStandardError(accuracy)
 					meanPrecision,uselessSd,uselessSe,uselessMedian = computeMeanAndStandardError(precision)
 					meanRecall,uselessSd,uselessSe,uselessMedian = computeMeanAndStandardError(recall)
-					
+					meanSquaredLoss,sd,se,uselessMedian = computeMeanAndStandardError(squaredLoss)
+
 					meanClassPrior,sdClassPrior,seClassPrior,uselessMedian = computeMeanAndStandardError(classPrior)
 					meanEstimatedProbabilities,seEstimatedProbabilities,seEstimatedProbabilities,uselessMedian = computeMeanAndStandardError(estimatedProbabities)
 					
 
 					predictedLabels = setLabelForBaselineAccuracies(currentLabels, testLabels, 0)
 					curBaselineValue,uselessPrecision,uselessRecall = computeAccuracy(currentLabels,testLabels, predictedLabels )
+					#curBaselineValue = computeSquaredLoss(currentLabels,testLabels, predictedLabels )
 					Baseline_0 = updateBaselineRanges(Baseline_0,curBaselineValue)
 					print "Baseline_0:", curBaselineValue
 					predictedLabels = setLabelForBaselineAccuracies(currentLabels, testLabels, 1)
 					curBaselineValue,uselessPrecision,uselessRecall = computeAccuracy(currentLabels,testLabels, predictedLabels )
+					#curBaselineValue = computeSquaredLoss(currentLabels,testLabels, predictedLabels )
 					Baseline_1 = updateBaselineRanges(Baseline_1,curBaselineValue)
 					print "Baseline_1:", curBaselineValue
 					print "MeanAccuracy:",meanAccuracy
@@ -611,6 +639,7 @@ for trainingSize in trainingSizeList:
 					print "SE:",se
 					print "MeanPrecision:",meanPrecision
 					print "MeanRecall:",meanRecall
+					print "MeanSquaredLoss:",meanSquaredLoss
 					
 					# This sd and variance are less than 10<-16
 					#print "MeanClassPrior:",meanClassPrior
@@ -624,6 +653,7 @@ for trainingSize in trainingSizeList:
 					r1.append(meanRecall)
 					c1.append(meanClassPrior)
 					e1.append(meanEstimatedProbabilities)
+					s1.append(meanSquaredLoss)
 
 					#Freeup space
 					del arguments[:]
@@ -632,14 +662,14 @@ for trainingSize in trainingSizeList:
 
 				meanAccuracy,sd,se,medianAccuracy = computeMeanAndStandardError(a1)
 				meanPrecision,useless1,useless2,medianPrecision = computeMeanAndStandardError(p1)
-				print r1
 				meanRecall,useless1,useless2,medianRecall = computeMeanAndStandardError(r1)
 				meanClassPrior,sdClassPrior,seClassPrior,uselessMedian = computeMeanAndStandardError(c1)
 				meanEstimatedProbabilities,sdEstimatedProbabilities,sdEstimatedProbabilities,uselessMedian = computeMeanAndStandardError(e1)
+				meanSquaredLoss,useless1,useless2,useless3 = computeMeanAndStandardError(s1)
 
 				f1 = 0
 				# Precision and Recall are calculated w.r.t label 1. So if everything converges to label 0, both P and R will be 0
-				if precision != 0 and recall != 0:
+				if meanPrecision != 0 and meanRecall != 0:
 					f1 = (2*meanPrecision*meanRecall)/(meanPrecision+meanRecall)
 				
 				# Calculating medianPrecision and medianRecall might not make sense... because precicion and recall are dependent .... and median can select different values for them.
@@ -674,8 +704,10 @@ for trainingSize in trainingSizeList:
 				print "MeanEstimatedProbabilities:\n",meanEstimatedProbabilities
 				print "EstimatedProbabilitiesSD:\n",sdEstimatedProbabilities
 				print "EstimatedProbabilitiesSE:\n",seEstimatedProbabilities
+				print s1
+				print "MeanSquaredLoss:",meanSquaredLoss
 				#outputTofile.append( [ Action + "ResultsBaselines.txt",prefix , str(trainingSize) , str(round(meanAccuracy,4)) , str(round(sd,4)) , str(round(se,4)) , str(round(meanPrecision,4)) , str(round(meanRecall,4)) , str(round(f1,4)), str(round(medianAccuracy,4))])
-				outputTofile.append( [ Action + "ResultsWithParameters.txt",prefix , str(trainingSize) , str(round(meanAccuracy,4)) , str(round(sd,4)) , str(round(se,4)) , str(round(meanPrecision,4)) , str(round(meanRecall,4)) , str(round(f1,4)), str(round(medianAccuracy,4)), str(round(meanClassPrior[0],4)), str(round(sdClassPrior[0],4)), str(round(seClassPrior[0],4)), str(round(meanEstimatedProbabilities[0,0],4)), str(round(sdEstimatedProbabilities[0,0],4)), str(round(seEstimatedProbabilities[0,0],4)), str(round(meanEstimatedProbabilities[0,1],4)), str(round(sdEstimatedProbabilities[0,1],4)), str(round(seEstimatedProbabilities[0,1],4))])
+				outputTofile.append( [ Action + "Results.txt",prefix , str(trainingSize) , str(round(meanSquaredLoss,4)) , str(round(meanAccuracy,4)) , str(round(sd,4)) , str(round(se,4)) , str(round(meanPrecision,4)) , str(round(meanRecall,4)) , str(round(f1,4)), str(round(medianAccuracy,4)), str(round(meanClassPrior[0],4)), str(round(sdClassPrior[0],4)), str(round(seClassPrior[0],4)), str(round(meanEstimatedProbabilities[0,0],4)), str(round(sdEstimatedProbabilities[0,0],4)), str(round(seEstimatedProbabilities[0,0],4)), str(round(meanEstimatedProbabilities[1,1],4)), str(round(sdEstimatedProbabilities[1,1],4)), str(round(seEstimatedProbabilities[1,1],4))])
 				#outputTofile.append( [ Action + "Results.txt","Median_"+prefix , str(trainingSize) , str(round(medianAccuracy,4)) , str(round(0,4)) , str(round(0,4)) , str(round(0,4)) , str(round(0,4)) , str(round(0,4)) ])
 				#print e1
 		for otf in outputTofile:

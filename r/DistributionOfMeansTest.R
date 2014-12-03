@@ -45,25 +45,29 @@ ggplot(data, aes(x = Accuracy_Mean, color=Label)) +
   
 
 rhg_cols <- c("maroon", "dodgerblue1","lightgreen" , 
-              "chocolate1", "bisque3",  "black", "skyblue2" ,"mediumpurple3",
+              "chocolate1", "bisque3","mediumpurple3",  "black", "skyblue2" ,
               "palevioletred1", "lightsalmon4", "darkgoldenrod1")
 
-fileName = "school074-label0_0.4trainingSize_100iterations_DistributionTest_flipLabelResultsWithParameters"
-fileName = "school074-label0_0.4trainingSize_100iterations_DistributionTest_flipLabelResultsWithParameters_run2"
+#fileName = "school074-label0_0.4trainingSize_100iterations_DistributionTest_flipLabelResultsWithParameters"
+fileName = "school074-label0_squaredLoss_DistributionTestflipLabelResultsWithParameters"
 
 data <- read.table(file = paste(path, fileName , '.txt' , sep = ""), header = T)
 
-
-ggplot(data, aes(x = Accuracy_Mean, color=Label)) + 
+suffix = "1 given 1"
+ggplot(data, aes(x = ProbabilityEstimate_1given1_Mean, color=Label)) + 
   scale_colour_manual(values = rhg_cols)  +
-  geom_density(alpha=.5)
+  geom_density(alpha=.5) +
+  ggtitle( suffix ) +
+  xlab("ProbabilityEstimates") 
 +
-  #geom_density(aes(x = Accuracy_Median, color=Label)) +
-  geom_density(aes(x = PriorClass0_Mean, color=Label)) +
-  geom_density(aes(x = ProbabilityEstimate_0given0_Mean, color=Label)) +
-  geom_density(aes(x = ProbabilityEstimate_0given1_Mean, color=Label))
 
-ggsave(file=paste('./plots/', fileName , '.png' , sep = ""))
+  #geom_density(aes(x = Accuracy_Median, color=Label)) +
+  #geom_density(aes(x = PriorClass0_Mean, color=Label)) +
+  geom_density(aes(x = ProbabilityEstimate_0given0_Mean, color=Label)) +
+  geom_density(aes(x = ProbabilityEstimate_1given1_Mean, color=Label))
+
+
+ggsave(file=paste('./plots/', fileName, suffix , '.png' , sep = ""))
 
 
 

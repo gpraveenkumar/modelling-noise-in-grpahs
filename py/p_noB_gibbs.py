@@ -235,7 +235,7 @@ def computeAccuracy(label,testLabels,resultingLabels):
 
 # Function to compute the squared loss
 # Input : Original Labels, test labels and the predicted labels
-# Output : squared loss
+# Output : squared loss, precision = 0,recall = 0 .... just to match the setting of computeAccuracy
 def computeSquaredLoss(label,testLabels,resultingLabels):
 	squaredLoss = 0
 	for i in testLabels:
@@ -338,7 +338,7 @@ def gibbsSampling(edges,label,testLabels):
 
 	# Compute Squared Loss with the averages of Gibbs sampling before assigning them a single value
 	squaredLoss = computeSquaredLoss(label,testLabels,resultingLabelsForSquaredLoss)
-	accuracy = squaredLoss
+	
 
 	#print "Accuracy:\n",accuracy
 	#print "% = ",accp
@@ -347,5 +347,5 @@ def gibbsSampling(edges,label,testLabels):
 
 	print "No. of interation in which labels have not changed:",LabelDifferenceBetweenIterationsCounter
 
-	return (accuracy,precision,recall,classPrior,estimatedProbabities)
+	return (accuracy,precision,recall,classPrior,estimatedProbabities,squaredLoss)
 
