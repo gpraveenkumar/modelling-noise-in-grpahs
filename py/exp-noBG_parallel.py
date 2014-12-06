@@ -510,7 +510,7 @@ def writeToFile(l):
 	fileName = l[0]
 	# Remove the fileName from the list, so as to facilitate join
 	l.pop(0)
-	path = basePath + '../results/' + school + '-' + schoolLabel + '_run2_original_'
+	path = basePath + '../results/' + school + '-' + schoolLabel + '_run2_'
 	f_out = open(path+fileName,'a')
 	f_out.write("\t".join(l)  + "\n")
 	f_out.close()
@@ -521,7 +521,7 @@ def writeToFile(l):
 #percentageOfGraph = 0.05   # express in fraction instead of percentage...incorrect naming, will update soon
 #noOfTimesToRepeat = 10
 
-Action = "flipLabel"
+Action = "rewireEdges"
 
 """
 import socket

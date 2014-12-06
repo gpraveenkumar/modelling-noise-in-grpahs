@@ -39,23 +39,24 @@ rhg_cols <- c("maroon", "dodgerblue1",
 
 
 path = "../results/"
-titleName = "flipLabel"
+titleName = "rewireEdges"
 fileName = paste("school074-label0_run2_", titleName ,"Results",sep="")
-yLabel = "accuracy"
+yLabel = "squaredLoss"
 
 data <- read.table(file = paste(path, fileName , '.txt' , sep = ""), header = T)
 
 
 
 pd <- position_dodge(0)
-ggplot(data, aes(x=trainingSize, y=Accuracy_Mean, colour=Label)) + 
+ggplot(data, aes(x=trainingSize, y=SquaredLoss_Mean, colour=Label)) + 
   geom_line(position = pd) +
   geom_point(position = pd) +
   ggtitle( fileName ) +
-  ylab(yLabel) + scale_colour_manual(values = rhg_cols) 
-#+  ylim(0.20,0.45)  
+  ylab(yLabel) 
+#+ scale_colour_manual(values = rhg_cols) 
++  ylim(0.20,0.45)  
 
-suffix = paste(yLabel,"_10repeat")
+suffix = paste(yLabel,"")
 ggsave(file=paste('./plots/', fileName, '_', suffix, '.png' , sep = ""))
 
 
@@ -72,6 +73,9 @@ ggplot(data, aes(x=trainingSize, y=PriorClass0_Mean, colour=Label)) +
 
 
 data <- subset(data,Label == "original" | 
+                 Label ==  "05perc_2repeat" |
+                 Label ==  "05perc_5repeat" |
+                 Label ==  "05perc_10repeat" |
                  Label ==  "70perc_2repeat" |
                  Label ==  "70perc_5repeat" |
                  Label ==  "70perc_10repeat" |
@@ -110,16 +114,16 @@ data <- subset(data,Label == "original" |
 )
 
 data <- subset(data,Label == "original" | 
-                 Label ==  "05perc_10repeat" |
-                 Label ==  "15perc_10repeat" |
-                 Label ==  "30perc_10repeat" |
-                 Label ==  "40perc_10repeat" |
-                 Label ==  "50perc_10repeat" |
-                 Label ==  "60perc_10repeat" |
-                 Label ==  "70perc_10repeat" |
-                 Label ==  "80perc_10repeat" |
-                 Label ==  "90perc_10repeat" |
-                 Label ==  "100perc_10repeat"
+                 Label ==  "05perc_2repeat" |
+                 Label ==  "15perc_2repeat" |
+                 Label ==  "30perc_2repeat" |
+                 Label ==  "40perc_2repeat" |
+                 Label ==  "50perc_2repeat" |
+                 Label ==  "60perc_2repeat" |
+                 Label ==  "70perc_2repeat" |
+                 Label ==  "80perc_2repeat" |
+                 Label ==  "90perc_2repeat" |
+                 Label ==  "100perc_2repeat"
 )
 
 
