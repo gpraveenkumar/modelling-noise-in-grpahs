@@ -39,8 +39,8 @@ rhg_cols <- c("maroon", "dodgerblue1",
 
 
 path = "../results/"
-titleName = "rewireEdges"
-fileName = paste("school074-label0_run2_", titleName ,"Results",sep="")
+titleName = "flipLabelDropEdges"
+fileName = paste("school074-label0_", titleName ,"Results",sep="")
 yLabel = "squaredLoss"
 
 data <- read.table(file = paste(path, fileName , '.txt' , sep = ""), header = T)
@@ -52,9 +52,9 @@ ggplot(data, aes(x=trainingSize, y=SquaredLoss_Mean, colour=Label)) +
   geom_line(position = pd) +
   geom_point(position = pd) +
   ggtitle( fileName ) +
-  ylab(yLabel) 
-#+ scale_colour_manual(values = rhg_cols) 
-+  ylim(0.20,0.45)  
+  ylab(yLabel) +
+# scale_colour_manual(values = rhg_cols) +
+  ylim(0.20,0.45)  
 
 suffix = paste(yLabel,"")
 ggsave(file=paste('./plots/', fileName, '_', suffix, '.png' , sep = ""))
@@ -72,16 +72,22 @@ ggplot(data, aes(x=trainingSize, y=PriorClass0_Mean, colour=Label)) +
 
 
 
+
+data <- subset(data,Label == "original" | 
+                 Label ==  "60FL_5DE_2repeat" |
+                 Label ==  "60FL_5DE_2repeat" |
+                 Label ==  "60FL_5DE_2repeat" |
+                 Label ==  "60FL_100DE_2repeat" |
+                 Label ==  "60FL_100DE_2repeat" |
+                 Label ==  "60FL_100DE_2repeat"
+)
+
+
+
 data <- subset(data,Label == "original" | 
                  Label ==  "05perc_2repeat" |
                  Label ==  "05perc_5repeat" |
                  Label ==  "05perc_10repeat" |
-                 Label ==  "70perc_2repeat" |
-                 Label ==  "70perc_5repeat" |
-                 Label ==  "70perc_10repeat" |
-                 Label ==  "60perc_2repeat" |
-                 Label ==  "60perc_5repeat" |
-                 Label ==  "60perc_10repeat" |
                  Label ==  "100perc_2repeat" |
                  Label ==  "100perc_5repeat" |
                  Label ==  "100perc_10repeat"

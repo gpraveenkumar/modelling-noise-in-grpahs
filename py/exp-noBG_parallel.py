@@ -1,5 +1,3 @@
-
-
 import sys, math
 from sets import Set
 from collections import Counter
@@ -10,7 +8,10 @@ import gc
 
 
 basePath = '/homes/pgurumur/jen/noise/py/'
-school = "school074"
+#school = "school074"
+#school = "polblogs"
+#school = "cora"
+school = "facebook"
 schoolLabel = "label0"
 
 
@@ -176,7 +177,7 @@ def makeGraph_FlipLabels(onlyTrainLabels_keys,onlyTrainLabels,onlyTrainGraph,nod
 		if i in labelsToFlip:
 			t = t^1
 		
-		# Add the modify labels to newLabels
+		# Add the modified labels to newLabels
 		newLabels[nodeIdCounter] = t
 		map_onlyTrainLabelId_newLabelId[ i ] = nodeIdCounter
 
@@ -367,8 +368,66 @@ def makeGraph_RewireEdges(onlyTrainLabels_keys,onlyTrainLabels,onlyTrainGraph,no
 
 
 
+
+
+def func_star_FlipLabelDropEdges(a_b):
+    """Convert `f([1,2])` to `f(1,2)` call."""
+    return makeGraph_func_star_FlipLabelDropEdges(*a_b)
+
+def makeGraph_func_star_FlipLabelDropEdges(onlyTrainLabels_keys,onlyTrainLabels,onlyTrainGraph,nodeIdCounter,edgeList):
+	# Map to store the relationships between nodes/labels in the training set and the new 
+	# node formed. The is needed in order to replace old edges with new edges.
+	map_onlyTrainLabelId_newLabelId = {}
+	newGraph = {}
+	newLabels = {}
+
+	# Randomly sample a percentage of original label and flip it
+	noOfEdgesToDrop = int(percentageOfGraph2*len(edgeList))
+	edgesToDrop = random.sample(edgeList,noOfEdgesToDrop)
+
+	# Add new nodes to the graph from the old training Data after dropping nodes
+	for i in onlyTrainLabels_keys:
+		
+		newLabels[nodeIdCounter] = onlyTrainLabels[i]
+		map_onlyTrainLabelId_newLabelId[ i ] = nodeIdCounter
+		nodeIdCounter += 1
+
+
+	# Modify the edge connection based on the new nodes id and add them to the newGraph
+	for node,neighbors in onlyTrainGraph.iteritems():
+
+		mappedId = map_onlyTrainLabelId_newLabelId[ node ]
+
+		newNeighbors = set()
+		for neighbor in neighbors:
+			# If [node,neighbor] is one of the edges to be dropped, just continue
+			if (node,neighbor) in edgesToDrop or (neighbor,node) in edgesToDrop:
+				continue
+			# If not add the neighbours	
+			newNeighbors.add( map_onlyTrainLabelId_newLabelId[ neighbor ] )
+
+		newGraph[ mappedId ] = newNeighbors
+
+
+	# Randomly sample a percentage of new labels and flip it
+	noOfLabelsToFlip = int(percentageOfGraph*len( newGraph.keys() ))
+	labelsToFlip = random.sample(  newGraph.keys() ,noOfLabelsToFlip)
+
+	# Flip the label
+	for i in labelsToFlip:
+		# Flip the labels. The XORing with 1 reverses the labels
+		# 0^1 = 1
+		# 1^1 = 0
+		newLabels[i] = newLabels[i]^1		
+
+
+	return (newGraph,newLabels)	
+
+
+
+
 # Function to Flip the data
-def makeNoisyGraphs(action,percentageOfGraph,noOfTimesToRepeat,originalGraph,originalLabels,testLabels):
+def makeNoisyGraphs(action,percentageOfGraph,noOfTimesToRepeat,originalGraph,originalLabels,testLabels,percentageOfGraph2):
 
 	print "In makeNoisyGraphs() ...."
 	# Copy the Graph
@@ -426,6 +485,8 @@ def makeNoisyGraphs(action,percentageOfGraph,noOfTimesToRepeat,originalGraph,ori
 		functionToCall = func_star_DropEdges	
 	elif action == "rewireEdges":
 		functionToCall = func_star_RewireEdges
+	elif action == "flipLabelDropEdges":
+		functionToCall = func_star_FlipLabelDropEdges
 
 	pool = Pool(processes=noofProcesses)
 	y = pool.map(functionToCall, arguments)
@@ -510,7 +571,7 @@ def writeToFile(l):
 	fileName = l[0]
 	# Remove the fileName from the list, so as to facilitate join
 	l.pop(0)
-	path = basePath + '../results/' + school + '-' + schoolLabel + '_run2_'
+	path = basePath + '../results/' + school + '-' + schoolLabel + '_'
 	f_out = open(path+fileName,'a')
 	f_out.write("\t".join(l)  + "\n")
 	f_out.close()
@@ -521,7 +582,7 @@ def writeToFile(l):
 #percentageOfGraph = 0.05   # express in fraction instead of percentage...incorrect naming, will update soon
 #noOfTimesToRepeat = 10
 
-Action = "rewireEdges"
+Action = "flipLabel"
 
 """
 import socket
@@ -546,12 +607,13 @@ for trainingSize in [0.05,0.1,0.2,0.25,0.3,0.35,0.4,0.45,0.5,0.6,0.7,0.8,0.9]:
 				
 """
 
-arg1,arg2,arg3 = sys.argv[1].split(' ')
+arg1,arg2,arg3,arg4 = sys.argv[1].split(' ')
 
 
 trainingSizeList = [ float(arg1) ]
 percentageOfGraphList = [ float(arg2) ]
 noOfTimesToRepeatList = [ int(arg3) ]
+percentageOfGraph2 =  float(arg4) 
 
 #Read the testLabels from the files to make it constant across runs
 testLabelsList = []
@@ -571,7 +633,7 @@ for trainingSize in trainingSizeList:
 		outputTofile = []
 		for noOfTimesToRepeat in noOfTimesToRepeatList:
 
-				print "\n\n\n\n\ntrainingSize:",trainingSize," percentageOfGraph: ",percentageOfGraph," noOfTimesToRepeat: ",noOfTimesToRepeat
+				print "\n\n\n\n\ntrainingSize:",trainingSize," percentageOfGraph: ",percentageOfGraph," noOfTimesToRepeat: ",noOfTimesToRepeat," percentageOfGraph2: ",percentageOfGraph2
 				
 				testSize = 1-trainingSize
 				noOfLabelsToMask = int(testSize*len(originalLabels))
@@ -587,7 +649,7 @@ for trainingSize in trainingSizeList:
 				Baseline_0 =[1,0]
 				Baseline_1 =[1,0]
 
-				for i in range(200):
+				for i in range(50):
 					print "\nRepetition No.:",i+1
 
 					# Uncomment the first line to generate random testLables for each iteration
@@ -600,13 +662,13 @@ for trainingSize in trainingSizeList:
 					if noOfTimesToRepeat == 0:
 						currentGraph,currentLabels = originalGraph,originalLabels
 					else:
-						currentGraph,currentLabels = makeNoisyGraphs(Action,percentageOfGraph,noOfTimesToRepeat,originalGraph,originalLabels,testLabels)
+						currentGraph,currentLabels = makeNoisyGraphs(Action,percentageOfGraph,noOfTimesToRepeat,originalGraph,originalLabels,testLabels,percentageOfGraph2)
 					
 					print "Size of graph:",len(currentLabels)
 
 					arg_t = [currentGraph,currentLabels,testLabels]
 					arguments = []
-					for i in range(25):
+					for i in range(10):
 						arguments.append(list(arg_t))
 
 					pool = Pool(processes=noofProcesses)
@@ -676,6 +738,8 @@ for trainingSize in trainingSizeList:
 				#f1_median = (2*medianPrecision*medianRecall)/(medianPrecision+medianRecall)
 
 				prefix = str(int(percentageOfGraph*100)) + "perc_" + str(noOfTimesToRepeat) + "repeat"
+				if percentageOfGraph2 != 0:
+					prefix = str(int(percentageOfGraph*100)) + "FL_" + str(int(percentageOfGraph2*100)) + "DE_" + str(noOfTimesToRepeat) + "repeat"
 				
 				print "\nFINAL .................. "
 				print "Baseline_0 range:", Baseline_0

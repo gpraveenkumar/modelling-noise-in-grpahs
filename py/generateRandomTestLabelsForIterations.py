@@ -1,8 +1,12 @@
 import random
 
 basePath = '/homes/pgurumur/jen/noise/py/'
-school = "school074"
+#school = "school074"
+#school = "cora"
+school = "facebook"
 schoolLabel = "label0"
+
+
 
 directoryToWriteFile = "RandomTestLabelsForIterations/"
 

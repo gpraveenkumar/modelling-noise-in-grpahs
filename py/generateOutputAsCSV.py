@@ -1,7 +1,7 @@
 basePath = '/homes/pgurumur/jen/noise/results/'
 
 fileName = 'school074-label0_run2_flipLabelResults'
-
+fileName = 'polblogs-label0_rewireEdgesResults'
 
 
 result = {}
@@ -15,8 +15,8 @@ for l in trainingSize:
 print trainingSize_index_map
 
 
-index = 2
-indexName = "squaredloss"
+index = 3
+indexName = "Accuracy"
 
 f = open(basePath + fileName + '.txt')
 
@@ -64,7 +64,7 @@ orderToOutput.insert(0,"original")
 
 #keys = ['100perc_10repeat','100perc_2repeat','100perc_5repeat','60perc_10repeat','60perc_2repeat','60perc_5repeat','original']
 keys = orderToOutput
-tSize = ['0.1','0.5','0.6','0.9']
+tSize = ['0.1','0.2','0.5','0.9']
 
 tSizeIndex = []
 

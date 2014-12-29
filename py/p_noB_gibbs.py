@@ -222,6 +222,7 @@ def computeAccuracy(label,testLabels,resultingLabels):
 	for i in testLabels:
 		counts[ label[i], resultingLabels[i] ] += 1
 
+	print counts
 	accuracy = (counts[0,0]+counts[1,1] + 0.0)/sum(sum(counts))
 
 	precision = 0.0
