@@ -571,7 +571,7 @@ def writeToFile(l):
 	fileName = l[0]
 	# Remove the fileName from the list, so as to facilitate join
 	l.pop(0)
-	path = basePath + '../results/' + school + '-' + schoolLabel + '_'
+	path = basePath + '../results/' + school + '-' + schoolLabel + '_fixedParameters_'
 	f_out = open(path+fileName,'a')
 	f_out.write("\t".join(l)  + "\n")
 	f_out.close()

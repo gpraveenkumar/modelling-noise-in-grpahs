@@ -141,6 +141,34 @@ def computeInitialParameters(G,label,testLabels):
 
 
 
+# Function to set to he value of the intial parameters to fixed values without computing them
+# Input : classPrior0,parameter_0given0,parameter_1given1
+# Output : classPrior,estimatedProbabities,classPriorCounts(dummy parameter),estimatedCounts(dummy parameter)
+# The (dummy parameter) are in place just for consistency with the function computeInitialParameters
+
+def setInitialParameterValues(classPrior0,parameter_0given0,parameter_1given1):
+
+	# dummy parameter; All set to 0
+	classPriorCounts = {}
+	classPriorCounts[0] = 0
+	classPriorCounts[1] = 0
+	estimatedCounts = numpy.zeros([2,2])
+	
+	classPrior = [0]*2
+	classPrior[0] = classPrior0
+	classPrior[1] = 1 - classPrior[0]
+	
+	# conditional probabilites
+	estimatedProbabities = numpy.zeros([2,2])
+	estimatedProbabities[0,0] = parameter_0given0 
+	estimatedProbabities[1,0] = 1 - estimatedProbabities[0,0]
+	estimatedProbabities[1,1] = parameter_1given1
+	estimatedProbabities[0,1] = 1 - estimatedProbabities[1,1]
+
+	return (classPrior,estimatedProbabities,classPriorCounts,estimatedCounts)
+
+
+
 def f1(nodeLabel, currentLabelEstimates, neighbors, estimatedProbabities, classPrior):
 	noOfZeroLabeledNeighbours = 0
 	for i in neighbors:
@@ -186,7 +214,12 @@ def initializeUnknownLabelsForGibbsSampling(G,label,testLabels):
 	currentLabelEstimates = dict(label)
 
 	# Compute Parameters before making initial estimates
-	classPrior, estimatedProbabities, classPriorCounts, estimatedCounts = computeInitialParameters(G,label,testLabels)
+	#classPrior, estimatedProbabities, classPriorCounts, estimatedCounts = computeInitialParameters(G,label,testLabels)
+
+	# Set the Parameters values determisnistically without computing based on te data to understand how the 
+	# prediciton perrforms with a given parameter values
+	classPrior, estimatedProbabities, classPriorCounts, estimatedCounts = setInitialParameterValues(0.5,0.52,0.52)
+
 
 	# Assign initial labels to all test labels just using the priors and the estimated probability of edges.
 
