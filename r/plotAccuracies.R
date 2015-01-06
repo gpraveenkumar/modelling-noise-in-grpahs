@@ -39,7 +39,7 @@ rhg_cols <- c("maroon", "dodgerblue1",
 
 
 path = "../results/"
-titleName = "flipLabelDropEdges"
+titleName = "fixedParameters_flipLabel"
 fileName = paste("school074-label0_", titleName ,"Results",sep="")
 yLabel = "squaredLoss"
 
@@ -52,12 +52,13 @@ ggplot(data, aes(x=trainingSize, y=SquaredLoss_Mean, colour=Label)) +
   geom_line(position = pd) +
   geom_point(position = pd) +
   ggtitle( fileName ) +
-  ylab(yLabel) +
+  ylab(yLabel) 
+#+
 # scale_colour_manual(values = rhg_cols) +
-  ylim(0.20,0.45)  
+#  ylim(0.20,0.45)  
 
 suffix = paste(yLabel,"")
-ggsave(file=paste('./plots/', fileName, '_', suffix, '.png' , sep = ""))
+ggsave(file=paste('./plots/', fileName, '_', suffix, '.png' , sep = ""),width=9.69,height=7.79)
 
 
 

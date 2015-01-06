@@ -210,15 +210,19 @@ def f2(currentLabelEstimates, neighbors, estimatedProbabities, classPrior):
 
 # Note - estimated probability is actually estimated counts - not true anymore
 
-def initializeUnknownLabelsForGibbsSampling(G,label,testLabels):
+def initializeUnknownLabelsForGibbsSampling(G,label,testLabels,parameters):
 	currentLabelEstimates = dict(label)
 
-	# Compute Parameters before making initial estimates
-	#classPrior, estimatedProbabities, classPriorCounts, estimatedCounts = computeInitialParameters(G,label,testLabels)
-
-	# Set the Parameters values determisnistically without computing based on te data to understand how the 
-	# prediciton perrforms with a given parameter values
-	classPrior, estimatedProbabities, classPriorCounts, estimatedCounts = setInitialParameterValues(0.5,0.52,0.52)
+	if parameters == None:
+		# Compute Parameters before making initial estimates
+		classPrior, estimatedProbabities, classPriorCounts, estimatedCounts = computeInitialParameters(G,label,testLabels)
+	else:
+		# Set the Parameters values determisnistically without computing based on te data to understand how the 
+		# prediciton perrforms with a given parameter values
+		classPrior0 = parameters[0]
+		parameter_0given0 = parameters[1]
+		parameter_1given1 = parameters[2]
+		classPrior, estimatedProbabities, classPriorCounts, estimatedCounts = setInitialParameterValues(classPrior0,parameter_0given0,parameter_1given1)
 
 
 	# Assign initial labels to all test labels just using the priors and the estimated probability of edges.
@@ -283,10 +287,10 @@ def computeSquaredLoss(label,testLabels,resultingLabels):
 
 ## Gibbs Sampling
 
-def gibbsSampling(edges,label,testLabels):
+def gibbsSampling(edges,label,testLabels,parameters):
 		
 	## Step 2 of algo
-	classPrior,estimatedProbabities,currentLabelEstimates,classPriorCounts,estimatedCounts = initializeUnknownLabelsForGibbsSampling(edges,label,testLabels)
+	classPrior,estimatedProbabities,currentLabelEstimates,classPriorCounts,estimatedCounts = initializeUnknownLabelsForGibbsSampling(edges,label,testLabels,parameters)
 
 	nodeTraversalOrder = testLabels
 	random.shuffle(nodeTraversalOrder)

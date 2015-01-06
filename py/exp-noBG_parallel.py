@@ -8,10 +8,10 @@ import gc
 
 
 basePath = '/homes/pgurumur/jen/noise/py/'
-#school = "school074"
+school = "school074"
 #school = "polblogs"
 #school = "cora"
-school = "facebook"
+#school = "facebook"
 schoolLabel = "label0"
 
 
@@ -583,15 +583,8 @@ def writeToFile(l):
 #noOfTimesToRepeat = 10
 
 Action = "flipLabel"
-
-"""
-import socket
-if socket.gethostname() == "mc18.cs.purdue.edu":
-	noofProcesses = 25
-else:
-	noofProcesses = 7
-"""
 noofProcesses = 7
+performInfernceOnly = True
 
 #writeToFile( [ Action + "ResultsBaselines.txt", "Label" , "trainingSize" , "Accuracy_Mean","Accuracy_SD","Accuracy_SE","Precision_Mean","Recall_Mean","F1"] )
 #writeToFile( [ Action + "Results.txt", "Label" , "trainingSize" , "Accuracy_Mean","Accuracy_SD","Accuracy_SE","Precision_Mean","Recall_Mean","F1"])
@@ -607,13 +600,26 @@ for trainingSize in [0.05,0.1,0.2,0.25,0.3,0.35,0.4,0.45,0.5,0.6,0.7,0.8,0.9]:
 				
 """
 
-arg1,arg2,arg3,arg4 = sys.argv[1].split(' ')
+if performInfernceOnly:
+	arg1,arg2,arg3,arg4,arg5,arg6,arg7 = sys.argv[1].split(' ')
 
+	trainingSizeList = [ float(arg1) ]
+	percentageOfGraphList = [ float(arg2) ]
+	noOfTimesToRepeatList = [ int(arg3) ]
+	percentageOfGraph2 = float(arg4) 
 
-trainingSizeList = [ float(arg1) ]
-percentageOfGraphList = [ float(arg2) ]
-noOfTimesToRepeatList = [ int(arg3) ]
-percentageOfGraph2 =  float(arg4) 
+	parm_priorClass0 = float(arg5)
+	parm_0given0 = float(arg6)
+	parm_1given1 = float(arg7)
+	parameters = (parm_priorClass0,parm_0given0,parm_1given1)
+else:
+	arg1,arg2,arg3,arg4 = sys.argv[1].split(' ')
+
+	trainingSizeList = [ float(arg1) ]
+	percentageOfGraphList = [ float(arg2) ]
+	noOfTimesToRepeatList = [ int(arg3) ]
+	percentageOfGraph2 =  float(arg4) 
+
 
 #Read the testLabels from the files to make it constant across runs
 testLabelsList = []
@@ -649,7 +655,7 @@ for trainingSize in trainingSizeList:
 				Baseline_0 =[1,0]
 				Baseline_1 =[1,0]
 
-				for i in range(50):
+				for i in range(200):
 					print "\nRepetition No.:",i+1
 
 					# Uncomment the first line to generate random testLables for each iteration
@@ -666,9 +672,13 @@ for trainingSize in trainingSizeList:
 					
 					print "Size of graph:",len(currentLabels)
 
-					arg_t = [currentGraph,currentLabels,testLabels]
+					if performInfernceOnly:
+						arg_t = [currentGraph,currentLabels,testLabels,parameters]
+					else:
+						arg_t = [currentGraph,currentLabels,testLabels,None]	
+
 					arguments = []
-					for i in range(10):
+					for i in range(25):
 						arguments.append(list(arg_t))
 
 					pool = Pool(processes=noofProcesses)
