@@ -207,6 +207,17 @@ def f2(currentLabelEstimates, neighbors, estimatedProbabities, classPrior):
 	return t#int(class1/class0 > 1)
 
 
+# This function is very similar to f2. But it is used to return the raw probability value.
+def f_maxEntInf(currentLabelEstimates, neighbors, estimatedProbabities, classPrior):
+	class0 = f1(0,currentLabelEstimates, neighbors, estimatedProbabities, classPrior)
+	class1 = f1(1,currentLabelEstimates, neighbors, estimatedProbabities, classPrior)
+	denominator = class0 + class1
+	class0 = class0/denominator
+	class1 = class1/denominator
+
+	return class0
+
+
 
 # Note - estimated probability is actually estimated counts - not true anymore
 
@@ -283,7 +294,16 @@ def computeSquaredLoss(label,testLabels,resultingLabels):
 
 	return squaredLoss
 
+def logistic(x):
+  return 1 / (1 + math.exp(-x))
 
+def logit(x):
+	# 100 seems to be a big enough number.
+	if x == 0:
+		return -100
+	elif x == 1:
+		return 100
+	return numpy.log( x/(1-x) )
 
 ## Gibbs Sampling
 
@@ -298,6 +318,10 @@ def gibbsSampling(edges,label,testLabels,parameters):
 	burnin = 100
 	iteration = 500
 
+	# if the maxEntInfFlag is set to true, the permform the Maximum Entropy Inference Correct from Joel's WWW 15.
+	# Basically this is done so that the proporation of the labels in the unlabels set match the proportion of labels in the labels set.
+	maxEntInfFlag = True
+
 	resultingLabels = {}
 	for i in label:
 		resultingLabels[i] = 0
@@ -311,13 +335,44 @@ def gibbsSampling(edges,label,testLabels,parameters):
 	for i in range(iteration):
 		
 		LabelDifferenceBetweenIterations = 0
+
+		if maxEntInfFlag:
+			Z = []
+
 		for node in nodeTraversalOrder:
 			#print "\nNode ",node
 			#print "Before Attr. Cor.:", computeCorrelation(computePairs(edges,currentLabelEstimates))
 			neighbors = edges[node]
 			previousEstimate = currentLabelEstimates[node]
-			currentLabelEstimates[node] = f2(currentLabelEstimates, neighbors, estimatedProbabities, classPrior)
+			#currentLabelEstimates[node] = f2(currentLabelEstimates, neighbors, estimatedProbabities, classPrior)
+
+			if maxEntInfFlag:
+				currentLabelEstimates[node] = f_maxEntInf(currentLabelEstimates, neighbors, estimatedProbabities, classPrior)
+				Z.append( currentLabelEstimates[node] )
+			else:
+				currentLabelEstimates[node] = f2(currentLabelEstimates, neighbors, estimatedProbabities, classPrior)
 		
+		# The algorithm as described in Joel's Paper.
+		if maxEntInfFlag:
+			Z = sorted(Z)
+			phi = len(Z) * classPrior[0]
+
+			# We need to find the corresponding value in the Z array. So, the following trick to get a interger index.
+			phi = int(math.floor(phi))
+
+			for node in nodeTraversalOrder:
+				#print currentLabelEstimates[node]
+				cle = currentLabelEstimates[node]
+				cle = logistic( logit(cle) - Z[phi] )
+
+				# Assign them a label based on probability
+				x = random.uniform(0,1)
+				if x < cle:
+					t = 0
+				else:
+					t = 1
+				currentLabelEstimates[node] = t				
+
 		if i > burnin:
 			for j in currentLabelEstimates:
 				if currentLabelEstimates[j] == 1:

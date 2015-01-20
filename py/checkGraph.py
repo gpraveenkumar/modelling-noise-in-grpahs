@@ -31,3 +31,19 @@ for line in f_in:
 f_in.close()
 
 print ctr
+
+
+f_in = open(basePath + '../data/' + school + '_' + schoolLabel +'-nodes.txt')
+junk_ = f_in.readline()
+
+from collections import Counter
+
+c = Counter()
+
+for line in f_in:
+	line = line.strip().split()
+	c[int(line[1])] += 1
+
+f_in.close()
+
+print c

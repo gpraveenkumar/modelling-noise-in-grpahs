@@ -9,6 +9,17 @@ for trainingSize in [0.05,0.1,0.2,0.25,0.3,0.35,0.4,0.45,0.5,0.6,0.7,0.8,0.9]:
 f.close()
 """
 
+
+f = open('toRun_variants_school074.txt','w')
+for trainingSize in [0.05,0.1,0.2,0.25,0.3,0.35,0.4,0.45,0.5,0.6,0.7,0.8,0.9]:
+	for percentageOfGraph in [0.05,0.15,0.30,0.4,0.5,0.6,0.7,0.8,0.9,1.0]:
+		for noOfTimesToRepeat in [2,5,10]:
+			for percentageOfGraph2 in [0.0]:
+				f.write(str(trainingSize) + ' ' + str(percentageOfGraph) + ' ' + str(noOfTimesToRepeat) + ' ' + str(percentageOfGraph2) + '\n')
+f.close()
+
+
+
 """
 f = open('toRun_variants_polblog.txt','w')
 for trainingSize in [0.05,0.1,0.2,0.4,0.5,0.7,0.8,0.9]:
@@ -48,6 +59,7 @@ f.close()
 """
 
 # Parameter for school074
+"""
 parameterValues = [
  [0.4977,0.5034,0.513],
  [0.4994,0.5131,0.5124],
@@ -63,7 +75,17 @@ parameterValues = [
  [0.4909,0.6192,0.6186],
  [0.4908,0.6148,0.6239]
 ]
-
+"""
+"""
+parameterValues = [
+ [0.5,0.5,0.5],
+ [0.6,0.6,0.6],
+ [0.4,0.4,0.4],
+ [0.7,0.7,0.7],
+ [0.5,0.6,0.6]
+]
+"""
+"""
 f = open('param_school074_all.txt','w')
 for trainingSize in [0.05,0.1,0.2,0.25,0.3,0.35,0.4,0.45,0.5,0.6,0.7,0.8,0.9]:
 	for percentageOfGraph in [0]:
@@ -72,3 +94,4 @@ for trainingSize in [0.05,0.1,0.2,0.25,0.3,0.35,0.4,0.45,0.5,0.6,0.7,0.8,0.9]:
 				for p in parameterValues:
 					f.write(str(trainingSize) + ' ' + str(percentageOfGraph) + ' ' + str(noOfTimesToRepeat) + ' ' + str(percentageOfGraph2) + ' ' + ' '.join(str(i) for i in p) +'\n')
 f.close()
+"""

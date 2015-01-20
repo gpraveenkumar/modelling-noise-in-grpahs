@@ -1,0 +1,69 @@
+Original Attr. Cor.: 0.234118798002
+
+
+
+
+
+trainingSize: 0.7  percentageOfGraph:  0.3  noOfTimesToRepeat:  2  percentageOfGraph2:  0.0
+testLabels Size: 186
+
+Repetition No.: 1
+In makeNoisyGraphs() ....
+Size of graph: 1488
+[[ 37.  60.]
+ [ 20.  69.]]
+No. of interation in which labels have not changed: 0
+[[ 97.   0.]
+ [ 89.   0.]]
+Baseline_0: 0.521505376344
+[[  0.  97.]
+ [  0.  89.]]
+Baseline_1: 0.478494623656
+MeanAccuracy: 0.569892473118
+SD: 0.0
+SE: 0.0
+MeanPrecision: 0.53488372093
+MeanRecall: 0.775280898876
+MeanSquaredLoss: 0.247123252688
+
+FINAL .................. 
+Baseline_0 range: [0.521505376344086, 0.521505376344086]
+B_0_mean: 0.521505376344
+B_0_std: 0.0
+Baseline_1 range: [0.478494623655914, 0.478494623655914]
+B_1_mean: 0.478494623656
+B_1_std: 0.0
+[0.56989247311827962]
+Prediction medianAccuracy: 0.569892473118
+Prediction meanAccuracy: 0.569892473118
+Prediction SD: 0.0
+Prediction SE: 0.0
+Prediction MeanPrecision: 0.53488372093
+Prediction MeanRecall: 0.775280898876
+Prediction F1: 0.633027522936
+MeanClassPrior: [ 0.50384025  0.49615975]
+ClassPriorSD: [ 0.  0.]
+ClassPriorSE: [ 0.  0.]
+MeanEstimatedProbabilities:
+[[ 0.56621937  0.4578202 ]
+ [ 0.43378063  0.5421798 ]]
+EstimatedProbabilitiesSD:
+[[ 0.  0.]
+ [ 0.  0.]]
+EstimatedProbabilitiesSE:
+[[ 0.  0.]
+ [ 0.  0.]]
+[0.2471232526881722]
+MeanSquaredLoss: 0.247123252688
+prior
+[0.50384024577572961]
+0.503840245776
+0.503840245776
+0given0
+[0.56621936989498245]
+0.566219369895
+0.566219369895
+1given1
+[0.54217980295566504]
+0.542179802956
+0.542179802956

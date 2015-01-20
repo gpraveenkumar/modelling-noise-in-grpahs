@@ -571,7 +571,7 @@ def writeToFile(l):
 	fileName = l[0]
 	# Remove the fileName from the list, so as to facilitate join
 	l.pop(0)
-	path = basePath + '../results/' + school + '-' + schoolLabel + '_fixedParameters_'
+	path = basePath + '../results/' + school + '-' + schoolLabel + '_maxEntInf_original_'
 	f_out = open(path+fileName,'a')
 	f_out.write("\t".join(l)  + "\n")
 	f_out.close()
@@ -584,7 +584,7 @@ def writeToFile(l):
 
 Action = "flipLabel"
 noofProcesses = 7
-performInfernceOnly = True
+performInfernceOnly = False
 
 #writeToFile( [ Action + "ResultsBaselines.txt", "Label" , "trainingSize" , "Accuracy_Mean","Accuracy_SD","Accuracy_SE","Precision_Mean","Recall_Mean","F1"] )
 #writeToFile( [ Action + "Results.txt", "Label" , "trainingSize" , "Accuracy_Mean","Accuracy_SD","Accuracy_SE","Precision_Mean","Recall_Mean","F1"])
@@ -659,10 +659,10 @@ for trainingSize in trainingSizeList:
 					print "\nRepetition No.:",i+1
 
 					# Uncomment the first line to generate random testLables for each iteration
-					# Uncomment the first line to read the generated random testLables for each iteration. Based on Jen's suggestion to keep the testLabels constant across iterations.
+					# Uncomment the second line to read the generated random testLables for each iteration. Based on Jen's suggestion to keep the testLabels constant across iterations.
 
-					testLabels = random.sample(originalLabels,noOfLabelsToMask)
-					#testLabels = testLabelsList[i]
+					#testLabels = random.sample(originalLabels,noOfLabelsToMask)
+					testLabels = testLabelsList[i]
 
 					# When there is no need to repeat just work with the original graph
 					if noOfTimesToRepeat == 0:
@@ -784,5 +784,20 @@ for trainingSize in trainingSizeList:
 				outputTofile.append( [ Action + "Results.txt",prefix , str(trainingSize) , str(round(meanSquaredLoss,4)) , str(round(meanAccuracy,4)) , str(round(sd,4)) , str(round(se,4)) , str(round(meanPrecision,4)) , str(round(meanRecall,4)) , str(round(f1,4)), str(round(medianAccuracy,4)), str(round(meanClassPrior[0],4)), str(round(sdClassPrior[0],4)), str(round(seClassPrior[0],4)), str(round(meanEstimatedProbabilities[0,0],4)), str(round(sdEstimatedProbabilities[0,0],4)), str(round(seEstimatedProbabilities[0,0],4)), str(round(meanEstimatedProbabilities[1,1],4)), str(round(sdEstimatedProbabilities[1,1],4)), str(round(seEstimatedProbabilities[1,1],4))])
 				#outputTofile.append( [ Action + "Results.txt","Median_"+prefix , str(trainingSize) , str(round(medianAccuracy,4)) , str(round(0,4)) , str(round(0,4)) , str(round(0,4)) , str(round(0,4)) , str(round(0,4)) ])
 				#print e1
+				q1 = [i[0] for i in c1]
+				print "prior"
+				print q1
+				print numpy.mean(q1)
+				print numpy.median(q1)
+				q2 =  [i[0,0] for i in e1]
+				print "0given0"
+				print q2
+				print numpy.mean(q2)
+				print numpy.median(q2)
+				q3 = [i[1,1] for i in e1]
+				print "1given1"
+				print q3
+				print numpy.mean(q3)
+				print numpy.median(q3)
 		for otf in outputTofile:
 			writeToFile(otf)

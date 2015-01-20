@@ -39,7 +39,7 @@ rhg_cols <- c("maroon", "dodgerblue1",
 
 
 path = "../results/"
-titleName = "fixedParameters_flipLabel"
+titleName = "fixedParameters_flipLabel1"
 fileName = paste("school074-label0_", titleName ,"Results",sep="")
 yLabel = "squaredLoss"
 
@@ -57,7 +57,7 @@ ggplot(data, aes(x=trainingSize, y=SquaredLoss_Mean, colour=Label)) +
 # scale_colour_manual(values = rhg_cols) +
 #  ylim(0.20,0.45)  
 
-suffix = paste(yLabel,"")
+suffix = paste(yLabel,"3")
 ggsave(file=paste('./plots/', fileName, '_', suffix, '.png' , sep = ""),width=9.69,height=7.79)
 
 
