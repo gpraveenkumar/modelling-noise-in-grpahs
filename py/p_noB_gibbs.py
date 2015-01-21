@@ -207,7 +207,7 @@ def f2(currentLabelEstimates, neighbors, estimatedProbabities, classPrior):
 	return t#int(class1/class0 > 1)
 
 
-# This function is very similar to f2. But it is used to return the raw probability value.
+# This function is very similar to f2. But it is used to return the raw probability value for Maximum Entrophy Inference.
 def f_maxEntInf(currentLabelEstimates, neighbors, estimatedProbabities, classPrior):
 	class0 = f1(0,currentLabelEstimates, neighbors, estimatedProbabities, classPrior)
 	class1 = f1(1,currentLabelEstimates, neighbors, estimatedProbabities, classPrior)
@@ -217,6 +217,18 @@ def f_maxEntInf(currentLabelEstimates, neighbors, estimatedProbabities, classPri
 
 	return class0
 
+
+"""
+# This function is very similar to f2. It just return the label value based on prior value. This is used as smart Baseline.
+def f_maxEntInf(currentLabelEstimates, neighbors, estimatedProbabities, classPrior):
+	class0 = f1(0,currentLabelEstimates, neighbors, estimatedProbabities, classPrior)
+	class1 = f1(1,currentLabelEstimates, neighbors, estimatedProbabities, classPrior)
+	denominator = class0 + class1
+	class0 = class0/denominator
+	class1 = class1/denominator
+
+	return class0
+"""
 
 
 # Note - estimated probability is actually estimated counts - not true anymore

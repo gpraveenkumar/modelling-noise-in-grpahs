@@ -8,10 +8,10 @@ import gc
 
 
 basePath = '/homes/pgurumur/jen/noise/py/'
-school = "school074"
+#school = "school074"
 #school = "polblogs"
 #school = "cora"
-#school = "facebook"
+school = "facebook"
 schoolLabel = "label0"
 
 
