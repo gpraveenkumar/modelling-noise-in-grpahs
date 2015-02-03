@@ -10,10 +10,10 @@ f.close()
 """
 
 
-f = open('toRun_variants_school074.txt','w')
+f = open('toRun_variants_school074_new.txt','w')
 for trainingSize in [0.05,0.1,0.2,0.25,0.3,0.35,0.4,0.45,0.5,0.6,0.7,0.8,0.9]:
 	for percentageOfGraph in [0.05,0.15,0.30,0.4,0.5,0.6,0.7,0.8,0.9,1.0]:
-		for noOfTimesToRepeat in [2,5,10]:
+		for noOfTimesToRepeat in [25,50,75,100,250]:
 			for percentageOfGraph2 in [0.0]:
 				f.write(str(trainingSize) + ' ' + str(percentageOfGraph) + ' ' + str(noOfTimesToRepeat) + ' ' + str(percentageOfGraph2) + '\n')
 f.close()
@@ -85,7 +85,9 @@ parameterValues = [
  [0.5,0.6,0.6]
 ]
 """
-"""
+
+parameterValues = [ [ 0.4944,0.5843,0.5964] ]
+
 f = open('param_school074_all.txt','w')
 for trainingSize in [0.05,0.1,0.2,0.25,0.3,0.35,0.4,0.45,0.5,0.6,0.7,0.8,0.9]:
 	for percentageOfGraph in [0]:
@@ -94,4 +96,3 @@ for trainingSize in [0.05,0.1,0.2,0.25,0.3,0.35,0.4,0.45,0.5,0.6,0.7,0.8,0.9]:
 				for p in parameterValues:
 					f.write(str(trainingSize) + ' ' + str(percentageOfGraph) + ' ' + str(noOfTimesToRepeat) + ' ' + str(percentageOfGraph2) + ' ' + ' '.join(str(i) for i in p) +'\n')
 f.close()
-"""

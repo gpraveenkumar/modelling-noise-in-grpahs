@@ -13,7 +13,7 @@ data <- read.table(file = paste(path, fileName , '.txt' , sep = ""), header = T)
 
 #data <- subset(data,data$Label=="5perc_2repeat")
 
-plot_main <- ggplot(data, aes(x = 1:100,y = Accuracy_Mean,colo)) + geom_point() + geom_line() +
+plot_main <- ggplot(data, aes(x = 1:100,y = Accuracy_Mean,color = Label)) + geom_point() + geom_line() +
   geom_hline(aes(yintercept=mean(Accuracy_Mean)), color="red", linetype="solid", size=1) +
   geom_hline(aes(yintercept=mean(Accuracy_Mean) - sd(Accuracy_Mean)), color="blue", linetype="dashed", size=1, ) +
   geom_hline(aes(yintercept=mean(Accuracy_Mean) + sd(Accuracy_Mean)), color="blue", linetype="dashed", size=1) +
@@ -101,9 +101,14 @@ ggsave(file=paste('./plots/', fileName , '.png' , sep = ""),g)
 
 
 
+ggplot(data, aes(x = squaredLoss)) + 
+  geom_density(alpha=.5) +
+  geom_vline(aes(xintercept=mean(squaredLoss)), color="red", linetype="solid", size=1)
+ggsave(file=paste('./plots/', 'squaredLossDensity', '.png' , sep = ""),width=9.69,height=7.79)
 
-
-
+ggplot(data, aes(x = pri)) + 
+  geom_density(alpha=.5) +
+  geom_vline(aes(xintercept=mean(pri)), color="red", linetype="solid", size=1)
 
 
 

@@ -169,6 +169,19 @@ def setInitialParameterValues(classPrior0,parameter_0given0,parameter_1given1):
 
 
 
+# Function to generate the class label based on a cutoff value by comparing it with a uniformly generated random number
+# Input : Cutoff
+# Output : Class Label (0 or 1)
+
+def generateClassLabelBasedOnCutoff(cutoff):
+	x = random.uniform(0,1)
+	if x < cutoff:
+		t = 0
+	else:
+		t = 1
+	return t
+
+
 def f1(nodeLabel, currentLabelEstimates, neighbors, estimatedProbabities, classPrior):
 	noOfZeroLabeledNeighbours = 0
 	for i in neighbors:
@@ -194,11 +207,15 @@ def f2(currentLabelEstimates, neighbors, estimatedProbabities, classPrior):
 	class0 = class0/denominator
 	class1 = class1/denominator
 
+	"""
 	x = random.uniform(0,1)
 	if x < class0:
 		t = 0
 	else:
 		t = 1
+	"""
+
+	t = generateClassLabelBasedOnCutoff(class0)
 
 	#print str(class0),str(class1)
 	#print x
@@ -306,8 +323,18 @@ def computeSquaredLoss(label,testLabels,resultingLabels):
 
 	return squaredLoss
 
+
+# Function to compute the sigmod or logistic
+# Input : x
+# Output : value between 0 and 1
+
 def logistic(x):
   return 1 / (1 + math.exp(-x))
+
+
+# Function to compute the logit
+# Input : x
+# Output : value between -Inf and Inf
 
 def logit(x):
 	# 100 seems to be a big enough number.
@@ -316,6 +343,8 @@ def logit(x):
 	elif x == 1:
 		return 100
 	return numpy.log( x/(1-x) )
+
+
 
 ## Gibbs Sampling
 
@@ -334,6 +363,8 @@ def gibbsSampling(edges,label,testLabels,parameters):
 	# Basically this is done so that the proporation of the labels in the unlabels set match the proportion of labels in the labels set.
 	maxEntInfFlag = True
 
+
+	# Although the resulting labels has the training Labels also set to zero, they are not used anywhere, so it doesnt matter what value they have.
 	resultingLabels = {}
 	for i in label:
 		resultingLabels[i] = 0
@@ -378,12 +409,7 @@ def gibbsSampling(edges,label,testLabels,parameters):
 				cle = logistic( logit(cle) - Z[phi] )
 
 				# Assign them a label based on probability
-				x = random.uniform(0,1)
-				if x < cle:
-					t = 0
-				else:
-					t = 1
-				currentLabelEstimates[node] = t				
+				currentLabelEstimates[node] = generateClassLabelBasedOnCutoff(cle)		
 
 		if i > burnin:
 			for j in currentLabelEstimates:
@@ -452,5 +478,33 @@ def gibbsSampling(edges,label,testLabels,parameters):
 
 	print "No. of interation in which labels have not changed:",LabelDifferenceBetweenIterationsCounter
 
+	return (accuracy,precision,recall,classPrior,estimatedProbabities,squaredLoss)
+
+
+
+# Function to compute the smart baseline based on prior. This function mirrors gibbsSampling in both the Inputs and the Outputs.
+# This was designed to be called in exp-nob_parallel.py when required by just replace this function name with that of gibbsSampling
+# Input : edges,label,testLabels,parameters
+# Output : (accuracy,precision,recall,classPrior,estimatedProbabities,squaredLoss)
+
+def smartBaseline(edges,label,testLabels,parameters):
+			
+	classPrior, estimatedProbabities, classPriorCounts, estimatedCounts = computeInitialParameters(edges,label,testLabels)
+
+	# Although the resulting labels has the training Labels also set to zero, they are not used anywhere, so it doesnt matter what value they have.
+	resultingLabels = {}
+	for i in label:
+		resultingLabels[i] = 0
+	
+	# Predict the resulting class label of a node just based on the prior probabilities of the class.
+	for i in testLabels:
+		resultingLabels[i] = generateClassLabelBasedOnCutoff(classPrior[0])
+
+
+	accuracy,precision,recall = computeAccuracy(label,testLabels,resultingLabels)
+
+	# Compute Squared Loss with the averages of Gibbs sampling before assigning them a single value
+	squaredLoss = computeSquaredLoss(label,testLabels,resultingLabels)
+	
 	return (accuracy,precision,recall,classPrior,estimatedProbabities,squaredLoss)
 

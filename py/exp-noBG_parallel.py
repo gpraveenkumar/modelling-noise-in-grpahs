@@ -8,10 +8,10 @@ import gc
 
 
 basePath = '/homes/pgurumur/jen/noise/py/'
-#school = "school074"
+school = "school074"
 #school = "polblogs"
 #school = "cora"
-school = "facebook"
+#school = "facebook"
 schoolLabel = "label0"
 
 
@@ -515,6 +515,8 @@ def makeNoisyGraphs(action,percentageOfGraph,noOfTimesToRepeat,originalGraph,ori
 def func_star(a_b):
     """Convert `f([1,2])` to `f(1,2)` call."""
     return gibbsSampling(*a_b)
+    #return smartBaseline(*a_b)
+    
 
 
 # ListOfObject can be a list of numbers or a list of vectors or a list of matrices
@@ -571,7 +573,7 @@ def writeToFile(l):
 	fileName = l[0]
 	# Remove the fileName from the list, so as to facilitate join
 	l.pop(0)
-	path = basePath + '../results/' + school + '-' + schoolLabel + '_maxEntInf_original_'
+	path = basePath + '../results/' + school + '-' + schoolLabel + '_moreRepeats_'
 	f_out = open(path+fileName,'a')
 	f_out.write("\t".join(l)  + "\n")
 	f_out.close()
@@ -584,7 +586,7 @@ def writeToFile(l):
 
 Action = "flipLabel"
 noofProcesses = 7
-performInfernceOnly = False
+performInfernceOnly = True
 
 #writeToFile( [ Action + "ResultsBaselines.txt", "Label" , "trainingSize" , "Accuracy_Mean","Accuracy_SD","Accuracy_SE","Precision_Mean","Recall_Mean","F1"] )
 #writeToFile( [ Action + "Results.txt", "Label" , "trainingSize" , "Accuracy_Mean","Accuracy_SD","Accuracy_SE","Precision_Mean","Recall_Mean","F1"])

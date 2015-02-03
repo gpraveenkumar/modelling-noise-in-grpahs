@@ -4,7 +4,7 @@ school = "school074"
 #school = "facebook"
 schoolLabel = "label0"
 
-fileName = school + '-' + schoolLabel + '_flipLabelDropEdgesResults'
+fileName = school + '-' + schoolLabel + '_NOmaxEntInf_flipLabelResults'
 
 # which index of the input file is used to compute best score. 
 # 2 = Squared Loss
