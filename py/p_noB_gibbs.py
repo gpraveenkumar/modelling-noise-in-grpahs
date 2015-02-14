@@ -508,3 +508,49 @@ def smartBaseline(edges,label,testLabels,parameters):
 	
 	return (accuracy,precision,recall,classPrior,estimatedProbabities,squaredLoss)
 
+
+
+# Following are the implementations of different variations of Relaxation Labling algorithm of Sofus' 2003 paper.
+
+# Function implements the relaxation labeling (RN). This function mirrors gibbsSampling in both the Inputs and the Outputs.
+# This was designed to be called in exp-nob_parallel.py when required by just replace this function name with that of gibbsSampling
+# Input : edges,label,testLabels,parameters
+# Output : (accuracy,precision,recall,classPrior,estimatedProbabities,squaredLoss)
+
+def RN(edges,label,testLabels,parameters):
+
+	classPrior, estimatedProbabities, classPriorCounts, estimatedCounts = computeInitialParameters(edges,label,testLabels)
+
+	# Although the resulting labels has the training Labels also set to zero, they are not used anywhere, so it doesnt matter what value they have.
+	resultingLabels = {}
+	for i in label:
+		resultingLabels[i] = 0
+	
+	nodeTraversalOrder = testLabels
+	random.shuffle(nodeTraversalOrder)
+
+	# Predict the resulting class label of a node just based on the prior probabilities of the class if there are no 
+	# neighbours with know labels, otherwise it is the majority label of the .
+	for node in nodeTraversalOrder:
+		neighbors = edges[node]
+
+		noOfNeighboursInTestLabels = 0
+		noOfZeroLabeledNeighbours = 0
+		for i in neighbors:
+			if i in testLabels:
+				noOfNeighboursInTestLabels +=1
+			elif label[i] == 0:
+				noOfZeroLabeledNeighbours += 1
+
+		if noOfNeighboursInTestLabels == len(neighbors):
+			resultingLabels[node] = generateClassLabelBasedOnCutoff(classPrior[0])
+		elif noOfZeroLabeledNeighbours > len(neighbors) - noOfZeroLabeledNeighbours:
+			resultingLabels[node]
+
+
+	accuracy,precision,recall = computeAccuracy(label,testLabels,resultingLabels)
+
+	# Compute Squared Loss with the averages of Gibbs sampling before assigning them a single value
+	squaredLoss = computeSquaredLoss(label,testLabels,resultingLabels)
+	
+	return (accuracy,precision,recall,classPrior,estimatedProbabities,squaredLoss)

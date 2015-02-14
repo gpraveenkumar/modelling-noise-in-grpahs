@@ -514,8 +514,9 @@ def makeNoisyGraphs(action,percentageOfGraph,noOfTimesToRepeat,originalGraph,ori
 
 def func_star(a_b):
     """Convert `f([1,2])` to `f(1,2)` call."""
-    return gibbsSampling(*a_b)
+    #return gibbsSampling(*a_b)
     #return smartBaseline(*a_b)
+    return RN(*a_b)
     
 
 
@@ -573,7 +574,7 @@ def writeToFile(l):
 	fileName = l[0]
 	# Remove the fileName from the list, so as to facilitate join
 	l.pop(0)
-	path = basePath + '../results/' + school + '-' + schoolLabel + '_moreRepeats_'
+	path = basePath + '../results/' + school + '-' + schoolLabel + '_rn_'
 	f_out = open(path+fileName,'a')
 	f_out.write("\t".join(l)  + "\n")
 	f_out.close()
@@ -586,7 +587,7 @@ def writeToFile(l):
 
 Action = "flipLabel"
 noofProcesses = 7
-performInfernceOnly = True
+performInfernceOnly = False
 
 #writeToFile( [ Action + "ResultsBaselines.txt", "Label" , "trainingSize" , "Accuracy_Mean","Accuracy_SD","Accuracy_SE","Precision_Mean","Recall_Mean","F1"] )
 #writeToFile( [ Action + "Results.txt", "Label" , "trainingSize" , "Accuracy_Mean","Accuracy_SD","Accuracy_SE","Precision_Mean","Recall_Mean","F1"])
