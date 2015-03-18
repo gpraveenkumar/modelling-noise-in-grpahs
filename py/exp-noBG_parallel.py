@@ -6,7 +6,6 @@ import numpy
 from multiprocessing import Pool
 import gc
 
-
 basePath = '/homes/pgurumur/jen/noise/py/'
 school = "school074"
 #school = "polblogs"

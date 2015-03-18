@@ -5,13 +5,13 @@ import random
 import numpy
 
 path = "../data/"
-school = "school034"
+school = "school074"
 f_in = open(path + school + '-parsed.txt')
 
 binary = True
 directed = False
 
-testSize = 0.3
+#testSize = 0.3
 
 # graph
 edges = {}
@@ -196,16 +196,19 @@ getDistributionCount( labels_2 )
 label = labels_0
 labelName ="label0"
 
+
 # Write the nodeId and Label to a file - space separated
 # Next, write edge pairs to a file
 f_out = open(path + school + '_' + labelName + '-nodes.txt','w')
 f_out1 = open(path + school + '_' + labelName + '-edges.txt','w')
+f_out2 = open(path + school + '.attr','w')
 
 f_out.write("Id value\n")
 f_out1.write("Source Target\n")
 
 for id, neighbors in edges.iteritems():
 	f_out.write( str(id) + " " + str(label[id]) + "\n" )
+	f_out2.write( str(id) + "::" + str(labels_1[id]) + "::" + str(labels_2[id]) + "\n" )
 	for neighbor in neighbors:
 		f_out1.write( str(id) + " " + str(neighbor) + "\n" )
 

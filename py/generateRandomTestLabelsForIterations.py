@@ -32,7 +32,10 @@ print "No. of Labels",noOfLabels
 
 
 # IMPORTANT - This needs to be set based on the length of the graph taken from exp-noBG_parallel.py . Reading the graph above does not throw away nodes with zero edges.
-#noOfLabels = 5906
+
+# For Facebook
+noOfLabels = 5906
+
 originalLabels = range(noOfLabels)
 
 for trainingSize in [0.05,0.1,0.2,0.25,0.3,0.35,0.4,0.45,0.5,0.6,0.7,0.8,0.9]:
