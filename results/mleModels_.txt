@@ -1,0 +1,30 @@
+trainingSize	b1_accuracy	b1_sd	b1_se	b1_precision	b1_recall
+
+0.5	0.727	0.0	0.0	0.7174	0.6947
+trainingSize	b1_accuracy	b1_sd	b1_se	b1_precision	b1_recall
+
+0.5	0.737	0.0	0.0	0.7362	0.6557
+trainingSize	b1_accuracy	b1_sd	b1_se	b1_precision	b1_recall
+
+1.0	0.7312	0.0	0.0	0.7564	0.6556
+trainingSize	b1_accuracy	b1_sd	b1_se	b1_precision	b1_recall
+
+0.1	0.74	0.0	0.0	0.6926	0.7955
+trainingSize	b1_accuracy	b1_sd	b1_se	b1_precision	b1_recall
+
+0.3	0.751	0.0	0.0	0.7661	0.7017
+trainingSize	b1_accuracy	b1_sd	b1_se	b1_precision	b1_recall
+
+0.8	0.7143	0.0	0.0	0.7222	0.6791
+trainingSize	b1_accuracy	b1_sd	b1_se	b1_precision	b1_recall
+
+0.8	0.7043	0.0	0.0	0.7273	0.6737
+trainingSize	b1_accuracy	b1_sd	b1_se	b1_precision	b1_recall
+
+0.8	0.7419	0.0	0.0	0.7349	0.7011
+trainingSize	b1_accuracy	b1_sd	b1_se	b1_precision	b1_recall
+
+0.2	0.7527	0.0	0.0	0.7282	0.8065
+trainingSize	b1_accuracy	b1_sd	b1_se	b1_precision	b1_recall
+
+0.3	0.6989	0.0	0.0	0.6742	0.6897

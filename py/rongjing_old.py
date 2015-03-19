@@ -5,8 +5,11 @@ import random
 import numpy
 from multiprocessing import Pool
 import gc
+#import scipy.optimize
 import os
-
+#os.system("export PYTHONUSERBASE='/u/cities_s2/pgurumur/python'")
+#os.system("echo $PYTHONUSERBASE")
+#os.system("echo 'hi'")
 
 import statsmodels.api as sm
 
@@ -94,19 +97,106 @@ for line in f_in:
 
 f_in.close()
 
+#print nodeAttributes
+
+"""
+print len(originalGraph)
+tempOriginalGraph = {}
+
+for node,neighbors in originalGraph.iteritems():
+	if len(neighbors) > 0:
+		tempOriginalGraph[node] = neighbors
+print len(originalGraph)
+"""
 
 
-
-# Function to compute the sigmoid
-# Input : Z
-# Output : sigmoid(-Z)
 def sigmoid(Z):
 	g = 1.0 / (1.0 + numpy.exp(-Z))
 	return g
+"""
+
+
+def lrCostFunction(theta,X,y):
+
+	m = y.shape
+	J = 0
+
+	h = sigmoid( numpy.dot(X,theta) )
+	t1 = numpy.dot( numpy.transpose(y),numpy.log(h) ) + numpy.dot( (numpy.transpose(1-y)),numpy.log(1-h) )
+	J = -t1/m
+
+	return J
 
 
 
-# Independent Model uses only the node attributes to predict the out of lables.
+def lrGradient(theta,X,y):
+
+	#Set the value of Aplha. Because python fmin_bfgs does not do it automatically and hence the algorithm does not converge.
+	alpha = 0.01
+	m = y.shape
+	grad = numpy.zeros( theta.shape )
+
+	h = sigmoid( numpy.dot(X,theta) )
+
+	beta = h - y;
+	delta = numpy.dot( numpy.transpose(X),beta );
+
+	grad = delta / m
+
+	grad = grad*alpha
+
+	return grad
+
+
+
+def lrTrain(X,y):
+
+	m,n = X.shape
+
+	theta0 = numpy.zeros(n)
+	#theta = scipy.optimize.fmin_bfgs(lrCostFunction, theta0, fprime=lrGradient, args=(X,y)) 
+	theta = scipy.optimize.fmin_bfgs(lrCostFunction, theta0, fprime=lrGradient, args=(X,y)) 
+	print "theta",theta
+"""
+
+"""
+# Test data to test logisitc regression
+
+f_in = open(basePath + '../data/' + 'binary.csv')
+
+trainFeatures = []
+trainLabels = []
+
+# no need for first line...Skipping the header
+junk_ = f_in.readline()
+for line in f_in:
+	line = line.strip().split(',')
+	trainLabels.append(int(line[0]))
+	l = []
+	l.append(1)
+	l.append(int(line[1]))
+	l.append(float(line[2]))
+	l.append(int(line[3]))
+	trainFeatures.append(l)
+
+f_in.close()
+
+#print trainLabels
+#print trainFeatures
+
+X = numpy.array(trainFeatures)
+y = numpy.array(trainLabels)
+print X
+print y
+
+from time import time
+t = time()
+lrTrain(X,y)
+print round(time()-t,3)
+"""
+
+
+
 def independentModel(originalLabels,nodeAttributes,trainingLabels):
 	trainLabels = []
 	trainFeatures = []
@@ -116,11 +206,14 @@ def independentModel(originalLabels,nodeAttributes,trainingLabels):
 	for i in originalLabels:
 		if i in trainingLabels:
 			trainLabels.append( originalLabels[i] )
+			#print nodeAttributes[i]
 			l = [1] + nodeAttributes[i]
+			#print l
 			trainFeatures.append( l )
 		else:
 			testLabels.append( originalLabels[i] )
 			l = [1] + nodeAttributes[i]
+			#print l
 			testFeatures.append( l )
 
 	logit = sm.Logit(trainLabels, trainFeatures)
@@ -132,15 +225,99 @@ def independentModel(originalLabels,nodeAttributes,trainingLabels):
 	print result.params
 
 	predicted = result.predict(testFeatures)
-	resultingLabels = (predicted >= threshold).astype(int)
+	resultingLabels = (predicted > threshold).astype(int)
 	accuracy,precision,recall = computeAccuracy1(testLabels,resultingLabels)
 	print accuracy
 
 	return result.params,accuracy
 
 
+"""
+def logLinearCostFunction(theta,G,label,nodeAttributes):
 
-# Function to calculate the phi features i.e. no. of labels that match with the neighbours and no. of labels that don't match.
+
+	logLikekyhood = 0
+
+	for node in G:
+
+		neighbors = G[node]
+		noOfZeroLabeledNeighbours = 0
+		for nei in neighbors:
+			if currentLabelEstimates[nei] == 0:
+				noOfZeroLabeledNeighbours += 1
+
+		n1 = 0
+		n2 = 0
+
+		if label[node] == 0:
+			n1 = noOfZeroLabeledNeighbours
+			n2 = len(neighbor) - noOfZeroLabeledNeighbours
+		else:
+			n1 = len(neighbor) - noOfZeroLabeledNeighbours
+			n2 = noOfZeroLabeledNeighbours	
+
+		x = nodeAttributes[node]
+		# may be there should be one theta value for every value of x[0] and x[1]
+		phi_s = x[0]*theta[0] + x[1]*theta[1]
+		phi_i = n1*theta[3] + n2*theta[4] 
+		phi1 = phi_s + phi_i
+
+		# Swapping n1 and n2 assuming as the node label has changed
+		phi_i = n2*theta[3] + n1*theta[4] 
+		phi2 = phi_s + phi_i
+
+		logLikekyhood += phi1 - math.log( math.exp(phi1) + math.exp(phi2) )
+
+
+	return logLikekyhood
+"""
+
+
+
+def neglogLinearCostFunction(theta,trainFeatures,trainLabels):
+
+	logLikekyhood = 0
+
+	for i in range(len(trainFeatures)):
+
+		phi_s = trainFeatures[i][0]*theta[0] + trainFeatures[i][1]*theta[1]
+		if trainLabels[i] == 0:
+			phi_s = -phi_s
+
+		phi_1 = n1*theta[3] + n2*theta[4]
+		phi1 = phi_s + phi_i
+
+		# Swapping n1 and n2 assuming as the node label has changed. Also, negating phi_s
+		phi_i = n2*theta[3] + n1*theta[4] 
+		phi2 = -phi_s + phi_i
+
+		logLikekyhood += phi1 - math.log( math.exp(phi1) + math.exp(phi2) )
+
+	neglogLikekyhood = -logLikekyhood
+	return neglogLikekyhood
+
+
+
+def logLinearGradient(theta,trainFeatures,trainLabels):
+
+	#Set the value of Aplha. Because python fmin_bfgs does not do it automatically and hence the algorithm does not converge.
+	alpha = 0.01
+	m = y.shape
+	grad = numpy.zeros( theta.shape )
+
+	h = sigmoid( numpy.dot(X,theta) )
+
+	beta = h - y;
+	delta = numpy.dot( numpy.transpose(X),beta );
+
+	grad = delta / m
+
+	grad = grad*alpha
+
+	return grad
+
+
+# Function to calculate the phi features i.e. no. of labels that match with the neighbours and no. of labels that don't match
 # Input : Node, its neighbours and set of all labels
 # Output : n1 and n2 corresponing to the phi values mentioned above.
 def compute_phiFeatures(node,neighbors,label):
@@ -164,10 +341,51 @@ def compute_phiFeatures(node,neighbors,label):
 
 
 
-# This function is used to compute the pseudo-likelyhood model and include both the node attributes and no. of label match features from the markov blanket.
+# This function is essentially same as the "computeInitialParameters" in p_noB_gibbs.py
 def MPLE(G,label,testLabels,nodeAttributes,mleParameters):
 
-	# Construct a graph with only those nodes in the training Labels. This is requried for the training phase to learn the model parametes.
+	"""
+	#class priors
+	t = Counter()
+	for x in label:
+		if x in testLabels:
+			continue
+		t[label[x]] += 1
+	#print t
+
+	classPriorCounts = {}
+	classPriorCounts[0] = t[0]
+	classPriorCounts[1] = t[1]
+
+	classPrior = [0]*2
+	classPrior[0] = t[0] / (t[0] + t[1] + 0.0)
+	classPrior[1] = 1 - classPrior[0]
+	#print classPrior
+
+	# conditional probabilites
+	estimatedCounts = numpy.zeros([2,2])
+	estimatedProbabities = numpy.zeros([2,2])
+
+	for id, neighbors in G.iteritems():
+		if id in testLabels:
+			continue
+		# cycle through the neighbors
+		for neighbor in neighbors:
+			if neighbor in testLabels:
+				continue
+			estimatedCounts[ label[id], label[neighbor] ] += 1
+			#if not directed:
+			#	estimatedCounts[ label[neighbor], label[id] ] += 1
+
+	estimatedProbabities[:,0] = (estimatedCounts[:,0] + 1) / (sum(estimatedCounts[:,0]) + 2)
+	estimatedProbabities[:,1] = (estimatedCounts[:,1] + 1) / (sum(estimatedCounts[:,1]) + 2)
+	#return (classPrior,estimatedProbabities,classPriorCounts,estimatedCounts)
+
+	edgeCliqueCounts = {} 
+	edgeCliqueCounts["match"] = estimatedCounts[0,0] + estimatedCounts[1,1] 
+	edgeCliqueCounts["otherwise"] = estimatedCounts[0,1] + estimatedCounts[1,0]
+	"""
+
 	onlyTrainingG = {}
 
 	for id, neighbors in G.iteritems():
@@ -181,9 +399,7 @@ def MPLE(G,label,testLabels,nodeAttributes,mleParameters):
 				continue
 			else:
 				newNeighbor.append( neighbor )
-		
-		# Doing this may or may not be a good idea. If you dont do this, phi1 and phi2 for 
-		# the MPLE model would be zero - which is still fine as it may help learn a better set of parameter.	
+			
 		if len(newNeighbor) > 0:
 			onlyTrainingG[ id ] = newNeighbor
 
@@ -210,14 +426,14 @@ def MPLE(G,label,testLabels,nodeAttributes,mleParameters):
 	logit = sm.Logit(trainLabels, trainFeatures)
 	# fit the model
 	result = logit.fit()
+	#print result.summary()
 	print result.params
+
 
 
 	#Testing
 
-	# Compute Initial Estimate i.e. compute the initial labels of all the nodes in the 
-	# testLabel or unlabeled set before starting the gibbs sampling. The label of the testLabels 
-	# are estimated based on just the neighbours in the training data that they are connected to.
+	# Compute Initial Estimate
 	onlyTestG_withTrainingNeighours = {}
 
 	for id, neighbors in G.iteritems():
@@ -225,14 +441,13 @@ def MPLE(G,label,testLabels,nodeAttributes,mleParameters):
 			continue
 
 		newNeighbor = []
-		# cycle through the neighbors - only get the neighbours in the trainingLabels
+		# cycle through the neighbors
 		for neighbor in neighbors:
 			if neighbor in testLabels:
 				continue
 			else:
 				newNeighbor.append( neighbor )
-		
-		# Again not sure if this is a good idea!	
+			
 		if len(newNeighbor) > 0:
 			onlyTestG_withTrainingNeighours[ id ] = newNeighbor
 
@@ -256,7 +471,7 @@ def MPLE(G,label,testLabels,nodeAttributes,mleParameters):
 		testLabels.append( label[node] )
 		
 	predicted = result.predict(testFeatures)
-	resultingLabels = (predicted >= threshold).astype(int)
+	resultingLabels = (predicted > threshold).astype(int)
 	accuracy,precision,recall = computeAccuracy1(testLabels,resultingLabels)
 	print accuracy
 	# Compute Initial Estimate -- Completed
@@ -282,9 +497,13 @@ def MPLE(G,label,testLabels,nodeAttributes,mleParameters):
 
 	return result.params,meanAccuracy
 
+	#return result.params,result	
+
+	#theta0 = numpy.zeros(4)
+	#theta = scipy.optimize.fmin_bfgs(logLinearCostFunction, theta0, fprime=logLinearGradient, args=(X,y)) 
+	#print "theta",theta
 
 
-# Function the computes the number of label matches with its neighbours for the MPLE model.
 def getCounts(label1,label2,n1,n2):
 
 	n3 = 0
@@ -302,12 +521,8 @@ def getCounts(label1,label2,n1,n2):
 	return n3,n4
 
 
-
-# Computes an upper bound on the propafgation error.
 def computeProgagationUpperBound(onlyTrainingG,label,L,mpleParameters):
 
-	# Note: L == TrainingLabels for conceptual clarity.
-	
 	newOnlyTrainingG = {}
 
 	for node, neighbors in onlyTrainingG.iteritems():
@@ -324,6 +539,8 @@ def computeProgagationUpperBound(onlyTrainingG,label,L,mpleParameters):
 			
 		newOnlyTrainingG[ node ] = newNeighbor
 
+	#print "len of test:",len(newOnlyTrainingG)
+
 	ki_list = {}
 	for node,neighbors in newOnlyTrainingG.iteritems():
 
@@ -339,7 +556,6 @@ def computeProgagationUpperBound(onlyTrainingG,label,L,mpleParameters):
 		maxforNode = []
 		for neighbor in neighbors:
 
-			# Not the -= sign
 			if label[neighbor] == 0:
 				noOfZeroLabeledNeighbours -= 1
 
@@ -394,7 +610,6 @@ def computeMu(node,neighbors,label,nodeAttributes,mleParameters,mpleParameters,l
 
 
 
-# Compute initial label for the unlabled or the test nodes for rongjing's algorithm. This is used both during the training and the test phases.
 def computeInitialEstimate(nodeAttributes,onlyTestG,L,finalTestLabels_test,label,mleParameters,mpleParameters,t,k0,ki_list):
 
 	#newOnlyTestG = onlyTestG
@@ -472,8 +687,15 @@ def gibbsSampling(G,label,testLabels,nodeAttributes,currentLabelEstimates,mlePar
 
 		for node in nodeTraversalOrder:
 			#print "\nNode ",node
+			#print "Before Attr. Cor.:", computeCorrelation(computePairs(edges,currentLabelEstimates))
 			neighbors = G[node]
-			
+			##previousEstimate = currentLabelEstimates[node]
+			#currentLabelEstimates[node] = f2(currentLabelEstimates, neighbors, estimatedProbabities, classPrior)
+
+			##currentLabelEstimates[node] = f2(currentLabelEstimates, neighbors, estimatedProbabities, classPrior)
+
+			#print nodeAttributes[node]
+			#print lamda_list[node]
 			mu_1 = computeMu(node,neighbors,label,nodeAttributes[node],mleParameters,mpleParameters,lamda_list[node])
 			t = 0
 			if mu_1	> 0.5:
@@ -507,6 +729,16 @@ def gibbsSampling(G,label,testLabels,nodeAttributes,currentLabelEstimates,mlePar
 				#iteration = i
 				#break
 		
+
+		#if not i%10:
+			#print "\n--------------------------------------------------\n" + "Iteration no : " +str(i)
+			#print "Iteration no : " +str(i) + " -> LabelDifferenceBetweenIterations : " + str(LabelDifferenceBetweenIterations)	
+			#print "Current Attr. Cor.:", computeCorrelation(computePairs(edges,currentLabelEstimates))
+			#print classPriorCounts
+			#print classPrior
+			#print estimatedCounts
+			#print sum(sum(estimatedCounts))
+			#print estimatedProbabities
 	
 	# Will be used for computing Squared loss. Is a dictionary because of the 
 	# second line in the for loop and for it to be consistent to resultingLabels
@@ -529,6 +761,12 @@ def gibbsSampling(G,label,testLabels,nodeAttributes,currentLabelEstimates,mlePar
 	# Compute Squared Loss with the averages of Gibbs sampling before assigning them a single value
 	squaredLoss = computeSquaredLoss(label,testLabels,resultingLabelsForSquaredLoss)
 	
+
+	#print "Accuracy:\n",accuracy
+	#print "% = ",accp
+	#print "Ground Truth:",computeLabelCounts(label,testLabels)
+	#print "Predicted Labels:",computeLabelCounts(resultingLabels,testLabels)
+
 	print "No. of interation in which labels have not changed:",LabelDifferenceBetweenIterationsCounter
 
 	return (accuracy,precision,recall,squaredLoss)
@@ -541,7 +779,7 @@ def compute_p_mple(node,neighbors,label,nodeAttributes,mpleParameters):
 	
 	n3,n4 = compute_phiFeatures(node,neighbors,label)
 
-	# Logistic Regression by default calculates the probability of y=1
+	# Logistic Regression Calculate the probability of y=1
 
 	p_mple = mpleParameters[0] + mpleParameters[1]*nodeAttributes[0] + mpleParameters[2]*nodeAttributes[1] + mpleParameters[3]*n3 + mpleParameters[4]*n4
 	p_mple = sigmoid(p_mple)
@@ -577,11 +815,13 @@ def gibbsSampling_MPLE(G,label,testLabels,nodeAttributes,currentLabelEstimates,m
 
 		for node in nodeTraversalOrder:
 			#print "\nNode ",node
+			#print "Before Attr. Cor.:", computeCorrelation(computePairs(edges,currentLabelEstimates))
 			neighbors = G[node]
+			##previousEstimate = currentLabelEstimates[node]
 			
 			p_mple = compute_p_mple(node,neighbors,label,nodeAttributes[node],mpleParameters)
 			t = 0
-			if p_mple >= 0.5:
+			if p_mple > 0.5:
 				t = 1
 			currentLabelEstimates[node] = t
 		
@@ -612,6 +852,16 @@ def gibbsSampling_MPLE(G,label,testLabels,nodeAttributes,currentLabelEstimates,m
 				#iteration = i
 				#break
 		
+
+		#if not i%10:
+			#print "\n--------------------------------------------------\n" + "Iteration no : " +str(i)
+			#print "Iteration no : " +str(i) + " -> LabelDifferenceBetweenIterations : " + str(LabelDifferenceBetweenIterations)	
+			#print "Current Attr. Cor.:", computeCorrelation(computePairs(edges,currentLabelEstimates))
+			#print classPriorCounts
+			#print classPrior
+			#print estimatedCounts
+			#print sum(sum(estimatedCounts))
+			#print estimatedProbabities
 	
 	# Will be used for computing Squared loss. Is a dictionary because of the 
 	# second line in the for loop and for it to be consistent to resultingLabels
@@ -634,6 +884,12 @@ def gibbsSampling_MPLE(G,label,testLabels,nodeAttributes,currentLabelEstimates,m
 	# Compute Squared Loss with the averages of Gibbs sampling before assigning them a single value
 	squaredLoss = computeSquaredLoss(label,testLabels,resultingLabelsForSquaredLoss)
 	
+
+	#print "Accuracy:\n",accuracy
+	#print "% = ",accp
+	#print "Ground Truth:",computeLabelCounts(label,testLabels)
+	#print "Predicted Labels:",computeLabelCounts(resultingLabels,testLabels)
+
 	print "No. of interation in which labels have not changed:",LabelDifferenceBetweenIterationsCounter
 
 	return (accuracy,precision,recall,squaredLoss)
@@ -661,9 +917,7 @@ def computeAccuracy(label,testLabels,resultingLabels):
 
 
 
-# Function to compute the Accuracy, Precision, Recall. Difference between this and 
-# the previous function is that in this function the testLabels are acutal prediction 
-# values whereas in the previous function the testLabels are the nodeIds.
+# Function to compute the Accuracy, Precision, Recall
 # Input : test labels and the predicted labels
 # Output : Accuracy, Precision, Recall
 def computeAccuracy1(testLabels,resultingLabels):
@@ -709,17 +963,67 @@ def computeMeanAndStandardError(listOfObjects):
 
 
 def func_star(a_b):
-	"""Convert `f([1,2])` to `f(1,2)` call."""
-	return gibbsSampling(*a_b)
+    """Convert `f([1,2])` to `f(1,2)` call."""
+    return gibbsSampling(*a_b)
 
 
 
 def func_star1(a_b):
-	"""Convert `f([1,2])` to `f(1,2)` call."""
-	return gibbsSampling_MPLE(*a_b)
+    """Convert `f([1,2])` to `f(1,2)` call."""
+    return gibbsSampling_MPLE(*a_b)
 
+"""
+# Helper function for the inner loop of Rongjing's paper. Since the same code is used to training and testing, I made it as a separate helper function.
+def innerLoop_trainTestAlgo(trainingLabels,onlyTrainingG,nodeAttributes,mleParameters,mpleParameters,t,k0):
 
+	error =0
 
+	for labeledProportion in numpy.arange(0.0,1.0,0.1):
+
+		lSize = int(labeledProportion*len(trainingLabels))
+		L = random.sample(trainingLabels,lSize)
+		finalTrainingLabels_test = [node for node in trainingLabels if node not in L]
+
+		ki_list = computeProgagationUpperBound(onlyTrainingG,originalLabels,L,mpleParameters)
+
+		onlyTrainingG_test = {}
+		for node, neighbors in onlyTrainingG.iteritems():
+			if node in L:
+				continue
+
+			newNeighbor = []
+			# cycle through the neighbors
+			for neighbor in neighbors:
+				if neighbor not in L:
+					continue
+				else:
+					newNeighbor.append( neighbor )
+				
+			onlyTrainingG_test[ node ] = newNeighbor
+
+		mu,currentLabelEstimates,lamda_list = computeInitialEstimate(nodeAttributes,onlyTrainingG_test,finalTrainingLabels_test,originalLabels,L,mleParameters,mpleParameters,t,k0,ki_list)
+
+		arg_t = [onlyTrainingG_test,originalLabels,finalTrainingLabels_test,nodeAttributes,currentLabelEstimates,mleParameters,mpleParameters,lamda_list]
+		
+		arguments = []
+		for i in range(1):
+			arguments.append(list(arg_t))
+
+		pool = Pool(processes=noofProcesses)
+		y = pool.map(func_star, arguments)
+		pool.close()
+		pool.join()
+
+		accuracy, precision, recall, squaredLoss = zip(*y)
+		meanAccuracy,sd,se,uselessMedian = computeMeanAndStandardError(accuracy)
+		meanPrecision,uselessSd,uselessSe,uselessMedian = computeMeanAndStandardError(precision)
+		meanRecall,uselessSd,uselessSe,uselessMedian = computeMeanAndStandardError(recall)
+		meanSquaredLoss,sd,se,uselessMedian = computeMeanAndStandardError(squaredLoss)
+		
+		print "Classification Error:",1 - meanAccuracy
+		error += 1 - meanAccuracy
+	return error
+"""
 
 
 
