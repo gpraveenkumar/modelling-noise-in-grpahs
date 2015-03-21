@@ -95,6 +95,42 @@ for line in f_in:
 f_in.close()
 
 
+# Generate grayCodes for all possible set of unlabled neighbours.
+grayCodeCounts = {}
+
+def computeGrayCodes(n):
+	if n in grayCodeCounts:
+		return grayCodeCounts[n]
+
+	grayCodeList = []
+	grayCodeList.append([0])
+	grayCodeList.append([1])
+
+	i = 1
+	while i<n:
+		i += 1
+
+		newGrayCodeList = []
+		for l in grayCodeList:
+			new_l = [0] + l
+			newGrayCodeList.append(new_l)
+			new_l = [1] + l
+			newGrayCodeList.append(new_l)
+
+		grayCodeList = newGrayCodeList
+
+	counts = set()
+	
+	size = len(grayCodeList[0])
+	for l in grayCodeList:
+		ones = sum(l)
+		zeros = size - ones
+		counts.add( (zeros,ones) )
+
+	grayCodeCounts[n] = list(counts)
+
+	return grayCodeCounts[n]
+
 
 
 # Function to compute the sigmoid
@@ -257,8 +293,8 @@ def MPLE(G,label,testLabels,nodeAttributes,mleParameters):
 		
 	predicted = result.predict(testFeatures)
 	resultingLabels = (predicted >= threshold).astype(int)
-	accuracy,precision,recall = computeAccuracy1(testLabels,resultingLabels)
-	print accuracy
+	initialAccuracy,precision,recall = computeAccuracy1(testLabels,resultingLabels)
+	print initialAccuracy
 	# Compute Initial Estimate -- Completed
 
 	#Gibbs Sampling part
@@ -280,34 +316,38 @@ def MPLE(G,label,testLabels,nodeAttributes,mleParameters):
 	meanRecall,uselessSd,uselessSe,uselessMedian = computeMeanAndStandardError(recall)
 	meanSquaredLoss,sd,se,uselessMedian = computeMeanAndStandardError(squaredLoss)
 
-	return result.params,meanAccuracy
+	return result.params,meanAccuracy,initialAccuracy
 
 
 
 # Function the computes the number of label matches with its neighbours for the MPLE model.
-def getCounts(label1,label2,n1,n2):
+def getCounts(node,neighbour,n1,n0):
 
 	n3 = 0
 	n4 = 0
 
-	if label1 == 1 and label2 == 1:
-		n3 = n1 + 1  
-	elif label1 == 1 and label2 == 0:
-		n4 = n2 + 1  
-	elif label1 == 0 and label2 == 1:
-		n4 = n2 + 1 
-	elif label1 == 0 and label2 == 0:
+	if node == 1 and neighbour == 1:
 		n3 = n1 + 1
+		n4 = n0
+	elif node == 1 and neighbour == 0:
+		n3 = n1
+		n4 = n0 + 1
+	elif node == 0 and neighbour == 1:
+		n3 = n0
+		n4 = n1 + 1
+	elif node == 0 and neighbour == 0:
+		n3 = n0 + 1
+		n4 = n1
 
 	return n3,n4
 
 
 
 # Computes an upper bound on the propafgation error.
-def computeProgagationUpperBound(onlyTrainingG,label,L,mpleParameters):
+def computeProgagationUpperBound1(onlyTrainingG,label,L,mpleParameters):
 
 	# Note: L == TrainingLabels for conceptual clarity.
-	
+
 	newOnlyTrainingG = {}
 
 	for node, neighbors in onlyTrainingG.iteritems():
@@ -328,7 +368,7 @@ def computeProgagationUpperBound(onlyTrainingG,label,L,mpleParameters):
 	for node,neighbors in newOnlyTrainingG.iteritems():
 
 		if len(neighbors) == 0:
-			ki_list[node] = 1
+			ki_list[node] = 10
 			continue
 
 		noOfZeroLabeledNeighbours = 0
@@ -339,31 +379,25 @@ def computeProgagationUpperBound(onlyTrainingG,label,L,mpleParameters):
 		maxforNode = []
 		for neighbor in neighbors:
 
+			n0 = noOfZeroLabeledNeighbours
+			n1 = len(neighbor) - noOfZeroLabeledNeighbours
+			
 			# Not the -= sign
 			if label[neighbor] == 0:
-				noOfZeroLabeledNeighbours -= 1
-
-			n1 = 0
-			n2 = 0
-			n3 = 0
-			n4 = 0
-
-			if label[node] == 0:
-				n1 = noOfZeroLabeledNeighbours
-				n2 = len(neighbors) - noOfZeroLabeledNeighbours
+				n0 -= 1
 			else:
-				n1 = len(neighbors) - noOfZeroLabeledNeighbours
-				n2 = noOfZeroLabeledNeighbours	
+				n1 -= 1
 
-			n3,n4 = getCounts(1,label[neighbor],n1,n2)
+
+			n3,n4 = getCounts(1,label[neighbor],n1,n0)
 			phi1 =  n3*mpleParameters[3] + n4*mpleParameters[4]
-			n3,n4 = getCounts(1,1-label[neighbor],n1,n2)
+			n3,n4 = getCounts(1,1-label[neighbor],n1,n0)
 			phi0 = n3*mpleParameters[3] + n4*mpleParameters[4]
 			maxforNode.append( 2*abs(phi1 - phi0) )
 
-			n3,n4 = getCounts(0,label[neighbor],n1,n2)
+			n3,n4 = getCounts(0,label[neighbor],n1,n0)
 			phi1 =  n3*mpleParameters[3] + n4*mpleParameters[4]
-			n3,n4 = getCounts(0,1-label[neighbor],n1,n2)
+			n3,n4 = getCounts(0,1-label[neighbor],n1,n0)
 			phi0 = n3*mpleParameters[3] + n4*mpleParameters[4]
 			maxforNode.append( 2*abs(phi1 - phi0) )
 
@@ -372,6 +406,67 @@ def computeProgagationUpperBound(onlyTrainingG,label,L,mpleParameters):
 		ki_list[node] =  delta/8 
 
 	return ki_list
+
+
+# Computes an upper bound on the propafgation error.
+def computeProgagationUpperBound(onlyTrainingG,label,trainingLabels,L,mpleParameters):
+
+	# Note: L is a subset TrainingLabels; for conceptual clarity.
+	testLabels = [i for i in trainingLabels if i not in L]
+
+	ki_list = {}
+
+	for node in testLabels:
+		neighbors = onlyTrainingG[node]
+
+		labeledNeighbours = 0
+		unlabeledNeighbours = 0
+		noOfZeroLabeledNeighbours = 0
+
+		for neighbor in neighbors:
+			if neighbor in L:
+				labeledNeighbours += 1
+				if label[neighbor] == 0:
+					noOfZeroLabeledNeighbours += 1
+
+		n0 = noOfZeroLabeledNeighbours
+		n1 = len(neighbors) - noOfZeroLabeledNeighbours
+
+		unlabeledNeighbours = len(neighbors) - labeledNeighbours
+
+		# if there are no unlabeled nodes, there is no progagation error
+		if unlabeledNeighbours == 0:
+			ki_list[node] = 0
+			continue
+
+		# Note the Set of all possible configurations is the same for any unlabeled node given the markov blanket of the node under consideration.
+		unlabeledNeighbourConfigurations = computeGrayCodes(unlabeledNeighbours - 1)
+
+		maxforNode = []
+
+		for tup in unlabeledNeighbourConfigurations:
+			zeros, ones = tup
+			n0 += zeros
+			n1 += ones
+
+			n3,n4 = getCounts(1,1,n1,n0)
+			phi1 =  n3*mpleParameters[3] + n4*mpleParameters[4]
+			n3,n4 = getCounts(1,0,n1,n0)
+			phi0 = n3*mpleParameters[3] + n4*mpleParameters[4]
+			maxforNode.append( 2*abs(phi1 - phi0) )
+
+			n3,n4 = getCounts(0,1,n1,n0)
+			phi1 =  n3*mpleParameters[3] + n4*mpleParameters[4]
+			n3,n4 = getCounts(0,0,n1,n0)
+			phi0 = n3*mpleParameters[3] + n4*mpleParameters[4]
+			maxforNode.append( 2*abs(phi1 - phi0) )
+		
+		delta = max(maxforNode) 
+		ki_list[node] =  delta/8 
+
+	return ki_list
+
+
 
 
 
@@ -453,7 +548,7 @@ def gibbsSampling(G,label,testLabels,nodeAttributes,currentLabelEstimates,mlePar
 	random.shuffle(nodeTraversalOrder)
 
 	burnin = 100
-	iteration = 500
+	#iteration = 500
 
 	# Although the resulting labels has the training Labels also set to zero, they are not used anywhere, so it doesnt matter what value they have.
 	resultingLabels = {}
@@ -558,7 +653,7 @@ def gibbsSampling_MPLE(G,label,testLabels,nodeAttributes,currentLabelEstimates,m
 	random.shuffle(nodeTraversalOrder)
 
 	burnin = 100
-	iteration = 500
+	#iteration = 500
 
 	# Although the resulting labels has the training Labels also set to zero, they are not used anywhere, so it doesnt matter what value they have.
 	resultingLabels = {}
@@ -725,7 +820,7 @@ def func_star1(a_b):
 
 noofProcesses = 7
 noOfTimeToRunGibbsSampling = 25
-
+iteration = 200
 
 threshold = 0.5
 
@@ -762,12 +857,13 @@ for trainingSize in trainingSizeList:
 
 	i1 = []
 	i2 = []
+	i2_initialEstimate = []
 
 	for i in range(10):
 		print "\nRepetition No.:",i+1
 
-		# Uncomment the first line to generate random testLables for each iteration
-		# Uncomment the second line to read the generated random testLables for each iteration. Based on Jen's suggestion to keep the testLabels constant across iterations.
+		# Uncomment the first line to generate random testLabels for each iteration
+		# Uncomment the second line to read the generated random testLabels for each iteration. Based on Jen's suggestion to keep the testLabels constant across iterations.
 		testLabels = random.sample(originalLabels,noOfLabelsToMask)
 		#testLabels = testLabelsList[i]
 		
@@ -775,10 +871,11 @@ for trainingSize in trainingSizeList:
 		trainingLabels = [i for i in originalLabels if i not in testLabels]
 		#print "Start trainLabels:",len(trainingLabels)
 		mleParameters,indepModel_accuracy = independentModel(originalLabels,nodeAttributes,trainingLabels)
-		mpleParameters,mpleModel_accuracy = MPLE(originalGraph,originalLabels,testLabels,nodeAttributes,mleParameters)
+		mpleParameters,mpleModel_accuracy,initialAccuracy = MPLE(originalGraph,originalLabels,testLabels,nodeAttributes,mleParameters)
 
 		i1.append(indepModel_accuracy)
 		i2.append(mpleModel_accuracy)
+		i2_initialEstimate.append(initialAccuracy)
 		
 		onlyTrainingG = {}
 
@@ -812,11 +909,12 @@ for trainingSize in trainingSizeList:
 			lSize = int(labeledProportion*len(trainingLabels))
 			L = random.sample(trainingLabels,lSize)
 			#print len(trainingLabels) - lSize
-			ki_list = computeProgagationUpperBound(onlyTrainingG,originalLabels,L,mpleParameters)
+			ki_list = computeProgagationUpperBound(onlyTrainingG,originalLabels,trainingLabels,L,mpleParameters)
 			#print len(ki_list)
 			for node,ki in ki_list.iteritems():
-				if ki != 0:
-					kappas.append(ki)
+				#if ki != 0:
+				#	kappas.append(ki)
+				kappas.append(ki)
 		
 		kappas.sort()
 
@@ -871,7 +969,7 @@ for trainingSize in trainingSizeList:
 					L = random.sample(trainingLabels,lSize)
 					finalTrainingLabels_test = [node for node in trainingLabels if node not in L]
 
-					ki_list = computeProgagationUpperBound(onlyTrainingG,originalLabels,L,mpleParameters)
+					ki_list = computeProgagationUpperBound(onlyTrainingG,originalLabels,trainingLabels,L,mpleParameters)
 
 					"""
 					onlyTrainingG_test = {}
@@ -961,7 +1059,7 @@ for trainingSize in trainingSizeList:
 		#print len(testLabels)
 		#print len(originalLabels)
 		#print len(originalGraph)
-		ki_list = computeProgagationUpperBound(originalGraph,originalLabels,trainingLabels,mpleParameters)
+		ki_list = computeProgagationUpperBound(originalGraph,originalLabels,originalLabels,trainingLabels,mpleParameters)
 		#print len(testLabels)
 		#print len(ki_list)
 
@@ -1026,6 +1124,7 @@ for trainingSize in trainingSizeList:
 
 	i1_meanAccuracy,i1_sd,i1_se,i1_medianAccuracy = computeMeanAndStandardError(i1)
 	i2_meanAccuracy,i2_sd,i2_se,i2_medianAccuracy = computeMeanAndStandardError(i2)
+	i2_initialEstimate_meanAccuracy,i2_initialEstimate_sd,i2_initialEstimate_se,i2_initialEstimate_medianAccuracy = computeMeanAndStandardError(i2_initialEstimate)
 
 	initialEstimate_meanAccuracy,initialEstimate_sd,initialEstimate_se,initialEstimate_medianAccuracy = computeMeanAndStandardError(initialEstimate)
 
@@ -1050,10 +1149,10 @@ for trainingSize in trainingSizeList:
 	print "MeanSquaredLoss:",meanSquaredLoss
 
 	outputTofile = []
-	header = ['trainingSize','meanSquaredLoss','meanAccuracy','sd','se','meanPrecision','meanRecall','f1','mle_meanAccuracy','mle_sd','mle_se','mple_meanAccuracy','mple_sd','mple_se','initialEstimate_meanAccuracy','initialEstimate_sd','initialEstimate_se']
+	header = ['trainingSize','meanSquaredLoss','meanAccuracy','sd','se','meanPrecision','meanRecall','f1','mle_meanAccuracy','mle_sd','mle_se','mple_meanAccuracy','mple_sd','mple_se','i2_initialEstimate_meanAccuracy','i2_initialEstimate_sd','i2_initialEstimate_se','initialEstimate_meanAccuracy','initialEstimate_sd','initialEstimate_se']
 	#outputTofile.append(header)
 
-	outputTofile.append( [str(trainingSize), str(round(meanSquaredLoss,4)) , str(round(meanAccuracy,4)) , str(round(sd,4)) , str(round(se,4)) , str(round(meanPrecision,4)) , str(round(meanRecall,4)) , str(round(f1,4)) , str(round(i1_meanAccuracy,4)) , str(round(i1_sd,4)) , str(round(i1_se,4)) , str(round(i2_meanAccuracy,4)) , str(round(i2_sd,4)) , str(round(i2_se,4)) , str(round(initialEstimate_meanAccuracy,4)) , str(round(initialEstimate_sd,4)) , str(round(initialEstimate_se,4))])
+	outputTofile.append( [str(trainingSize), str(round(meanSquaredLoss,4)) , str(round(meanAccuracy,4)) , str(round(sd,4)) , str(round(se,4)) , str(round(meanPrecision,4)) , str(round(meanRecall,4)) , str(round(f1,4)) , str(round(i1_meanAccuracy,4)) , str(round(i1_sd,4)) , str(round(i1_se,4)) , str(round(i2_meanAccuracy,4)) , str(round(i2_sd,4)) , str(round(i2_se,4)) , str(round(i2_initialEstimate_meanAccuracy,4)) , str(round(i2_initialEstimate_sd,4)) , str(round(i2_initialEstimate_se,4)), str(round(initialEstimate_meanAccuracy,4)) , str(round(initialEstimate_sd,4)) , str(round(initialEstimate_se,4))])
 
 
 	fileName = "algo.txt"
