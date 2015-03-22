@@ -96,11 +96,19 @@ f_in.close()
 
 
 # Generate grayCodes for all possible set of unlabled neighbours.
+# Input : No. of bits in gray code
+# Output : count of no. of zeros and ones in gray code.
 grayCodeCounts = {}
 
 def computeGrayCodes(n):
 	if n in grayCodeCounts:
 		return grayCodeCounts[n]
+
+	# When n is 0 return (0,0). This occurs when a call is made with no neighbours. Hence, no 0 or 1 labels to count.
+	if n == 0:
+		counts = set()
+		counts.add( (0,0) )
+		return list(counts)
 
 	grayCodeList = []
 	grayCodeList.append([0])
@@ -139,6 +147,23 @@ def computeGrayCodes(n):
 def sigmoid(Z):
 	g = 1.0 / (1.0 + numpy.exp(-Z))
 	return g
+
+
+
+# Function to generate the class label based on a cutoff value by comparing it with a uniformly generated random number
+# Input : Cutoff i.e. P(label = 1)
+# Output : Class Label (0 or 1)
+def generateClassLabelBasedOnCutoff(cutoff):
+
+	# The input passed in this case is P(label = 1) but the if condition works on P(label=0)
+	cutoff = 1 - cutoff
+
+	x = random.uniform(0,1)
+	if x < cutoff:
+		t = 0
+	else:
+		t = 1
+	return t
 
 
 
@@ -274,7 +299,8 @@ def MPLE(G,label,testLabels,nodeAttributes,mleParameters):
 
 
 	testFeatures = []
-	testLabels = []
+	toTestLabels = []
+	nodeOrder = []
 
 	for node,neighbors in onlyTestG_withTrainingNeighours.iteritems():
 
@@ -289,17 +315,31 @@ def MPLE(G,label,testLabels,nodeAttributes,mleParameters):
 		l.append( n2 )
 
 		testFeatures.append( l )
-		testLabels.append( label[node] )
+		toTestLabels.append( label[node] )
+		nodeOrder.append(node)
 		
-	predicted = result.predict(testFeatures)
-	resultingLabels = (predicted >= threshold).astype(int)
-	initialAccuracy,precision,recall = computeAccuracy1(testLabels,resultingLabels)
+	predictedProbabilities = result.predict(testFeatures)
+	resultingLabels = (predictedProbabilities >= threshold).astype(int)
+	initialAccuracy,precision,recall = computeAccuracy1(toTestLabels,resultingLabels)
 	print initialAccuracy
 	# Compute Initial Estimate -- Completed
 
+	"""
+	print toTestLabels
+	print resultingLabels
+	print testLabels
+	print nodeOrder
+	"""
+
+	currentLabelEstimates = {}
+	for i in range(len(nodeOrder)):
+		currentLabelEstimates[ nodeOrder[i] ] = predictedProbabilities[i]
+
+	
 	#Gibbs Sampling part
 	mpleParameters = result.params
-	arg_t = [G,label,testLabels,nodeAttributes,resultingLabels,mpleParameters]
+	#meanAccuracy, precision, recall, squaredLoss = gibbsSampling_MPLE(G,label,testLabels,nodeAttributes,currentLabelEstimates,mpleParameters)
+	arg_t = [G,label,testLabels,nodeAttributes,currentLabelEstimates,mpleParameters]
 	
 	arguments = []
 	for i in range(noOfTimeToRunGibbsSampling):
@@ -315,6 +355,8 @@ def MPLE(G,label,testLabels,nodeAttributes,mleParameters):
 	meanPrecision,uselessSd,uselessSe,uselessMedian = computeMeanAndStandardError(precision)
 	meanRecall,uselessSd,uselessSe,uselessMedian = computeMeanAndStandardError(recall)
 	meanSquaredLoss,sd,se,uselessMedian = computeMeanAndStandardError(squaredLoss)
+	
+	print meanAccuracy
 
 	return result.params,meanAccuracy,initialAccuracy
 
@@ -342,7 +384,7 @@ def getCounts(node,neighbour,n1,n0):
 	return n3,n4
 
 
-
+"""
 # Computes an upper bound on the propafgation error.
 def computeProgagationUpperBound1(onlyTrainingG,label,L,mpleParameters):
 
@@ -406,6 +448,8 @@ def computeProgagationUpperBound1(onlyTrainingG,label,L,mpleParameters):
 		ki_list[node] =  delta/8 
 
 	return ki_list
+"""
+
 
 
 # Computes an upper bound on the propafgation error.
@@ -429,8 +473,11 @@ def computeProgagationUpperBound(onlyTrainingG,label,trainingLabels,L,mpleParame
 				if label[neighbor] == 0:
 					noOfZeroLabeledNeighbours += 1
 
-		n0 = noOfZeroLabeledNeighbours
-		n1 = len(neighbors) - noOfZeroLabeledNeighbours
+		n0 = 0
+		n1 = 0
+		if labeledNeighbours > 0:
+			n0 = noOfZeroLabeledNeighbours
+			n1 = labeledNeighbours - noOfZeroLabeledNeighbours
 
 		unlabeledNeighbours = len(neighbors) - labeledNeighbours
 
@@ -440,6 +487,7 @@ def computeProgagationUpperBound(onlyTrainingG,label,trainingLabels,L,mpleParame
 			continue
 
 		# Note the Set of all possible configurations is the same for any unlabeled node given the markov blanket of the node under consideration.
+		# When n is 0 return (0,0). This occurs when a call is made with no neighbours. Hence, no 0 or 1 labels to count.
 		unlabeledNeighbourConfigurations = computeGrayCodes(unlabeledNeighbours - 1)
 
 		maxforNode = []
@@ -530,10 +578,15 @@ def computeInitialEstimate(nodeAttributes,onlyTestG,L,finalTestLabels_test,label
 		mu_1 = computeMu(node,neighbors,label,nodeAttributes[node],mleParameters,mpleParameters,lamda)
 		mu[node] = [1-mu_1,mu_1]
 
+		"""
 		t = 0
 		if mu_1	> 0.5:
 			t = 1
 		currentLabelEstimates[node] = t
+		"""
+		# Note: currentLabelEstimate is assigned a probability value so that in actual gibbs sampling function, they can get assigned labels randomly.
+		# Hopefully, that variation will help in getting better label predictions.  
+		currentLabelEstimates[node] = mu_1
 
 	#print "Lamda list:",len(lamda_list)
 	return mu,currentLabelEstimates,lamda_list
@@ -542,6 +595,12 @@ def computeInitialEstimate(nodeAttributes,onlyTestG,L,finalTestLabels_test,label
 
 
 def gibbsSampling(G,label,testLabels,nodeAttributes,currentLabelEstimates,mleParameters,mpleParameters,lamda_list):		
+	
+	# Note the currentLabelEstimates are probability values instead of 0 or 1 labels. The reason they are assigned 0 or 1 inside
+	# this function is because, I wanted to the randomness in the label the get assigned because of using random to be a part of
+	# the different runs. This is done so as ensure different starting points essentailly to have better convergence.
+	for node in currentLabelEstimates:
+		currentLabelEstimates[node] = generateClassLabelBasedOnCutoff( currentLabelEstimates[node] )
 	## Step 2 of algo
 
 	nodeTraversalOrder = testLabels
@@ -570,10 +629,13 @@ def gibbsSampling(G,label,testLabels,nodeAttributes,currentLabelEstimates,mlePar
 			neighbors = G[node]
 			
 			mu_1 = computeMu(node,neighbors,label,nodeAttributes[node],mleParameters,mpleParameters,lamda_list[node])
+			"""
 			t = 0
 			if mu_1	> 0.5:
 				t = 1
 			currentLabelEstimates[node] = t
+			"""
+			currentLabelEstimates[node] = generateClassLabelBasedOnCutoff( mu_1 )
 		
 		if i > burnin:
 			for j in currentLabelEstimates:
@@ -646,7 +708,14 @@ def compute_p_mple(node,neighbors,label,nodeAttributes,mpleParameters):
 
 
 # Gibbs Sampling for MPLE
-def gibbsSampling_MPLE(G,label,testLabels,nodeAttributes,currentLabelEstimates,mpleParameters):		
+def gibbsSampling_MPLE(G,label,testLabels,nodeAttributes,currentLabelEstimates,mpleParameters):	
+
+	# Note the currentLabelEstimates are probability values instead of 0 or 1 labels. The reason they are assigned 0 or 1 inside
+	# this function is because, I wanted to the randomness in the label the get assigned because of using random to be a part of
+	# the different runs. This is done so as ensure different starting points essentailly to have better convergence.
+	for node in currentLabelEstimates:
+		currentLabelEstimates[node] = generateClassLabelBasedOnCutoff( currentLabelEstimates[node] )
+
 	## Step 2 of algo
 
 	nodeTraversalOrder = testLabels
@@ -663,9 +732,17 @@ def gibbsSampling_MPLE(G,label,testLabels,nodeAttributes,currentLabelEstimates,m
 	LabelDifferenceBetweenIterationsCounter = 0
 	previousLabelDifferenceBetweenIterations = 0
 
+	"""
+	LabelDifferenceBetweenIterations = 0
+	for j in currentLabelEstimates:
+		if currentLabelEstimates[j] != label[j]:
+				LabelDifferenceBetweenIterations += 1
+	print "L Diff:","-1",LabelDifferenceBetweenIterations
+	"""
+
 	## Step 3 of algo
 	#print "\nStart of Gibbs....\n"
-
+	
 	for i in range(iteration):
 		
 		LabelDifferenceBetweenIterations = 0
@@ -675,10 +752,16 @@ def gibbsSampling_MPLE(G,label,testLabels,nodeAttributes,currentLabelEstimates,m
 			neighbors = G[node]
 			
 			p_mple = compute_p_mple(node,neighbors,label,nodeAttributes[node],mpleParameters)
+
+			"""
 			t = 0
 			if p_mple >= 0.5:
 				t = 1
 			currentLabelEstimates[node] = t
+			"""
+
+			currentLabelEstimates[node] = generateClassLabelBasedOnCutoff( p_mple )
+			#print p_mple,currentLabelEstimates[node]
 		
 		if i > burnin:
 			for j in currentLabelEstimates:
@@ -689,6 +772,7 @@ def gibbsSampling_MPLE(G,label,testLabels,nodeAttributes,currentLabelEstimates,m
 				temp = int(temp >= 0.5)
 				if temp != label[j]:
 					LabelDifferenceBetweenIterations += 1
+		#print "L Diff:",i,LabelDifferenceBetweenIterations
 
 		
 		if i >= burnin:
@@ -820,7 +904,7 @@ def func_star1(a_b):
 
 noofProcesses = 7
 noOfTimeToRunGibbsSampling = 25
-iteration = 200
+iteration = 500
 
 threshold = 0.5
 
@@ -873,6 +957,8 @@ for trainingSize in trainingSizeList:
 		mleParameters,indepModel_accuracy = independentModel(originalLabels,nodeAttributes,trainingLabels)
 		mpleParameters,mpleModel_accuracy,initialAccuracy = MPLE(originalGraph,originalLabels,testLabels,nodeAttributes,mleParameters)
 
+		#raise SystemExit(0)
+
 		i1.append(indepModel_accuracy)
 		i2.append(mpleModel_accuracy)
 		i2_initialEstimate.append(initialAccuracy)
@@ -903,8 +989,8 @@ for trainingSize in trainingSizeList:
 		for labeledProportion in numpy.arange(0.0,1.0,0.1):
 			print labeledProportion
 
-			if labeledProportion == 0:
-				continue
+			#if labeledProportion == 0:
+			#	continue
 
 			lSize = int(labeledProportion*len(trainingLabels))
 			L = random.sample(trainingLabels,lSize)
@@ -988,7 +1074,8 @@ for trainingSize in trainingSizeList:
 						onlyTrainingG_test[ node ] = newNeighbor
 					"""
 
-
+					# Note: currentLabelEstimate is assigned a probability value so that in actual gibbs sampling function, they can get assigned labels randomly.
+					# Hopefully, that variation will help in getting better label predictions.
 					mu,currentLabelEstimates,lamda_list = computeInitialEstimate(nodeAttributes,onlyTrainingG,L,finalTrainingLabels_test,originalLabels,mleParameters,mpleParameters,t,k0,ki_list)
 
 					arg_t = [onlyTrainingG,originalLabels,finalTrainingLabels_test,nodeAttributes,currentLabelEstimates,mleParameters,mpleParameters,lamda_list]
@@ -1081,6 +1168,8 @@ for trainingSize in trainingSizeList:
 		"""
 
 		#print "here"
+		# Note: currentLabelEstimate is assigned a probability value so that in actual gibbs sampling function, they can get assigned labels randomly.
+		# Hopefully, that variation will help in getting better label predictions.
 		mu,currentLabelEstimates,lamda_list = computeInitialEstimate(nodeAttributes,originalGraph,trainingLabels,testLabels,originalLabels,mleParameters,mpleParameters,t,k0,ki_list)
 		""""
 		print "********************************"
@@ -1090,8 +1179,9 @@ for trainingSize in trainingSizeList:
 		print len(currentLabelEstimates)
 		print "********************************"
 		"""
-		accuracy,precision,recall = computeAccuracy(originalLabels,testLabels,currentLabelEstimates)
-		initialEstimate.append(accuracy)
+		#accuracy,precision,recall = computeAccuracy(originalLabels,testLabels,currentLabelEstimates)
+		#initialEstimate.append(accuracy)
+		initialEstimate.append(0)
 
 		#accuracy, precision, recall, squaredLoss = gibbsSampling(originalGraph,originalLabels,testLabels,nodeAttributes,currentLabelEstimates,mleParameters,mpleParameters,lamda_list)
 		arg_t = [originalGraph,originalLabels,testLabels,nodeAttributes,currentLabelEstimates,mleParameters,mpleParameters,lamda_list]

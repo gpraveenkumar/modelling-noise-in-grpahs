@@ -5,6 +5,11 @@ def computeGrayCodes(n):
 		print "Memoized."
 		return grayCodeCounts[n]
 
+	if n == 0:
+		counts = set()
+		counts.add( (0,0) )
+		return list(counts)
+
 	grayCodeList = []
 	grayCodeList.append([0])
 	grayCodeList.append([1])
@@ -40,3 +45,4 @@ print computeGrayCodes(2)
 print computeGrayCodes(3)
 print computeGrayCodes(2)
 print computeGrayCodes(4)
+print computeGrayCodes(0)
