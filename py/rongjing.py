@@ -14,7 +14,7 @@ basePath = '/homes/pgurumur/jen/noise/py/'
 school = "school074"
 #school = "polblogs"
 #school = "cora"
-#school = "facebook"
+school = "facebook"
 schoolLabel = "label0"
 
 
@@ -100,6 +100,25 @@ f_in.close()
 # Output : count of no. of zeros and ones in gray code.
 grayCodeCounts = {}
 
+def computeGrayCodeCountings(n):
+	if n in grayCodeCounts:
+		return grayCodeCounts[n]
+
+	if n == 0:
+		l = []
+		l.append( (0,0) )
+		return list( l )
+
+	l = []
+
+	for i in range(n+1):
+		l.append( (i,n-i) )
+
+	grayCodeCounts[n] = l
+
+	return grayCodeCounts[n]
+
+"""
 def computeGrayCodes(n):
 	if n in grayCodeCounts:
 		return grayCodeCounts[n]
@@ -138,7 +157,7 @@ def computeGrayCodes(n):
 	grayCodeCounts[n] = list(counts)
 
 	return grayCodeCounts[n]
-
+"""
 
 
 # Function to compute the sigmoid
@@ -356,7 +375,11 @@ def MPLE(G,label,testLabels,nodeAttributes,mleParameters):
 	meanRecall,uselessSd,uselessSe,uselessMedian = computeMeanAndStandardError(recall)
 	meanSquaredLoss,sd,se,uselessMedian = computeMeanAndStandardError(squaredLoss)
 	
-	print meanAccuracy
+	print "meanAccuracy:",meanAccuracy
+
+	#Freeup space
+	del arguments[:]
+	gc.collect()
 
 	return result.params,meanAccuracy,initialAccuracy
 
@@ -488,30 +511,48 @@ def computeProgagationUpperBound(onlyTrainingG,label,trainingLabels,L,mpleParame
 
 		# Note the Set of all possible configurations is the same for any unlabeled node given the markov blanket of the node under consideration.
 		# When n is 0 return (0,0). This occurs when a call is made with no neighbours. Hence, no 0 or 1 labels to count.
-		unlabeledNeighbourConfigurations = computeGrayCodes(unlabeledNeighbours - 1)
+		unlabeledNeighbourConfigurations = computeGrayCodeCountings(unlabeledNeighbours - 1)
 
 		maxforNode = []
 
+		#print "unlabeled:",unlabeledNeighbours
+
 		for tup in unlabeledNeighbourConfigurations:
 			zeros, ones = tup
-			n0 += zeros
-			n1 += ones
+			n0_ = n0 + zeros
+			n1_ = n1 + ones
 
-			n3,n4 = getCounts(1,1,n1,n0)
+			#print unlabeledNeighbours,tup
+			n3,n4 = getCounts(1,1,n1_,n0_)
 			phi1 =  n3*mpleParameters[3] + n4*mpleParameters[4]
-			n3,n4 = getCounts(1,0,n1,n0)
+			#print n3,n4
+			n3,n4 = getCounts(1,0,n1_,n0_)
 			phi0 = n3*mpleParameters[3] + n4*mpleParameters[4]
-			maxforNode.append( 2*abs(phi1 - phi0) )
+			d1 = phi1 - phi0
+			#maxforNode.append( 2*abs(phi1 - phi0) )
+			#print n3,n4
+			#print phi1,phi0,2*abs(phi1 - phi0)
+			#print maxforNode
 
-			n3,n4 = getCounts(0,1,n1,n0)
+			n3,n4 = getCounts(0,1,n1_,n0_)
 			phi1 =  n3*mpleParameters[3] + n4*mpleParameters[4]
-			n3,n4 = getCounts(0,0,n1,n0)
+			#print n3,n4
+			n3,n4 = getCounts(0,0,n1_,n0_)
 			phi0 = n3*mpleParameters[3] + n4*mpleParameters[4]
-			maxforNode.append( 2*abs(phi1 - phi0) )
-		
-		delta = max(maxforNode) 
+			d2 = phi1 - phi0
+			#maxforNode.append( 2*abs(phi1 - phi0) )
+			#print n3,n4
+			#print phi1,phi0,2*abs(phi1 - phi0)
+			#print maxforNode
+			#print "f:",d1,d2,max(d1,d2) - min(d1,d2)
+			maxforNode.append(max(d1,d2) - min(d1,d2))
+
+		#print maxforNode
+		delta_jk = max(maxforNode) 
+		delta = delta_jk*unlabeledNeighbours
 		ki_list[node] =  delta/8 
-
+		#print ki_list[node]
+	
 	return ki_list
 
 
@@ -588,7 +629,7 @@ def computeInitialEstimate(nodeAttributes,onlyTestG,L,finalTestLabels_test,label
 		# Hopefully, that variation will help in getting better label predictions.  
 		currentLabelEstimates[node] = mu_1
 
-	#print "Lamda list:",len(lamda_list)
+	#print "Lamda list:",lamda_list
 	return mu,currentLabelEstimates,lamda_list
 
 
@@ -1013,6 +1054,8 @@ for trainingSize in trainingSizeList:
 		print kappa
 
 		tau = [0.01, 0.1, 0.5, 1.0]
+		#tau = [0.01, 0.1, 0.5, 1.0, 5.0, 10]
+		tau = [0.01, 0.1, 0.5, 1.0, 1.5, 2, 2.5, 3]
 		
 		#kappa = [0.1]
 		#tau = [0.1]
@@ -1056,7 +1099,7 @@ for trainingSize in trainingSizeList:
 					finalTrainingLabels_test = [node for node in trainingLabels if node not in L]
 
 					ki_list = computeProgagationUpperBound(onlyTrainingG,originalLabels,trainingLabels,L,mpleParameters)
-
+					#print ki_list
 					"""
 					onlyTrainingG_test = {}
 					for node, neighbors in onlyTrainingG.iteritems():
@@ -1098,6 +1141,10 @@ for trainingSize in trainingSizeList:
 					print "Classification Error:",1 - meanAccuracy
 					error += 1 - meanAccuracy
 
+					#Freeup space
+					del arguments[:]
+					gc.collect()
+
 				print "Error:",error
 
 				if error < lowestError:
@@ -1105,9 +1152,9 @@ for trainingSize in trainingSizeList:
 					tau_hat = t
 					k0_hat = k0
 
-		print lowestError
-		print t
-		print k0
+		print "lowestError",lowestError
+		print "t",t
+		print "k0",k0
 
 		print "Training Complete....."
 

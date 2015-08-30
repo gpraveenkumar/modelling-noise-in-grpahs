@@ -40,9 +40,39 @@ def computeGrayCodes(n):
 
 	return grayCodeCounts[n]
 
+def computeGrayCodeCountings(n):
+	if n in grayCodeCounts:
+		print "Memoized."
+		return grayCodeCounts[n]
+
+	if n == 0:
+		l = []
+		l.append( (0,0) )
+		return list( l )
+
+	l = []
+
+	for i in range(n+1):
+		l.append( (i,n-i) )
+
+	grayCodeCounts[n] = l
+
+	return grayCodeCounts[n]
+
+
+"""
 print computeGrayCodes(1)
 print computeGrayCodes(2)
 print computeGrayCodes(3)
 print computeGrayCodes(2)
 print computeGrayCodes(4)
 print computeGrayCodes(0)
+"""
+
+
+print computeGrayCodeCountings(1)
+print computeGrayCodeCountings(2)
+print computeGrayCodeCountings(3)
+print computeGrayCodeCountings(2)
+print computeGrayCodeCountings(4)
+print computeGrayCodeCountings(30)
