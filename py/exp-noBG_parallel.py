@@ -248,6 +248,7 @@ def makeGraph_DropLabels(onlyTrainLabels_keys,onlyTrainLabels,onlyTrainGraph,nod
 	return (newGraph,newLabels)		
 
 
+
 def func_star_DropEdges(a_b):
     """Convert `f([1,2])` to `f(1,2)` call."""
     return makeGraph_DropEdges(*a_b)
@@ -513,9 +514,9 @@ def makeNoisyGraphs(action,percentageOfGraph,noOfTimesToRepeat,originalGraph,ori
 
 def func_star(a_b):
     """Convert `f([1,2])` to `f(1,2)` call."""
-    #return gibbsSampling(*a_b)
+    return gibbsSampling(*a_b)
     #return smartBaseline(*a_b)
-    return RN(*a_b)
+    #return RN(*a_b)
     
 
 

@@ -11,7 +11,7 @@ import os
 import statsmodels.api as sm
 
 basePath = '/homes/pgurumur/jen/noise/py/'
-school = "school074"
+#school = "school074"
 #school = "polblogs"
 #school = "cora"
 school = "facebook"

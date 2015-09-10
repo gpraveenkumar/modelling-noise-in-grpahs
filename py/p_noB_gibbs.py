@@ -141,7 +141,7 @@ def computeInitialParameters(G,label,testLabels):
 
 
 
-# Function to set to he value of the intial parameters to fixed values without computing them
+# Function to set to the value of the intial parameters to fixed values without computing them
 # Input : classPrior0,parameter_0given0,parameter_1given1
 # Output : classPrior,estimatedProbabities,classPriorCounts(dummy parameter),estimatedCounts(dummy parameter)
 # The (dummy parameter) are in place just for consistency with the function computeInitialParameters
@@ -248,7 +248,7 @@ def f_maxEntInf(currentLabelEstimates, neighbors, estimatedProbabities, classPri
 """
 
 
-# Note - estimated probability is actually estimated counts - not true anymore
+# Note - estimated probability is actually estimated counts - update: not true anymore
 
 def initializeUnknownLabelsForGibbsSampling(G,label,testLabels,parameters):
 	currentLabelEstimates = dict(label)
@@ -270,7 +270,7 @@ def initializeUnknownLabelsForGibbsSampling(G,label,testLabels,parameters):
 	for node in testLabels:
 		neighbors = G[node]
 
-		#removing all the edges to labels in the test set for computing initial estimates. Original Graph is unaffected.
+		#removing all the edges to nodes/labels in the test set for computing initial estimates. Original Graph is unaffected.
 		newNeighbors = set(neighbors)
 		for i in neighbors: 
 			if i in testLabels:
@@ -361,7 +361,7 @@ def gibbsSampling(edges,label,testLabels,parameters):
 
 	# if the maxEntInfFlag is set to true, the permform the Maximum Entropy Inference Correct from Joel's WWW 15.
 	# Basically this is done so that the proporation of the labels in the unlabels set match the proportion of labels in the labels set.
-	maxEntInfFlag = True
+	maxEntInfFlag = False
 
 
 	# Although the resulting labels has the training Labels also set to zero, they are not used anywhere, so it doesnt matter what value they have.
