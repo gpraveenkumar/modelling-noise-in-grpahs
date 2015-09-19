@@ -1,12 +1,15 @@
 import random
 
 basePath = '/homes/pgurumur/jen/noise/py/'
-#school = "school074"
+school = "school074"
 #school = "polblogs"
 #school = "cora"
-school = "facebook"
-schoolLabel = "label0"
 
+# For Facebook
+school = "facebook"
+noOfLabels = 5906
+
+schoolLabel = "label0"
 
 
 directoryToWriteFile = "RandomTestLabelsForIterations/"
@@ -33,8 +36,6 @@ print "No. of Labels",noOfLabels
 
 # IMPORTANT - This needs to be set based on the length of the graph taken from exp-noBG_parallel.py . Reading the graph above does not throw away nodes with zero edges.
 
-# For Facebook
-noOfLabels = 5906
 
 originalLabels = range(noOfLabels)
 

@@ -46,3 +46,8 @@ ggplot(d2, aes(x=trainingSize, y=accuracy, color=time)) +
 
 suffix = paste(yLabel,"")
 ggsave(file=paste('./plots/', fileName, '_', suffix, '.png' , sep = ""),width=9.69,height=7.79)
+
+
+
+
+
