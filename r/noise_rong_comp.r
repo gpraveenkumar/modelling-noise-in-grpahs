@@ -1,8 +1,8 @@
 setwd("N:/jen/noise/r") 
 library(ggplot2)
 
-#fileName = "Rongjing-mple_noise-school074-label0-flipLabel"
-fileName = "Rongjing-mple_noise-facebook-label0-flipLabel"
+fileName = "Rongjing-mple_noise-school074-label0-flipLabel"
+#fileName = "Rongjing-mple_noise-facebook-label0-flipLabel"
 
 data <- read.table(file = paste('../results/', fileName , '.txt' , sep = ""), header = T, sep="\t")
 
@@ -24,8 +24,49 @@ ggplot(data, aes(x=trainingSize, y=meanSquaredLoss, color=Label) ) +
 # scale_colour_manual(values = rhg_cols) +
 #  
 
-suffix = paste(yLabel,"")
+suffix="_10repeat_"
+suffix = paste(yLabel,suffix,"")
 ggsave(file=paste('./plots/', fileName, '_', suffix, '.png' , sep = ""),width=9.69,height=7.79)
+
+
+data <- subset(data,Label == "originalPMLE" |  Label == "rongjingAlgo" | Label == "rongjingPMLE" | 
+                 Label ==  "05perc_10repeat" |
+                 Label ==  "15perc_10repeat" |
+                 Label ==  "30perc_10repeat" |
+                 Label ==  "40perc_10repeat" |
+                 Label ==  "50perc_10repeat" |
+                 Label ==  "60perc_10repeat" |
+                 Label ==  "70perc_10repeat" |
+                 Label ==  "80perc_10repeat" |
+                 Label ==  "90perc_10repeat" |
+                 Label ==  "100perc_10repeat"
+)
+
+data <- subset(data,Label == "originalPMLE" | Label == "rongjingAlgo" | Label == "rongjingPMLE" | 
+                 Label ==  "05perc_5repeat" |
+                 Label ==  "15perc_5repeat" |
+                 Label ==  "30perc_5repeat" |
+                 Label ==  "40perc_5repeat" |
+                 Label ==  "50perc_5repeat" |
+                 Label ==  "60perc_5repeat" |
+                 Label ==  "70perc_5repeat" |
+                 Label ==  "80perc_5repeat" |
+                 Label ==  "90perc_5repeat" |
+                 Label ==  "100perc_5repeat"
+)
+
+data <- subset(data,Label == "originalPMLE" |  Label == "rongjingAlgo" | Label == "rongjingPMLE" | 
+                 Label ==  "05perc_2repeat" |
+                 Label ==  "15perc_2repeat" |
+                 Label ==  "30perc_2repeat" |
+                 Label ==  "40perc_2repeat" |
+                 Label ==  "50perc_2repeat" |
+                 Label ==  "60perc_2repeat" |
+                 Label ==  "70perc_2repeat" |
+                 Label ==  "80perc_2repeat" |
+                 Label ==  "90perc_2repeat" |
+                 Label ==  "100perc_2repeat"
+)
 
 
 

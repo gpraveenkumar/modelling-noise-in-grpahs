@@ -6,8 +6,8 @@ school = "school074"
 #school = "cora"
 
 # For Facebook
-school = "facebook"
-noOfLabels = 5906
+#school = "facebook"
+#noOfLabels = 5906
 
 schoolLabel = "label0"
 
