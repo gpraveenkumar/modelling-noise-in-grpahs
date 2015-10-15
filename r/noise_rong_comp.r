@@ -2,11 +2,12 @@ setwd("N:/jen/noise/r")
 library(ggplot2)
 
 fileName = "Rongjing-mple_noise-school074-label0-flipLabel"
+fileName = "Rongjing-noisefacebook-label0-algo_cleanedRepeats"
 #fileName = "Rongjing-mple_noise-facebook-label0-flipLabel"
 
 data <- read.table(file = paste('../results/', fileName , '.txt' , sep = ""), header = T, sep="\t")
 
-yLabel = "Squared Loss"
+yLabel = "PMLE Squared Loss"
 
 
 #d2 <- reshape(data,direction="long",idvar="trainingSize",varying=list(2:3),v.names = "squaredLoss")
@@ -15,7 +16,7 @@ yLabel = "Squared Loss"
 
 
 pd <- position_dodge(0)
-ggplot(data, aes(x=trainingSize, y=meanSquaredLoss, color=Label) ) + 
+ggplot(data, aes(x=trainingSize, y=i2_meanSquaredLoss, color=Label) ) + 
   geom_line(position = pd) +
   geom_point(position = pd) +
   ggtitle( fileName ) +
@@ -24,7 +25,7 @@ ggplot(data, aes(x=trainingSize, y=meanSquaredLoss, color=Label) ) +
 # scale_colour_manual(values = rhg_cols) +
 #  
 
-suffix="_10repeat_"
+suffix="_PMLEModel"
 suffix = paste(yLabel,suffix,"")
 ggsave(file=paste('./plots/', fileName, '_', suffix, '.png' , sep = ""),width=9.69,height=7.79)
 

@@ -214,7 +214,7 @@ def independentModel(originalLabels,nodeAttributes,trainingLabels):
 	predicted = result.predict(testFeatures)
 	resultingLabels = (predicted >= threshold).astype(int)
 	accuracy,precision,recall = computeAccuracy1(testLabels,resultingLabels)
-	squaredLoss = computeSquaredLoss(originalLabels,testLabels,resultingLabels)
+	squaredLoss = computeSquaredLoss(originalLabels,testLabels,predicted)
 	print accuracy
 
 	return result.params,accuracy,squaredLoss

@@ -1,13 +1,13 @@
 import random
 
 basePath = '/homes/pgurumur/jen/noise/py/'
-school = "school074"
+#school = "school074"
 #school = "polblogs"
 #school = "cora"
 
 # For Facebook
-#school = "facebook"
-#noOfLabels = 5906
+school = "facebook"
+noOfLabels = 5906
 
 schoolLabel = "label0"
 
@@ -49,6 +49,6 @@ for trainingSize in [0.05,0.1,0.2,0.25,0.3,0.35,0.4,0.45,0.5,0.6,0.7,0.8,0.9]:
 		testLabels = random.sample(originalLabels,noOfLabelsToMask)
 		testLabelsList.append([str(i) for i in testLabels])
 
-	f = open(basePath + directoryToWriteFile + str(testSize) + "_testLabels.txt",'w')
+	f = open(basePath + directoryToWriteFile + school +'/'+ str(testSize) + "_testLabels.txt",'w')
 	f.write('\n'.join(','.join(i) for i in testLabelsList)) 
 	f.close()
