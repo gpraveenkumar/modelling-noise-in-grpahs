@@ -554,3 +554,138 @@ def RN(edges,label,testLabels,parameters):
 	squaredLoss = computeSquaredLoss(label,testLabels,resultingLabels)
 	
 	return (accuracy,precision,recall,classPrior,estimatedProbabities,squaredLoss)
+
+
+
+
+def gibbsSampling_oneLabel(edges,label,testLabels,trainLabels):
+		
+	## Step 2 of algo
+	classPrior,estimatedProbabities,currentLabelEstimates,classPriorCounts,estimatedCounts = initializeUnknownLabelsForGibbsSampling(edges,label,testLabels,parameters)
+
+	nodeTraversalOrder = testLabels
+	random.shuffle(nodeTraversalOrder)
+
+	burnin = 100
+	iteration = 500
+
+	# if the maxEntInfFlag is set to true, the permform the Maximum Entropy Inference Correct from Joel's WWW 15.
+	# Basically this is done so that the proporation of the labels in the unlabels set match the proportion of labels in the labels set.
+	maxEntInfFlag = False
+
+
+	# Although the resulting labels has the training Labels also set to zero, they are not used anywhere, so it doesnt matter what value they have.
+	resultingLabels = {}
+	for i in label:
+		resultingLabels[i] = 0
+
+	LabelDifferenceBetweenIterationsCounter = 0
+	previousLabelDifferenceBetweenIterations = 0
+
+	## Step 3 of algo
+	#print "\nStart of Gibbs....\n"
+
+	for i in range(iteration):
+		
+		LabelDifferenceBetweenIterations = 0
+
+		if maxEntInfFlag:
+			Z = []
+
+		for node in nodeTraversalOrder:
+			#print "\nNode ",node
+			#print "Before Attr. Cor.:", computeCorrelation(computePairs(edges,currentLabelEstimates))
+			neighbors = edges[node]
+			previousEstimate = currentLabelEstimates[node]
+			#currentLabelEstimates[node] = f2(currentLabelEstimates, neighbors, estimatedProbabities, classPrior)
+
+			if maxEntInfFlag:
+				currentLabelEstimates[node] = f_maxEntInf(currentLabelEstimates, neighbors, estimatedProbabities, classPrior)
+				Z.append( currentLabelEstimates[node] )
+			else:
+				currentLabelEstimates[node] = f2(currentLabelEstimates, neighbors, estimatedProbabities, classPrior)
+		
+		# The algorithm as described in Joel's Paper.
+		if maxEntInfFlag:
+			Z = sorted(Z)
+			phi = len(Z) * classPrior[0]
+
+			# We need to find the corresponding value in the Z array. So, the following trick to get a interger index.
+			phi = int(math.floor(phi))
+
+			for node in nodeTraversalOrder:
+				#print currentLabelEstimates[node]
+				cle = currentLabelEstimates[node]
+				cle = logistic( logit(cle) - Z[phi] )
+
+				# Assign them a label based on probability
+				currentLabelEstimates[node] = generateClassLabelBasedOnCutoff(cle)		
+
+		if i > burnin:
+			for j in currentLabelEstimates:
+				if currentLabelEstimates[j] == 1:
+					resultingLabels[j] += 1
+
+				temp = (resultingLabels[j] + 0.0)/(i - burnin) 
+				temp = int(temp >= 0.5)
+				if temp != label[j]:
+					LabelDifferenceBetweenIterations += 1
+
+		
+		if i >= burnin:
+			# Check if the numbers of labels estimated differ from the previous interation
+			if LabelDifferenceBetweenIterations == previousLabelDifferenceBetweenIterations:
+				LabelDifferenceBetweenIterationsCounter += 1
+			else:
+				LabelDifferenceBetweenIterationsCounter = 0
+				previousLabelDifferenceBetweenIterations = LabelDifferenceBetweenIterations
+			
+			#If the estimates don't change for 100 interations, we can exit considering it has converged
+			#if LabelDifferenceBetweenIterationsCounter >= 100:
+			#	print "Interations ended at " + str(i) + " as estimates have not changed!"
+
+				# In the absence on this line
+				#iteration = i
+				#break
+		
+
+		#if not i%10:
+			#print "\n--------------------------------------------------\n" + "Iteration no : " +str(i)
+			#print "Iteration no : " +str(i) + " -> LabelDifferenceBetweenIterations : " + str(LabelDifferenceBetweenIterations)	
+			#print "Current Attr. Cor.:", computeCorrelation(computePairs(edges,currentLabelEstimates))
+			#print classPriorCounts
+			#print classPrior
+			#print estimatedCounts
+			#print sum(sum(estimatedCounts))
+			#print estimatedProbabities
+	
+	# Will be used for computing Squared loss. Is a dictionary because of the 
+	# second line in the for loop and for it to be consistent to resultingLabels
+	resultingLabelsForSquaredLoss = {}
+
+	for i in resultingLabels:
+		resultingLabels[i] = (resultingLabels[i] + 0.0)/(iteration - burnin) 
+		resultingLabelsForSquaredLoss[i] = resultingLabels[i]
+		resultingLabels[i] = int(resultingLabels[i]  >= 0.5)
+	
+	ctr = 0
+	for i in label:
+		if label[i] != resultingLabels[i]:
+			ctr += 1
+
+	#print "\nFinal Results:\nNo. of Labels Mismatched:",ctr
+
+	accuracy,precision,recall = computeAccuracy(label,testLabels,resultingLabels)
+
+	# Compute Squared Loss with the averages of Gibbs sampling before assigning them a single value
+	squaredLoss = computeSquaredLoss(label,testLabels,resultingLabelsForSquaredLoss)
+	
+
+	#print "Accuracy:\n",accuracy
+	#print "% = ",accp
+	#print "Ground Truth:",computeLabelCounts(label,testLabels)
+	#print "Predicted Labels:",computeLabelCounts(resultingLabels,testLabels)
+
+	print "No. of interation in which labels have not changed:",LabelDifferenceBetweenIterationsCounter
+
+	return (accuracy,precision,recall,classPrior,estimatedProbabities,squaredLoss)

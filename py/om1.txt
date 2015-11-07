@@ -1,0 +1,2762 @@
+
+
+
+
+
+trainingSize: 0.5
+testLabels Size: 310
+
+Repetition No.: 1
+In makeNoisyGraphs() ....
+Size of graph: 1240
+Optimization terminated successfully.
+         Current function value: 0.648591
+         Iterations 4
+[-0.66282154  0.95853791  0.53784844]
+0.748387096774
+Optimization terminated successfully.
+         Current function value: 0.646962
+         Iterations 5
+[-0.61987667  0.86089073  0.52733712 -0.11363389  0.1067406 ]
+0.740484429066
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 1
+meanAccuracy: 0.709907834101
+0.0
+0.25
+0.5
+0.75
+[0.055093622885464495, 0.055093622885464502, 0.110187245770929, 0.22037449154185801, 0.33056173731278704]
+Tau: 0.01  k0: 0.0550936228855
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+labeledProportion: 0.0
+Classification Error: 0.374458874459
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.25
+Classification Error: 0.378881987578
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 5
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 5
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+labeledProportion: 0.5
+Classification Error: 0.373959373959
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 8
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 3
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 5
+No. of interation in which labels have not changed: 23
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 6
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 5
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.75
+Classification Error: 0.376744186047
+Error: 1.50404442204
+Tau: 0.01  k0: 0.0550936228855
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 3
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.0
+Classification Error: 0.372877122877
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.25
+Classification Error: 0.370896184561
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 3
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 7
+No. of interation in which labels have not changed: 1
+labeledProportion: 0.5
+Classification Error: 0.389110889111
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 6
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 4
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 5
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 9
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 7
+labeledProportion: 0.75
+Classification Error: 0.369102990033
+Error: 1.50198718658
+Tau: 0.01  k0: 0.110187245771
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+labeledProportion: 0.0
+Classification Error: 0.372377622378
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 1
+labeledProportion: 0.25
+Classification Error: 0.378327417924
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 4
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.5
+Classification Error: 0.397269397269
+No. of interation in which labels have not changed: 5
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 10
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 6
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+labeledProportion: 0.75
+Classification Error: 0.422591362126
+Error: 1.5705657997
+Tau: 0.01  k0: 0.220374491542
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.0
+Classification Error: 0.372294372294
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 4
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 3
+No. of interation in which labels have not changed: 1
+labeledProportion: 0.25
+Classification Error: 0.386645962733
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 4
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.5
+Classification Error: 0.376956376956
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.75
+Classification Error: 0.383056478405
+Error: 1.51895319039
+Tau: 0.01  k0: 0.330561737313
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 4
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+labeledProportion: 0.0
+Classification Error: 0.375624375624
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.25
+Classification Error: 0.384760425909
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+labeledProportion: 0.5
+Classification Error: 0.380785880786
+No. of interation in which labels have not changed: 3
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 3
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 6
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 5
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 3
+labeledProportion: 0.75
+Classification Error: 0.4073089701
+Error: 1.54847965242
+Tau: 0.1  k0: 0.0550936228855
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+labeledProportion: 0.0
+Classification Error: 0.374375624376
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.25
+Classification Error: 0.385980479148
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 3
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 3
+No. of interation in which labels have not changed: 1
+labeledProportion: 0.5
+Classification Error: 0.413752913753
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 4
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 5
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.75
+Classification Error: 0.4
+Error: 1.57410901728
+Tau: 0.1  k0: 0.0550936228855
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.0
+Classification Error: 0.374292374292
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+labeledProportion: 0.25
+Classification Error: 0.37921472937
+No. of interation in which labels have not changed: 3
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.5
+Classification Error: 0.39294039294
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 3
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 3
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 4
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.75
+Classification Error: 0.391362126246
+Error: 1.53780962285
+Tau: 0.1  k0: 0.110187245771
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.0
+Classification Error: 0.37345987346
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.25
+Classification Error: 0.368566992014
+No. of interation in which labels have not changed: 8
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.5
+Classification Error: 0.348484848485
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 9
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 3
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 8
+No. of interation in which labels have not changed: 4
+No. of interation in which labels have not changed: 6
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 11
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.75
+Classification Error: 0.377740863787
+Error: 1.46825257775
+Tau: 0.1  k0: 0.220374491542
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.0
+Classification Error: 0.374292374292
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.25
+Classification Error: 0.364019520852
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+labeledProportion: 0.5
+Classification Error: 0.378454878455
+No. of interation in which labels have not changed: 3
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 6
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 4
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+labeledProportion: 0.75
+Classification Error: 0.363787375415
+Error: 1.48055414901
+Tau: 0.1  k0: 0.330561737313
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.0
+Classification Error: 0.374042624043
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 3
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 3
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.25
+Classification Error: 0.375443655723
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 4
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 3
+No. of interation in which labels have not changed: 1
+labeledProportion: 0.5
+Classification Error: 0.351481851482
+No. of interation in which labels have not changed: 4
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 4
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 11
+No. of interation in which labels have not changed: 3
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 4
+labeledProportion: 0.75
+Classification Error: 0.369102990033
+Error: 1.47007112128
+Tau: 0.5  k0: 0.0550936228855
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.0
+Classification Error: 0.373376623377
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.25
+Classification Error: 0.373003549246
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 5
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 3
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.5
+Classification Error: 0.391941391941
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 5
+No. of interation in which labels have not changed: 5
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.75
+Classification Error: 0.36877076412
+Error: 1.50709232868
+Tau: 0.5  k0: 0.0550936228855
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+labeledProportion: 0.0
+Classification Error: 0.374209124209
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+labeledProportion: 0.25
+Classification Error: 0.383873114463
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 3
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 3
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+labeledProportion: 0.5
+Classification Error: 0.373626373626
+No. of interation in which labels have not changed: 4
+No. of interation in which labels have not changed: 6
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 3
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 4
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 4
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.75
+Classification Error: 0.383388704319
+Error: 1.51509731662
+Tau: 0.5  k0: 0.110187245771
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.0
+Classification Error: 0.375790875791
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.25
+Classification Error: 0.365350488021
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 3
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.5
+Classification Error: 0.389443889444
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 3
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 10
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 5
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 5
+No. of interation in which labels have not changed: 6
+labeledProportion: 0.75
+Classification Error: 0.394019933555
+Error: 1.52460518681
+Tau: 0.5  k0: 0.220374491542
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.0
+Classification Error: 0.375457875458
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.25
+Classification Error: 0.36091393079
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 3
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 4
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 1
+labeledProportion: 0.5
+Classification Error: 0.393606393606
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 9
+No. of interation in which labels have not changed: 16
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 3
+No. of interation in which labels have not changed: 14
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 5
+No. of interation in which labels have not changed: 3
+labeledProportion: 0.75
+Classification Error: 0.365448504983
+Error: 1.49542670484
+Tau: 0.5  k0: 0.330561737313
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 5
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.0
+Classification Error: 0.37296037296
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 3
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.25
+Classification Error: 0.373890860692
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 4
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+labeledProportion: 0.5
+Classification Error: 0.377455877456
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 3
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 15
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 4
+No. of interation in which labels have not changed: 1
+labeledProportion: 0.75
+Classification Error: 0.381727574751
+Error: 1.50603468586
+Tau: 1.0  k0: 0.0550936228855
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 3
+No. of interation in which labels have not changed: 2
+labeledProportion: 0.0
+Classification Error: 0.376123876124
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 1
+labeledProportion: 0.25
+Classification Error: 0.383207630878
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.5
+Classification Error: 0.390775890776
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 7
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 6
+No. of interation in which labels have not changed: 6
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 2
+labeledProportion: 0.75
+Classification Error: 0.37707641196
+Error: 1.52718380974
+Tau: 1.0  k0: 0.0550936228855
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 3
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.0
+Classification Error: 0.377122877123
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+labeledProportion: 0.25
+Classification Error: 0.379547471162
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 4
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+labeledProportion: 0.5
+Classification Error: 0.370795870796
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 5
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 3
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 3
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.75
+Classification Error: 0.358803986711
+Error: 1.48627020579
+Tau: 1.0  k0: 0.110187245771
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.0
+Classification Error: 0.376373626374
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.25
+Classification Error: 0.375887311446
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 3
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.5
+Classification Error: 0.389110889111
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 7
+No. of interation in which labels have not changed: 4
+No. of interation in which labels have not changed: 8
+No. of interation in which labels have not changed: 9
+No. of interation in which labels have not changed: 8
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 4
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.75
+Classification Error: 0.379401993355
+Error: 1.52077382029
+Tau: 1.0  k0: 0.220374491542
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.0
+Classification Error: 0.375957375957
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 3
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.25
+Classification Error: 0.359804791482
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 3
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 4
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 2
+labeledProportion: 0.5
+Classification Error: 0.388611388611
+No. of interation in which labels have not changed: 3
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 5
+No. of interation in which labels have not changed: 6
+No. of interation in which labels have not changed: 5
+No. of interation in which labels have not changed: 3
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 7
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 3
+No. of interation in which labels have not changed: 1
+labeledProportion: 0.75
+Classification Error: 0.363455149502
+Error: 1.48782870555
+Tau: 1.0  k0: 0.330561737313
+No. of interation in which labels have not changed: 3
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+labeledProportion: 0.0
+Classification Error: 0.372793872794
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+labeledProportion: 0.25
+Classification Error: 0.363575865129
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 7
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 3
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.5
+Classification Error: 0.368631368631
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 7
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 4
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 4
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 4
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 3
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.75
+Classification Error: 0.335215946844
+Error: 1.4402170534
+lowestError 1.4402170534
+t 1.0
+k0 0.330561737313
+Training Complete.....
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 4
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 5
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+Classification Error: 0.298847926267
+
+Repetition No.: 2
+In makeNoisyGraphs() ....
+Size of graph: 1240
+Optimization terminated successfully.
+         Current function value: 0.642888
+         Iterations 5
+[-0.68893787  1.01337882  0.57579412]
+0.758064516129
+Optimization terminated successfully.
+         Current function value: 0.642373
+         Iterations 5
+[-0.61751722  1.02386883  0.56984491 -0.05272982  0.02283699]
+0.750877192982
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 4
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 5
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 3
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+meanAccuracy: 0.75599078341
+0.0
+0.25
+0.5
+0.75
+[0.018891700329562965, 0.037783400659125929, 0.056675100988688894, 0.075566801318251858, 0.11335020197737783]
+Tau: 0.01  k0: 0.0188917003296
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 4
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.0
+Classification Error: 0.355212355212
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 6
+No. of interation in which labels have not changed: 2
+labeledProportion: 0.25
+Classification Error: 0.358966108966
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 8
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 3
+labeledProportion: 0.5
+Classification Error: 0.361164736165
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 7
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 11
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.75
+Classification Error: 0.324967824968
+Error: 1.40031102531
+Tau: 0.01  k0: 0.0377834006591
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.0
+Classification Error: 0.358027670528
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.25
+Classification Error: 0.344701844702
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 6
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.5
+Classification Error: 0.356338481338
+No. of interation in which labels have not changed: 8
+No. of interation in which labels have not changed: 11
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 4
+No. of interation in which labels have not changed: 4
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 16
+No. of interation in which labels have not changed: 7
+labeledProportion: 0.75
+Classification Error: 0.390926640927
+Error: 1.44999463749
+Tau: 0.01  k0: 0.0566751009887
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.0
+Classification Error: 0.354971042471
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.25
+Classification Error: 0.346846846847
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 3
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 5
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.5
+Classification Error: 0.339929214929
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 10
+No. of interation in which labels have not changed: 6
+No. of interation in which labels have not changed: 7
+No. of interation in which labels have not changed: 3
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 19
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 6
+labeledProportion: 0.75
+Classification Error: 0.353281853282
+Error: 1.39502895753
+Tau: 0.01  k0: 0.0755668013183
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.0
+Classification Error: 0.356740669241
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 1
+labeledProportion: 0.25
+Classification Error: 0.350171600172
+No. of interation in which labels have not changed: 4
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 4
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 3
+No. of interation in which labels have not changed: 4
+No. of interation in which labels have not changed: 7
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.5
+Classification Error: 0.356821106821
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 16
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 9
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 4
+No. of interation in which labels have not changed: 24
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 4
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.75
+Classification Error: 0.39703989704
+Error: 1.46077327327
+Tau: 0.01  k0: 0.113350201977
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 3
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 3
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.0
+Classification Error: 0.356258043758
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.25
+Classification Error: 0.35102960103
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 3
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.5
+Classification Error: 0.34925997426
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 3
+No. of interation in which labels have not changed: 6
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 6
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 11
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 29
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.75
+Classification Error: 0.351673101673
+Error: 1.40822072072
+Tau: 0.1  k0: 0.0188917003296
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+labeledProportion: 0.0
+Classification Error: 0.355373230373
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.25
+Classification Error: 0.343951093951
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 3
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.5
+Classification Error: 0.347168597169
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 4
+No. of interation in which labels have not changed: 8
+No. of interation in which labels have not changed: 6
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 6
+No. of interation in which labels have not changed: 3
+No. of interation in which labels have not changed: 3
+No. of interation in which labels have not changed: 6
+labeledProportion: 0.75
+Classification Error: 0.373552123552
+Error: 1.42004504505
+Tau: 0.1  k0: 0.0377834006591
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 4
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.0
+Classification Error: 0.356258043758
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 4
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 1
+labeledProportion: 0.25
+Classification Error: 0.369691119691
+No. of interation in which labels have not changed: 3
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 5
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 3
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.5
+Classification Error: 0.368404118404
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 10
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 3
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 6
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 1
+labeledProportion: 0.75
+Classification Error: 0.330115830116
+Error: 1.42446911197
+Tau: 0.1  k0: 0.0566751009887
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+labeledProportion: 0.0
+Classification Error: 0.356981981982
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 3
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 5
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.25
+Classification Error: 0.362934362934
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 4
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 4
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 7
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+labeledProportion: 0.5
+Classification Error: 0.366473616474
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 4
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 5
+No. of interation in which labels have not changed: 4
+No. of interation in which labels have not changed: 8
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 4
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 11
+No. of interation in which labels have not changed: 1
+labeledProportion: 0.75
+Classification Error: 0.348455598456
+Error: 1.43484555985
+Tau: 0.1  k0: 0.0755668013183
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.0
+Classification Error: 0.355051480051
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 9
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.25
+Classification Error: 0.369583869584
+No. of interation in which labels have not changed: 4
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 3
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.5
+Classification Error: 0.348938223938
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 8
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 11
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 4
+No. of interation in which labels have not changed: 7
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 22
+labeledProportion: 0.75
+Classification Error: 0.323359073359
+Error: 1.39693264693
+Tau: 0.1  k0: 0.113350201977
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 3
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.0
+Classification Error: 0.356338481338
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+labeledProportion: 0.25
+Classification Error: 0.375053625054
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 4
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 3
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 4
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 3
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.5
+Classification Error: 0.343951093951
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 3
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 12
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.75
+Classification Error: 0.368725868726
+Error: 1.44406906907
+Tau: 0.5  k0: 0.0188917003296
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.0
+Classification Error: 0.354488416988
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 3
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.25
+Classification Error: 0.36700986701
+No. of interation in which labels have not changed: 3
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 3
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 5
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.5
+Classification Error: 0.331402831403
+No. of interation in which labels have not changed: 4
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 2
+labeledProportion: 0.75
+Classification Error: 0.355855855856
+Error: 1.40875697126
+Tau: 0.5  k0: 0.0377834006591
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+labeledProportion: 0.0
+Classification Error: 0.355131917632
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.25
+Classification Error: 0.366688116688
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 3
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 3
+No. of interation in which labels have not changed: 3
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.5
+Classification Error: 0.368725868726
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 3
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 11
+No. of interation in which labels have not changed: 6
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 3
+No. of interation in which labels have not changed: 3
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.75
+Classification Error: 0.353603603604
+Error: 1.44414950665
+Tau: 0.5  k0: 0.0566751009887
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.0
+Classification Error: 0.357866795367
+No. of interation in which labels have not changed: 4
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 13
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 3
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.25
+Classification Error: 0.351565851566
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.5
+Classification Error: 0.363577863578
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 9
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 4
+labeledProportion: 0.75
+Classification Error: 0.351673101673
+Error: 1.42468361218
+Tau: 0.5  k0: 0.0755668013183
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 1
+labeledProportion: 0.0
+Classification Error: 0.354407979408
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.25
+Classification Error: 0.367224367224
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.5
+Classification Error: 0.335424710425
+No. of interation in which labels have not changed: 18
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.75
+Classification Error: 0.324646074646
+Error: 1.3817031317
+Tau: 0.5  k0: 0.113350201977
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 3
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.0
+Classification Error: 0.357223294723
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 3
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+labeledProportion: 0.25
+Classification Error: 0.350600600601
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 4
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 7
+labeledProportion: 0.5
+Classification Error: 0.351833976834
+No. of interation in which labels have not changed: 12
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 16
+No. of interation in which labels have not changed: 6
+No. of interation in which labels have not changed: 12
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 6
+labeledProportion: 0.75
+Classification Error: 0.341055341055
+Error: 1.40071321321
+Tau: 1.0  k0: 0.0188917003296
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+labeledProportion: 0.0
+Classification Error: 0.355131917632
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 3
+labeledProportion: 0.25
+Classification Error: 0.373873873874
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 4
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 3
+labeledProportion: 0.5
+Classification Error: 0.347972972973
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 20
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 5
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.75
+Classification Error: 0.359073359073
+Error: 1.43605212355
+Tau: 1.0  k0: 0.0377834006591
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 3
+labeledProportion: 0.0
+Classification Error: 0.353362290862
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 3
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.25
+Classification Error: 0.356284856285
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 4
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.5
+Classification Error: 0.361647361647
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 4
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 3
+No. of interation in which labels have not changed: 1
+labeledProportion: 0.75
+Classification Error: 0.362290862291
+Error: 1.43358537109
+Tau: 1.0  k0: 0.0566751009887
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.0
+Classification Error: 0.353362290862
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.25
+Classification Error: 0.359395109395
+No. of interation in which labels have not changed: 5
+No. of interation in which labels have not changed: 3
+No. of interation in which labels have not changed: 3
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 4
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 3
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.5
+Classification Error: 0.383526383526
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 7
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 9
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 6
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 4
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.75
+Classification Error: 0.357142857143
+Error: 1.45342664093
+Tau: 1.0  k0: 0.0755668013183
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+labeledProportion: 0.0
+Classification Error: 0.356821106821
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.25
+Classification Error: 0.353710853711
+No. of interation in which labels have not changed: 3
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 11
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 3
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 7
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.5
+Classification Error: 0.339124839125
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 10
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 4
+No. of interation in which labels have not changed: 5
+No. of interation in which labels have not changed: 15
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 4
+labeledProportion: 0.75
+Classification Error: 0.333655083655
+Error: 1.38331188331
+Tau: 1.0  k0: 0.113350201977
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.0
+Classification Error: 0.356177606178
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.25
+Classification Error: 0.350600600601
+No. of interation in which labels have not changed: 3
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 8
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.5
+Classification Error: 0.362451737452
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 3
+No. of interation in which labels have not changed: 2
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 4
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 4
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 6
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+labeledProportion: 0.75
+Classification Error: 0.348133848134
+Error: 1.41736379236
+lowestError 1.3817031317
+t 1.0
+k0 0.113350201977
+Training Complete.....
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 3
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 3
+No. of interation in which labels have not changed: 0
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 1
+No. of interation in which labels have not changed: 3
+No. of interation in which labels have not changed: 3
+Classification Error: 0.246543778802
+[0.70115207373271893, 0.75345622119815669]
+Prediction meanAccuracy 0.727304147465
+Prediction SD: 0.0261520737327
+Prediction SE: 0.0184923086785
+Prediction MeanPrecision: 0.742945761653
+Prediction MeanRecall: 0.657554945055
+Prediction F1: 0.697647144543
+[0.20359097926267294, 0.18551992511520746]
+MeanSquaredLoss: 0.194555452189

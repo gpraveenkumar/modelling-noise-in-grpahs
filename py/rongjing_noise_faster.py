@@ -1317,8 +1317,8 @@ Action = "flipLabel"
 performInfernceOnly = False
 
 noofProcesses = 7
-noOfTimeToRunGibbsSampling = 25
-iteration = 500
+noOfTimeToRunGibbsSampling = 14
+iteration = 300
 threshold = 0.5
 
 if performInfernceOnly:
@@ -1381,14 +1381,14 @@ for trainingSize in trainingSizeList:
 		outputTofile = []
 		for noOfTimesToRepeat in noOfTimesToRepeatList:
 
-			for i in range(10):
+			for i in range(5):
 				print "\nRepetition No.:",i+1
 
 				# Uncomment the first line to generate random testLabels for each iteration
 				# Uncomment the second line to read the generated random testLabels for each iteration. Based on Jen's suggestion to keep the testLabels constant across iterations.
 				
-				testLabels = random.sample(originalLabels,noOfLabelsToMask)
-				#testLabels = testLabelsList[i]
+				#testLabels = random.sample(originalLabels,noOfLabelsToMask)
+				testLabels = testLabelsList[i]
 				
 				# When there is no need to repeat just work with the original graph
 				if noOfTimesToRepeat == 0:
@@ -1443,7 +1443,7 @@ for trainingSize in trainingSizeList:
 				#print len(trainingLabels)
 
 				kappas = []
-				for labeledProportion in numpy.arange(0.0,1.0,0.1):
+				for labeledProportion in numpy.arange(0.0,1.0,0.25):
 					print labeledProportion
 
 					#if labeledProportion == 0:
@@ -1508,7 +1508,7 @@ for trainingSize in trainingSizeList:
 						error = 0
 						#error = innerLoop_trainTestAlgo(trainingLabels,onlyTrainingG,currentNodeAttributes,mleParameters,mpleParameters,t,k0)
 
-						for labeledProportion in numpy.arange(0.0,1.0,0.1):
+						for labeledProportion in numpy.arange(0.0,1.0,0.25):
 
 							lSize = int(labeledProportion*len(trainingLabels))
 							L = random.sample(trainingLabels,lSize)
@@ -1554,6 +1554,7 @@ for trainingSize in trainingSizeList:
 							meanRecall,uselessSd,uselessSe,uselessMedian = computeMeanAndStandardError(recall)
 							meanSquaredLoss,sd,se,uselessMedian = computeMeanAndStandardError(squaredLoss)
 							
+							print "labeledProportion:",labeledProportion
 							print "Classification Error:",1 - meanAccuracy
 							error += 1 - meanAccuracy
 
@@ -1712,7 +1713,7 @@ for trainingSize in trainingSizeList:
 
 
 			fileName = "algo.txt"
-			path = basePath + '../results/Rongjing-noise-corrected-' + school + '-' + schoolLabel + '-'
+			path = basePath + '../results/Rongjing-noise-faster-' + school + '-' + schoolLabel + '-'
 			f_out = open(path+fileName,'a')
 
 			for otf in outputTofile:
@@ -1720,3 +1721,4 @@ for trainingSize in trainingSizeList:
 
 			f_out.close()
 						
+#om
