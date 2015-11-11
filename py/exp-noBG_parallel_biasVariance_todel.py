@@ -7,10 +7,10 @@ from multiprocessing import Pool
 import gc
 
 basePath = '/homes/pgurumur/jen/noise/py/'
-#school = "school074"
+school = "school074"
 #school = "polblogs"
 #school = "cora"
-school = "facebook"
+#school = "facebook"
 schoolLabel = "label0"
 
 
@@ -519,10 +519,17 @@ def func_star(a_b):
     #return RN(*a_b)
 
 
+
+def func_star_oneLabel(a_b):
+    """Convert `f([1,2])` to `f(1,2)` call."""
+    return gibbsSampling_oneLabel(*a_b)
+
+
+
 def func_star_biasVariance(a_b):
     """Convert `f([1,2])` to `f(1,2)` call."""
     return gibbsSampling_biasVariance(*a_b)
-    
+
 
 
 # ListOfObject can be a list of numbers or a list of vectors or a list of matrices
@@ -579,29 +586,10 @@ def writeToFile(l):
 	fileName = l[0]
 	# Remove the fileName from the list, so as to facilitate join
 	l.pop(0)
-	path = basePath + '../results/' + school + '-' + schoolLabel + '_biasVariance_'
+	path = basePath + '../results/' + school + '-' + schoolLabel + '_rn_'
 	f_out = open(path+fileName,'a')
 	f_out.write("\t".join(l)  + "\n")
 	f_out.close()
-
-
-
-def computeDifference_bias_variance(predictedLabels,originalLabels):
-	differences = []
-	for label in predictedLabels:
-		differences.append( abs(originalLabels[label] - predictedLabels[label]) )
-
-	mean = numpy.mean(differences,0)
-	sd = numpy.std(differences,0)
-	var = math.pow(sd,2)
-	bias = math.pow(mean,2)
-	return (bias,var)
-
-
-
-
-
-
 
 
 
@@ -651,7 +639,7 @@ else:
 #Read the testLabels from the files to make it constant across runs
 testLabelsList = []
 testSize = 1-trainingSizeList[0]
-f = open(basePath + "RandomTestLabelsForIterations/" + school + '/' + str(testSize) + "_testLabels.txt")
+f = open(basePath + "RandomTestLabelsForIterations/" + str(testSize) + "_testLabels.txt")
 tLL = f.readlines()
 f.close
 
@@ -672,20 +660,17 @@ for trainingSize in trainingSizeList:
 				noOfLabelsToMask = int(testSize*len(originalLabels))
 				print "testLabels Size:",noOfLabelsToMask
 
-				#a1 = []
-				#p1 = []
-				#r1 = []
-				#e1 = []
-				#c1 = []
+				a1 = []
+				p1 = []
+				r1 = []
+				e1 = []
+				c1 = []
 				s1 = []
-				lb = []
-				lv = []
-				tb = []
-				tv = []
-				ib = []
-				iv = []
 
-				for i in range(50):
+				Baseline_0 =[1,0]
+				Baseline_1 =[1,0]
+
+				for i in range(5):
 					print "\nRepetition No.:",i+1
 
 					# Uncomment the first line to generate random testLables for each iteration
@@ -702,90 +687,121 @@ for trainingSize in trainingSizeList:
 					
 					print "Size of graph:",len(currentLabels)
 
+
+					# New training
+
+					trainingPredictedLabels = {}
+					for labels in testLables:
+						trainingPredictedLabels[label] = 0
+
+					noOfTrainLabel = len(originalLabels) - noOfLabelsToMask
+
+					lp = []
+					tp = []
+					sq = []
+
+					for j in range(5):
+						trainLabels = random.sample(originalLabels,noOfTrainLabel)
+						arg_t = [currentGraph,currentLabels,testLabels,trainLabels]
+
+						arguments = []
+						for i in range(25):
+							arguments.append(list(arg_t))
+
+						pool = Pool(processes=noofProcesses)
+						y = pool.map(func_star_oneLabel, arguments)
+						pool.close()
+						pool.join()
+
+						learningPredictions, totalPredictions, squaredLoss = zip(*y)
+
+						lp.append(learningPredictions)
+						for tt in totalPredictions
+							tp.append(tt)
+						for tt in squaredLoss
+							sp.append(tt)					
+
 					if performInfernceOnly:
 						arg_t = [currentGraph,currentLabels,testLabels,parameters]
 					else:
-						arg_t = [currentGraph,currentLabels,testLabels,None,originalLabels,noOfLabelsToMask]	
+						arg_t = [currentGraph,currentLabels,testLabels,None]	
+
 
 					arguments = []
-					for i in range(5):
+					for i in range(25):
 						arguments.append(list(arg_t))
-
-					#print "here"
 
 					pool = Pool(processes=noofProcesses)
 					y = pool.map(func_star_biasVariance, arguments)
 					pool.close()
 					pool.join()
 
-					lp, tp, sq = zip(*y)
+					testingPredictedLabels = {}
+					for label in testLables:
+						testingPredictedLabels[label] = 0
 
-					learningPredictions = []						
-					for tt in lp:
-						learningPredictions.append(tt)
+					for dic in y:
+						for label in testLables:
+							trainingPredictedLabels[label] += dic[label]
 
+					accuracy, precision, recall, classPrior, estimatedProbabities, squaredLoss = zip(*y)
+					meanAccuracy,sd,se,uselessMedian = computeMeanAndStandardError(accuracy)
+					meanPrecision,uselessSd,uselessSe,uselessMedian = computeMeanAndStandardError(precision)
+					meanRecall,uselessSd,uselessSe,uselessMedian = computeMeanAndStandardError(recall)
+					meanSquaredLoss,sd,se,uselessMedian = computeMeanAndStandardError(squaredLoss)
+
+					meanClassPrior,sdClassPrior,seClassPrior,uselessMedian = computeMeanAndStandardError(classPrior)
+					meanEstimatedProbabilities,seEstimatedProbabilities,seEstimatedProbabilities,uselessMedian = computeMeanAndStandardError(estimatedProbabities)
 					
-					totalPredictions = []						
-					for tt in tp:
-						for ttt in tt:
-							totalPredictions.append(ttt)
 
-
-					print "length learningPredictions:",len(learningPredictions)
-					print "length totalPredictions:",len(totalPredictions)
+					predictedLabels = setLabelForBaselineAccuracies(currentLabels, testLabels, 0)
+					curBaselineValue,uselessPrecision,uselessRecall = computeAccuracy(currentLabels,testLabels, predictedLabels )
+					#curBaselineValue = computeSquaredLoss(currentLabels,testLabels, predictedLabels )
+					Baseline_0 = updateBaselineRanges(Baseline_0,curBaselineValue)
+					print "Baseline_0:", curBaselineValue
+					predictedLabels = setLabelForBaselineAccuracies(currentLabels, testLabels, 1)
+					curBaselineValue,uselessPrecision,uselessRecall = computeAccuracy(currentLabels,testLabels, predictedLabels )
+					#curBaselineValue = computeSquaredLoss(currentLabels,testLabels, predictedLabels )
+					Baseline_1 = updateBaselineRanges(Baseline_1,curBaselineValue)
+					print "Baseline_1:", curBaselineValue
+					print "MeanAccuracy:",meanAccuracy
+					print "SD:",sd
+					print "SE:",se
+					print "MeanPrecision:",meanPrecision
+					print "MeanRecall:",meanRecall
+					print "MeanSquaredLoss:",meanSquaredLoss
 					
-
-					ylm = {}
-					ytm = {}	
-
-					for label in testLabels:
-						ylm[label] = 0				
-						ytm[label] = 0
-
-					for dic in learningPredictions:
-						for label in ylm:
-							ylm[label] += dic[label]
-
-					for label in ylm:
-						ylm[label] /= len(learningPredictions)
-
-					for dic in totalPredictions:
-						for label in ytm:
-							ytm[label] += dic[label]
-
-					for label in ytm:
-						ytm[label] /= len(totalPredictions)
-
-
-					learningBias, learningVariance = computeDifference_bias_variance(ylm,originalLabels)
-					totalBias, totalVariance = computeDifference_bias_variance(ytm,originalLabels)
-
-					lb.append(learningBias)
-					lv.append(learningVariance)
-					tb.append(totalBias)
-					tv.append(totalVariance)
-					ib.append(totalBias-learningBias)
-					iv.append(totalVariance-learningVariance)
-
-					for tt in sq:
-						for ttt in tt:
-							s1.append(ttt)
+					# This sd and variance are less than 10<-16
+					#print "MeanClassPrior:",meanClassPrior
+					#print "ClassPriorSD:",classPriorSd
+					#print "ClassPriorSE:",classPriorSe
+					#print "MeanEstimatedProbabilities:\n",meanEstimatedProbabilities
+					#print "EstimatedProbabilitiesSD:\n",sdEstimatedProbabilities
+					#print "EstimatedProbabilitiesSE:\n",seEstimatedProbabilities
+					a1.append(meanAccuracy)
+					p1.append(meanPrecision)
+					r1.append(meanRecall)
+					c1.append(meanClassPrior)
+					e1.append(meanEstimatedProbabilities)
+					s1.append(meanSquaredLoss)
 
 					#Freeup space
 					del arguments[:]
 					gc.collect()
 				#print se
-				
-				print "#####"
-				print "length s1:",len(s1)
-				avgSquaredLoss,useless1,useless2,useless3 = computeMeanAndStandardError(s1)
-				avgLearningBias,useless1,useless2,useless3 = computeMeanAndStandardError(lb)
-				avgLearningVariance,useless1,useless2,useless3 = computeMeanAndStandardError(lv)
-				avgTotalBias,useless1,useless2,useless3 = computeMeanAndStandardError(tb)
-				avgTotalVariance,useless1,useless2,useless3 = computeMeanAndStandardError(tv)
-				avgInferenceBias,useless1,useless2,useless3 = computeMeanAndStandardError(ib)
-				avgInferenceVariance,useless1,useless2,useless3 = computeMeanAndStandardError(iv)
 
+				meanAccuracy,sd,se,medianAccuracy = computeMeanAndStandardError(a1)
+				meanPrecision,useless1,useless2,medianPrecision = computeMeanAndStandardError(p1)
+				meanRecall,useless1,useless2,medianRecall = computeMeanAndStandardError(r1)
+				meanClassPrior,sdClassPrior,seClassPrior,uselessMedian = computeMeanAndStandardError(c1)
+				meanEstimatedProbabilities,sdEstimatedProbabilities,sdEstimatedProbabilities,uselessMedian = computeMeanAndStandardError(e1)
+				meanSquaredLoss,useless1,useless2,useless3 = computeMeanAndStandardError(s1)
+
+				f1 = 0
+				# Precision and Recall are calculated w.r.t label 1. So if everything converges to label 0, both P and R will be 0
+				if meanPrecision != 0 and meanRecall != 0:
+					f1 = (2*meanPrecision*meanRecall)/(meanPrecision+meanRecall)
+				
 				# Calculating medianPrecision and medianRecall might not make sense... because precicion and recall are dependent .... and median can select different values for them.
 				#f1_median = (2*medianPrecision*medianRecall)/(medianPrecision+medianRecall)
 
@@ -794,19 +810,53 @@ for trainingSize in trainingSizeList:
 					prefix = str(int(percentageOfGraph*100)) + "FL_" + str(int(percentageOfGraph2*100)) + "DE_" + str(noOfTimesToRepeat) + "repeat"
 				
 				print "\nFINAL .................. "
-				print "avgSquaredLoss :",avgSquaredLoss
-				print "avgLearningBias :",avgLearningBias
-				print "avgLearningVariance :",avgLearningVariance
-				print "avgTotalBias :",avgTotalBias
-				print "avgTotalVariance :",avgTotalVariance
-				print "avgInferenceBias :",avgInferenceBias
-				print "avgInferenceVariance :",avgInferenceVariance
-				
+				print "Baseline_0 range:", Baseline_0
+				t = sum(Baseline_0)/len(Baseline_0)
+				t1 = t - Baseline_0[0]
+				print "B_0_mean:",t
+				print "B_0_std:",t1
+				print "Baseline_1 range:", Baseline_1
+				#outputTofile.append( [ Action + "ResultsBaselines.txt",prefix + "_Baseline_0" , str(trainingSize) , str(round(t,4)) , str(round(t1,4)) ] )
+				t = sum(Baseline_1)/len(Baseline_1)
+				t1 = t - Baseline_1[0]
+				print "B_1_mean:",t
+				print "B_1_std:",t1
+				#outputTofile.append( [ Action + "ResultsBaselines.txt",prefix + "_Baseline_1" , str(trainingSize) , str(round(t,4)) , str(round(t1,4)) ] )
+				print a1
+				print "Prediction medianAccuracy:",medianAccuracy
+				print "Prediction meanAccuracy:",meanAccuracy
+				print "Prediction SD:",sd
+				print "Prediction SE:",se
+				print "Prediction MeanPrecision:",meanPrecision
+				print "Prediction MeanRecall:",meanRecall
+				print "Prediction F1:",f1
+				print "MeanClassPrior:",meanClassPrior
+				print "ClassPriorSD:",sdClassPrior
+				print "ClassPriorSE:",seClassPrior
+				print "MeanEstimatedProbabilities:\n",meanEstimatedProbabilities
+				print "EstimatedProbabilitiesSD:\n",sdEstimatedProbabilities
+				print "EstimatedProbabilitiesSE:\n",seEstimatedProbabilities
+				print s1
+				print "MeanSquaredLoss:",meanSquaredLoss
 				#outputTofile.append( [ Action + "ResultsBaselines.txt",prefix , str(trainingSize) , str(round(meanAccuracy,4)) , str(round(sd,4)) , str(round(se,4)) , str(round(meanPrecision,4)) , str(round(meanRecall,4)) , str(round(f1,4)), str(round(medianAccuracy,4))])
-				outputTofile.append( [ Action + "Results_50iter.txt",prefix , str(trainingSize) , str(round(avgSquaredLoss,4)) , str(round(avgLearningBias,4)) , str(round(avgLearningVariance,4)) , str(round(avgTotalBias,4)) , str(round(avgTotalVariance,4)) , str(round(avgInferenceBias,4)) , str(round(avgInferenceVariance,4)) ])
+				outputTofile.append( [ Action + "Results.txt",prefix , str(trainingSize) , str(round(meanSquaredLoss,4)) , str(round(meanAccuracy,4)) , str(round(sd,4)) , str(round(se,4)) , str(round(meanPrecision,4)) , str(round(meanRecall,4)) , str(round(f1,4)), str(round(medianAccuracy,4)), str(round(meanClassPrior[0],4)), str(round(sdClassPrior[0],4)), str(round(seClassPrior[0],4)), str(round(meanEstimatedProbabilities[0,0],4)), str(round(sdEstimatedProbabilities[0,0],4)), str(round(seEstimatedProbabilities[0,0],4)), str(round(meanEstimatedProbabilities[1,1],4)), str(round(sdEstimatedProbabilities[1,1],4)), str(round(seEstimatedProbabilities[1,1],4))])
 				#outputTofile.append( [ Action + "Results.txt","Median_"+prefix , str(trainingSize) , str(round(medianAccuracy,4)) , str(round(0,4)) , str(round(0,4)) , str(round(0,4)) , str(round(0,4)) , str(round(0,4)) ])
 				#print e1
-				
+				q1 = [i[0] for i in c1]
+				print "prior"
+				print q1
+				print numpy.mean(q1)
+				print numpy.median(q1)
+				q2 =  [i[0,0] for i in e1]
+				print "0given0"
+				print q2
+				print numpy.mean(q2)
+				print numpy.median(q2)
+				q3 = [i[1,1] for i in e1]
+				print "1given1"
+				print q3
+				print numpy.mean(q3)
+				print numpy.median(q3)
 		for otf in outputTofile:
 			writeToFile(otf)
 
