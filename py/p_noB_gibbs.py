@@ -182,6 +182,11 @@ def generateClassLabelBasedOnCutoff(cutoff):
 	return t
 
 
+"""
+
+# Old f1 and f2. Making it faster using the new code.
+# Change made before implementing Hoda's method
+
 def f1(nodeLabel, currentLabelEstimates, neighbors, estimatedProbabities, classPrior):
 	noOfZeroLabeledNeighbours = 0
 	for i in neighbors:
@@ -222,6 +227,40 @@ def f2(currentLabelEstimates, neighbors, estimatedProbabities, classPrior):
 	#print str(t),str(int(class1/class0 > 1)),'\n'
 
 	return t#int(class1/class0 > 1)
+"""
+
+
+
+def f1(currentLabelEstimates, neighbors, estimatedProbabities, classPrior):
+	noOfZeroLabeledNeighbours = 0
+	for i in neighbors:
+		if currentLabelEstimates[i] == 0:
+			noOfZeroLabeledNeighbours += 1
+
+	nodeLabel = 0
+	t = math.log( classPrior[nodeLabel] ) +  noOfZeroLabeledNeighbours*math.log( estimatedProbabities[nodeLabel,0] ) +  (len(neighbors)-noOfZeroLabeledNeighbours)*math.log( estimatedProbabities[nodeLabel,1] )
+	prob0 = math.exp( t )
+
+	nodeLabel = 1
+	t = math.log( classPrior[nodeLabel] ) +  noOfZeroLabeledNeighbours*math.log( estimatedProbabities[nodeLabel,0] ) +  (len(neighbors)-noOfZeroLabeledNeighbours)*math.log( estimatedProbabities[nodeLabel,1] )
+	prob1 = math.exp( t )
+	
+	return prob0,prob1
+
+
+
+def f2(currentLabelEstimates, neighbors, estimatedProbabities, classPrior):
+	#class0 = f1(0,currentLabelEstimates, neighbors, estimatedProbabities, classPrior)
+	#class1 = f1(1,currentLabelEstimates, neighbors, estimatedProbabities, classPrior)
+	class0,class1 = f1(currentLabelEstimates, neighbors, estimatedProbabities, classPrior)
+	denominator = class0 + class1
+	class0 = class0/denominator
+	class1 = class1/denominator
+
+	t = generateClassLabelBasedOnCutoff(class0)
+
+	return t
+
 
 
 # This function is very similar to f2. But it is used to return the raw probability value for Maximum Entrophy Inference.
