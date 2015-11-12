@@ -212,13 +212,13 @@ def f2(currentLabelEstimates, neighbors, estimatedProbabities, classPrior):
 	class0 = class0/denominator
 	class1 = class1/denominator
 
-	"""
-	x = random.uniform(0,1)
-	if x < class0:
-		t = 0
-	else:
-		t = 1
-	"""
+	
+	#x = random.uniform(0,1)
+	#if x < class0:
+	#	t = 0
+	#else:
+	#	t = 1
+	
 
 	t = generateClassLabelBasedOnCutoff(class0)
 
@@ -334,8 +334,18 @@ def initializeUnknownLabelsForGibbsSampling(G,label,testLabels,parameters):
 # Note - estimated probability is actually estimated counts - update: not true anymore
 
 def initializeUnknownLabelsForGibbsSampling_biasVariance(G,label,testLabels,parameters,testLabels_for_oneLabel):
+	
 	currentLabelEstimates = dict(label)
 	currentLabelEstimates_oneLabel = dict(label)
+	"""
+	#future optimization
+	currentLabelEstimates = {}
+	currentLabelEstimates_oneLabel = {}
+
+	for node in testLabels:
+		currentLabelEstimates[node] = label[node]
+		currentLabelEstimates_oneLabel[node] = label[node]
+	"""
 
 	if parameters == None:
 		# Compute Parameters before making initial estimates
@@ -380,6 +390,104 @@ def initializeUnknownLabelsForGibbsSampling_biasVariance(G,label,testLabels,para
 	#print "Probability Estimates:\n",estimatedProbabities,"\n"
 
 	return (classPrior,estimatedProbabities,currentLabelEstimates,classPriorCounts,estimatedCounts,currentLabelEstimates_oneLabel)
+
+
+
+def initializeUnknownLabelsForGibbsSampling_biasVariance_1(G,label,testLabels,parameters,testLabels_for_oneLabel):
+	currentLabelEstimates = dict(label)
+	currentLabelEstimates_oneLabel = dict(label)
+	"""
+	currentLabelEstimates = {}
+	currentLabelEstimates_oneLabel = {}
+
+	for node in testLabels:
+		#currentLabelEstimates[node] = label[node]
+		currentLabelEstimates_oneLabel[node] = label[node]
+	"""
+
+	if parameters == None:
+		# Compute Parameters before making initial estimates
+		classPrior, estimatedProbabities, classPriorCounts, estimatedCounts = computeInitialParameters(G,label,testLabels_for_oneLabel)
+	else:
+		# Set the Parameters values determisnistically without computing based on te data to understand how the 
+		# prediciton perrforms with a given parameter values
+		classPrior0 = parameters[0]
+		parameter_0given0 = parameters[1]
+		parameter_1given1 = parameters[2]
+		classPrior, estimatedProbabities, classPriorCounts, estimatedCounts = setInitialParameterValues(classPrior0,parameter_0given0,parameter_1given1)
+
+
+	# Assign initial labels to all test labels just using the priors and the estimated probability of edges.
+	# For One Label
+	for node in testLabels:
+		neighbors = G[node]
+
+		currentLabelEstimates_oneLabel[node] = f2(label, neighbors, estimatedProbabities, classPrior)
+
+
+	return (classPrior,estimatedProbabities,currentLabelEstimates,classPriorCounts,estimatedCounts,currentLabelEstimates_oneLabel)
+
+
+
+def initializeUnknownLabelsForGibbsSampling_biasVariance_2(G,label,testLabels,parameters,testLabels_temp):
+	currentLabelEstimates = dict(label)
+	currentLabelEstimates_oneLabel = dict(label)
+	"""
+	currentLabelEstimates = {}
+	currentLabelEstimates_oneLabel = {}
+
+	for node in testLabels:
+		currentLabelEstimates[node] = label[node]
+		#currentLabelEstimates_oneLabel[node] = label[node]
+	"""
+
+	if parameters == None:
+		# Compute Parameters before making initial estimates
+		classPrior, estimatedProbabities, classPriorCounts, estimatedCounts = computeInitialParameters(G,label,testLabels_temp)
+	else:
+		# Set the Parameters values determisnistically without computing based on te data to understand how the 
+		# prediciton perrforms with a given parameter values
+		classPrior0 = parameters[0]
+		parameter_0given0 = parameters[1]
+		parameter_1given1 = parameters[2]
+		classPrior, estimatedProbabities, classPriorCounts, estimatedCounts = setInitialParameterValues(classPrior0,parameter_0given0,parameter_1given1)
+
+	"""
+	# Assign initial labels to all test labels just using the priors and the estimated probability of edges.
+	# For One Label
+	for node in testLabels:
+		neighbors = G[node]
+
+		currentLabelEstimates_oneLabel[node] = f2(label, neighbors, estimatedProbabities, classPrior)
+	"""
+
+	# Assign initial labels to all test labels just using the priors and the estimated probability of edges.
+	# For All Labels - joint
+	for node in testLabels:
+		neighbors = G[node]
+		
+		#removing all the edges to nodes/labels in the test set for computing initial estimates. Original Graph is unaffected.
+		newNeighbors = set()
+		for i in neighbors: 
+			if i not in testLabels:
+				newNeighbors.add(i)
+		#neighbors = set(newNeighbors)
+
+		currentLabelEstimates[node] = f2(currentLabelEstimates, newNeighbors, estimatedProbabities, classPrior)
+
+	#print "Initial Parameter Estimates:"
+	#print "Training Labels:",classPriorCounts
+	#print "Current Attr. Cor.:", computeCorrelation(computePairs(G,currentLabelEstimates))
+	#print "Class Prior Probabilites:",classPrior
+	#print "Label-Label Count across Edges:\n",estimatedCounts
+	#print sum(sum(estimatedCounts))
+	#print "Probability Estimates:\n",estimatedProbabities,"\n"
+
+	return (classPrior,estimatedProbabities,currentLabelEstimates,classPriorCounts,estimatedCounts)
+
+
+
+
 
 
 
@@ -505,7 +613,7 @@ def gibbsSampling(edges,label,testLabels,parameters):
 				currentLabelEstimates[node] = generateClassLabelBasedOnCutoff(cle)		
 
 		if i > burnin:
-			for j in currentLabelEstimates:
+			for j in testLabels:
 				if currentLabelEstimates[j] == 1:
 					resultingLabels[j] += 1
 
@@ -732,7 +840,7 @@ def gibbsSampling_biasVariance(edges,label,testLabels,parameters,originalLabels,
 					currentLabelEstimates[node] = generateClassLabelBasedOnCutoff(cle)		
 
 			if i > burnin:
-				for j in currentLabelEstimates:
+				for j in testLabels:
 					if currentLabelEstimates[j] == 1:
 						resultingLabels[j] += 1
 
@@ -793,4 +901,167 @@ def gibbsSampling_biasVariance(edges,label,testLabels,parameters,originalLabels,
 	return (currentLabelEstimates_oneLabel,resultingLabelEstimates_differentRuns,squaredLoss_differentRuns)
 
 
+
+# Hoda's ensemble method
+## Gibbs Sampling for doing bias variance analysis
+
+def gibbsSampling_biasVariance_hoda(edges,label,testLabels,parameters,originalLabels,noOfLabelsToMask):
+
+	noOfEnsembles = 5
+
+	testLabels_for_oneLabel = random.sample(originalLabels,noOfLabelsToMask)
+
+	# Randomly sample new training nodes
+	# The way "computeInitialParameters" is written - it takes it test labels and find out the training labels by removing the ltest labels. So this is equivalent to sampling new test labels.
 	
+
+	classPrior,estimatedProbabities,currentLabelEstimates_initial,classPriorCounts,estimatedCounts, currentLabelEstimates_oneLabel = initializeUnknownLabelsForGibbsSampling_biasVariance_1(edges,label,testLabels,parameters,testLabels_for_oneLabel)
+
+	classPrior = []
+	estimatedProbabities = []
+	currentLabelEstimates_initial = []
+	classPriorCounts = []
+	estimatedCounts = []
+	#currentLabelEstimates_oneLabel = []
+
+	# One-Label (currentLabelEstimates_oneLabel) and All Label Joint (currentLabelEstimates)
+	for k in range(noOfEnsembles):
+		testLabels_temp = random.sample(originalLabels,noOfLabelsToMask)
+		classPrior_temp,estimatedProbabities_temp,currentLabelEstimates_initial_temp,classPriorCounts_temp,estimatedCounts_temp = initializeUnknownLabelsForGibbsSampling_biasVariance_2(edges,label,testLabels,parameters,testLabels_temp)
+		classPrior.append(classPrior_temp)
+		estimatedProbabities.append(estimatedProbabities_temp)
+		currentLabelEstimates_initial.append(currentLabelEstimates_initial_temp)
+		classPriorCounts.append(classPriorCounts_temp)
+		estimatedCounts.append(estimatedCounts_temp)
+		#currentLabelEstimates_oneLabel.append(currentLabelEstimates_oneLabel_temp)
+
+	nodeTraversalOrder = testLabels
+	#random.shuffle(nodeTraversalOrder)
+
+	burnin = 100
+	iteration = 500
+
+	# if the maxEntInfFlag is set to true, the permform the Maximum Entropy Inference Correct from Joel's WWW 15.
+	# Basically this is done so that the proporation of the labels in the unlabels set match the proportion of labels in the labels set.
+	maxEntInfFlag = False
+
+	resultingLabelEstimates_differentRuns = []
+	squaredLoss_differentRuns = []
+
+	for times in range(5):
+
+		random.shuffle(nodeTraversalOrder)
+		
+		currentLabelEstimates = []
+		for k in range(noOfEnsembles):
+			currentLabelEstimates.append( dict(currentLabelEstimates_initial[k]) )
+
+		# Although the resulting labels has the training Labels also set to zero, they are not used anywhere, so it doesnt matter what value they have.
+		resultingLabels_temp = {}
+		for i in testLabels:
+			resultingLabels_temp[i] = 0
+
+		resultingLabels = []
+		for k in range(noOfEnsembles):
+			resultingLabels.append(dict(resultingLabels_temp))
+
+		LabelDifferenceBetweenIterationsCounter = 0
+		previousLabelDifferenceBetweenIterations = 0
+
+		## Step 3 of algo
+		#print "\nStart of Gibbs....\n"
+
+		for i in range(iteration):
+			
+			LabelDifferenceBetweenIterations = 0
+
+			for node in nodeTraversalOrder:
+				#print "\nNode ",node
+				#print "Before Attr. Cor.:", computeCorrelation(computePairs(edges,currentLabelEstimates))
+				neighbors = edges[node]
+				#previousEstimate = currentLabelEstimates[node]
+				#currentLabelEstimates[node] = f2(currentLabelEstimates, neighbors, estimatedProbabities, classPrior)
+				
+				t = 0
+				for k in range(noOfEnsembles):
+					t += f2(currentLabelEstimates[k], neighbors, estimatedProbabities[k], classPrior[k])
+
+				t = generateClassLabelBasedOnCutoff(t)	
+
+				if i > burnin:
+					for k in range(noOfEnsembles):
+						currentLabelEstimates[k][node] = t
+						
+						if currentLabelEstimates[k][node] == 1:
+							resultingLabels[k][node] += 1
+				else:
+					for k in range(noOfEnsembles):
+						currentLabelEstimates[k][node] = t
+			
+			"""
+			if i > burnin:
+				for j in testLabels:
+					if currentLabelEstimates[j] == 1:
+						resultingLabels[j] += 1
+
+					temp = (resultingLabels[j] + 0.0)/(i - burnin) 
+					temp = int(temp >= 0.5)
+					if temp != label[j]:
+						LabelDifferenceBetweenIterations += 1
+
+			
+			if i >= burnin:
+				# Check if the numbers of labels estimated differ from the previous interation
+				if LabelDifferenceBetweenIterations == previousLabelDifferenceBetweenIterations:
+					LabelDifferenceBetweenIterationsCounter += 1
+				else:
+					LabelDifferenceBetweenIterationsCounter = 0
+					previousLabelDifferenceBetweenIterations = LabelDifferenceBetweenIterations
+			"""
+				#If the estimates don't change for 100 interations, we can exit considering it has converged
+				#if LabelDifferenceBetweenIterationsCounter >= 100:
+				#	print "Interations ended at " + str(i) + " as estimates have not changed!"
+
+					# In the absence on this line
+					#iteration = i
+					#break
+			
+
+			#if not i%10:
+				#print "\n--------------------------------------------------\n" + "Iteration no : " +str(i)
+				#print "Iteration no : " +str(i) + " -> LabelDifferenceBetweenIterations : " + str(LabelDifferenceBetweenIterations)	
+				#print "Current Attr. Cor.:", computeCorrelation(computePairs(edges,currentLabelEstimates))
+				#print classPriorCounts
+				#print classPrior
+				#print estimatedCounts
+				#print sum(sum(estimatedCounts))
+				#print estimatedProbabities
+		
+		# Will be used for computing Squared loss. Is a dictionary because of the 
+		# second line in the for loop and for it to be consistent to resultingLabels
+		#resultingLabelsForSquaredLoss = {}
+
+		for k in range(noOfEnsembles):
+			for i in resultingLabels[k]:
+				resultingLabels[k][i] = (resultingLabels[k][i] + 0.0)/(iteration - burnin) 
+				#resultingLabelsForSquaredLoss[i] = resultingLabels[i]
+
+		finalLabel = {}
+		for node in nodeTraversalOrder:
+			t = 0
+			for k in range(noOfEnsembles):
+				t += resultingLabels[k][i]
+			finalLabel[node] = t/k;
+		# Compute Squared Loss with the averages of Gibbs sampling before assigning them a single value
+		squaredLoss = computeSquaredLoss(label,testLabels,finalLabel)
+
+		resultingLabelEstimates_differentRuns.append(finalLabel)
+		squaredLoss_differentRuns.append(squaredLoss)
+	
+		print "Times :",times
+		print "No. of interation in which labels have not changed:",LabelDifferenceBetweenIterationsCounter
+
+		print squaredLoss
+
+
+	return (currentLabelEstimates_oneLabel,resultingLabelEstimates_differentRuns,squaredLoss_differentRuns)

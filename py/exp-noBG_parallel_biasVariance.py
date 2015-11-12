@@ -7,10 +7,10 @@ from multiprocessing import Pool
 import gc
 
 basePath = '/homes/pgurumur/jen/noise/py/'
-#school = "school074"
+school = "school074"
 #school = "polblogs"
 #school = "cora"
-school = "facebook"
+#school = "facebook"
 schoolLabel = "label0"
 
 
@@ -522,7 +522,11 @@ def func_star(a_b):
 def func_star_biasVariance(a_b):
     """Convert `f([1,2])` to `f(1,2)` call."""
     return gibbsSampling_biasVariance(*a_b)
-    
+
+
+def func_star_biasVariance_hoda(a_b):
+    """Convert `f([1,2])` to `f(1,2)` call."""
+    return gibbsSampling_biasVariance_hoda(*a_b)
 
 
 # ListOfObject can be a list of numbers or a list of vectors or a list of matrices
@@ -685,7 +689,7 @@ for trainingSize in trainingSizeList:
 				ib = []
 				iv = []
 
-				for i in range(50):
+				for i in range(200):
 					print "\nRepetition No.:",i+1
 
 					# Uncomment the first line to generate random testLables for each iteration
@@ -707,6 +711,8 @@ for trainingSize in trainingSizeList:
 					else:
 						arg_t = [currentGraph,currentLabels,testLabels,None,originalLabels,noOfLabelsToMask]	
 
+
+					#a,b,c = gibbsSampling_biasVariance_hoda(currentGraph,currentLabels,testLabels,None,originalLabels,noOfLabelsToMask)
 					arguments = []
 					for i in range(5):
 						arguments.append(list(arg_t))
@@ -714,7 +720,7 @@ for trainingSize in trainingSizeList:
 					#print "here"
 
 					pool = Pool(processes=noofProcesses)
-					y = pool.map(func_star_biasVariance, arguments)
+					y = pool.map(func_star_biasVariance_hoda, arguments)
 					pool.close()
 					pool.join()
 
@@ -803,7 +809,7 @@ for trainingSize in trainingSizeList:
 				print "avgInferenceVariance :",avgInferenceVariance
 				
 				#outputTofile.append( [ Action + "ResultsBaselines.txt",prefix , str(trainingSize) , str(round(meanAccuracy,4)) , str(round(sd,4)) , str(round(se,4)) , str(round(meanPrecision,4)) , str(round(meanRecall,4)) , str(round(f1,4)), str(round(medianAccuracy,4))])
-				outputTofile.append( [ Action + "Results_50iter.txt",prefix , str(trainingSize) , str(round(avgSquaredLoss,4)) , str(round(avgLearningBias,4)) , str(round(avgLearningVariance,4)) , str(round(avgTotalBias,4)) , str(round(avgTotalVariance,4)) , str(round(avgInferenceBias,4)) , str(round(avgInferenceVariance,4)) ])
+				outputTofile.append( [ Action + "hoda.txt",prefix , str(trainingSize) , str(round(avgSquaredLoss,4)) , str(round(avgLearningBias,4)) , str(round(avgLearningVariance,4)) , str(round(avgTotalBias,4)) , str(round(avgTotalVariance,4)) , str(round(avgInferenceBias,4)) , str(round(avgInferenceVariance,4)) ])
 				#outputTofile.append( [ Action + "Results.txt","Median_"+prefix , str(trainingSize) , str(round(medianAccuracy,4)) , str(round(0,4)) , str(round(0,4)) , str(round(0,4)) , str(round(0,4)) , str(round(0,4)) ])
 				#print e1
 				
